@@ -9,11 +9,19 @@
 </head>
 <body>
 <h1>{{title}}</h1>
-<a href={{link}}>
+{{#if isAdmin}}
     <h2>
-        Go and create
+        Welcome, {{name}}
     </h2>
-</a>
+{{/if}}
+
+<a href={{loginPage}}>Login</a>
+
+<h2>
+    <a href={{link}}>
+        Go and create
+    </a>
+</h2>
 <section>
     <ul>
         {{#each list}}
