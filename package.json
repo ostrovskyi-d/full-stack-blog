@@ -19,7 +19,7 @@
     "cross-env": "^6.0.3",
     "express": "^4.17.1",
     "hbs": "^4.1.0",
-    "mongoose": "4.13.7",
+    "mongoose": "5.7.5",
     "mongoose-timestamp": "^0.6.0",
     "node-sass": "^4.13.1",
     "sass": "^1.25.0"
