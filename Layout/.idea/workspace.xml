@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="711e5e5a-605e-49b4-a84b-d8713349e8a8" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1WsYGqN2yuASOCnP8ZRzJuTjcFr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.14.0" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.CSS" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User2019\Desktop\w\Layouts\Blog\dist" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/Blog/dist/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="711e5e5a-605e-49b4-a84b-d8713349e8a8" name="Default Changelist" comment="" />
+      <created>1579939677007</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579939677007</updated>
+      <workItem from="1579939678965" duration="9112000" />
+      <workItem from="1579950807176" duration="354000" />
+      <workItem from="1579951231941" duration="7580000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="254" y="106" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579947483776">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="254" y="106" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.870@0.0.1600.870" timestamp="1579947483776" />
+    <state x="575" y="246" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1579957606230">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="575" y="246" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.870@0.0.1600.870" timestamp="1579957606230" />
+    <state x="530" y="198" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1579956335007">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="530" y="198" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.870@0.0.1600.870" timestamp="1579956335007" />
+    <state x="580" y="206" key="FileChooserDialogImpl" timestamp="1579955579807">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="580" y="206" key="FileChooserDialogImpl/0.0.1600.870@0.0.1600.870" timestamp="1579955579807" />
+    <state x="524" y="15" width="998" height="717" key="SettingsEditor" timestamp="1579956711476">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="524" y="15" width="998" height="717" key="SettingsEditor/0.0.1600.870@0.0.1600.870" timestamp="1579956711476" />
+    <state x="464" y="209" key="run.anything.popup" timestamp="1579957549688">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="464" y="209" key="run.anything.popup/0.0.1600.870@0.0.1600.870" timestamp="1579957549688" />
+    <state x="463" y="191" width="672" height="678" key="search.everywhere.popup" timestamp="1579955399495">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="463" y="191" width="672" height="678" key="search.everywhere.popup/0.0.1600.870@0.0.1600.870" timestamp="1579955399495" />
+  </component>
+</project>
