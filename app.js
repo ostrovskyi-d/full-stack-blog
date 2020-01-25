@@ -1,62 +1,27 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const Post = require('./models/post');
+const hbs = require("hbs");
+const fs = require("fs");
+const path = require("path");
 
 
 const app = express();
 app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/javascript', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
 
-const admin = {
-    email: "azatot2014@gmail.com",
-    pass: '123123'
-};
+// handlebars partials (some kind of components)
+hbs.registerPartial('header', fs.readFileSync(__dirname + '/views/layout/header.hbs', 'utf8'));
+hbs.registerPartial('footer', fs.readFileSync(__dirname + '/views/layout/footer.hbs', 'utf8'));
 
-const store = {
-    arr: ["NodeJS", "Express", "Handlebars"],
-    isAdmin: false
-};
+
 
 app.get('/', (req, res) => {
-    Post.find({}).then(posts => {
-        res.render("index", {
-            title: "Home",
-            link: "/create",
-            list: posts,
-            loginPage: '/login',
-            isAdmin: store.isAdmin,
-            name: admin.email
-        })
-    })
-
-});
-app.get('/create', (req, res) => {
-    res.render('create');
-});
-app.get('/login', (req, res) => {
-    res.render('login')
-});
-app.post('/login', (req, res) => {
-    if(req.body.email === admin.email && req.body.pass === admin.pass) {
-        store.isAdmin = true;
-        res.redirect('/')
-    }
+    res.render("index")
 });
 
-app.post('/create', (req, res) => {
-    const {title, body} = req.body;
-    if(store.arr.includes(req.body.text)) {
-        res.send("Already exist this list item")
-    } else {
-        Post.create({
-            title: title,
-            body: body
-        }).then(post => {
-            console.log(post.id);
-        });
-        res.redirect('/')
-    }
-    console.log(req.body);
-});
+
 
 module.exports = app;
