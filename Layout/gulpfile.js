@@ -3,7 +3,8 @@ const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cssnano = require('gulp-cssnano');
 const browserSync = require('browser-sync').create();
-const plumber = require('gulp-plumber');
+// const plumber = require('gulp-plumber');
+sass.compiler = require('node-sass');
 
 gulp.task('browser-sync', () => {
     browserSync.init({
@@ -16,8 +17,8 @@ gulp.task('browser-sync', () => {
 
 gulp.task('scss', () => {
     return gulp.src('./dev/scss/**/*.scss')
-        .pipe(plumber())
-        .pipe(sass())
+        // .pipe(plumber())
+        .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {
             cascade: true
         }))
