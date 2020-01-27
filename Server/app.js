@@ -19,7 +19,9 @@ hbs.registerPartial('footer', fs.readFileSync(__dirname + '/views/layout/footer.
 
 
 app.get('/', (req, res) => {
-    res.render("index")
+    res.render("index", {
+        title: Post.title
+    })
 });
 
 
