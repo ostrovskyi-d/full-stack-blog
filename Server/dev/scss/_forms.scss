@@ -30,6 +30,19 @@ button,
   &:hover {
     text-decoration: none;
   }
+  &.inverse {
+    background-color: $whiteColor;
+    color: $primaryColor;
+  }
+  &.secondary {
+    background-color: $secondaryColor;
+    border: 1px solid $secondaryColor;
+  }
+  &.secondary-inverse {
+    color: $secondaryColor;
+    border-color: $secondaryColor;
+    background-color: $whiteColor;
+  }
 }
 
 input,

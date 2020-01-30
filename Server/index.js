@@ -3,7 +3,7 @@ const config = require('./config');
 const database = require('./database');
 
 database().then(info => {
-    console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
+    console.log(`Connected to db ${info.host}:${info.port}/${info.name}`);
     app.listen(config.PORT, () => {
         console.log(`___SERVER LISTENING ON PORT ${config.PORT}___`)
     });

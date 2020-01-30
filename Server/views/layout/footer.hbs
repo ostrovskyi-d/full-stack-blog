@@ -4,17 +4,20 @@
     </div>
 </footer>
 <script src="javascript/jquery.min.js"></script>
+
 {{!--To prevent css and js caching--}}
 <script>
+    
     $(document).ready(() => {
         const calcRandVer = () => Math.floor(Math.random() * (100000 - 1) + 1);
         $("head").append(`
             <link rel="stylesheet" href="stylesheets/style.css?dev=${calcRandVer()}">
         `);
         $("body").append(`
-            <script src="javascript/scripts.js?dev=${calcRandVer()}">
+            <script src="javascript/scripts.min.js?dev=${calcRandVer()}">
         `)
     })
+    
 </script>
 </body>
 

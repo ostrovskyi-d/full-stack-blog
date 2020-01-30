@@ -1,1 +1,1 @@
-console.log("scripts connected");
+console.log("dev/js/auth.js connected");
