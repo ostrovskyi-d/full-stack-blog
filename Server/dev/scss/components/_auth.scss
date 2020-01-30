@@ -11,12 +11,15 @@
     .buttons {
       display: flex;
       justify-content: space-around;
+      flex-direction: row-reverse;
+
       button {
         font-size: 13px;
         padding-left: 12px;
         padding-right: 12px;
       }
     }
+
   }
   // .register {
   //   display: none;

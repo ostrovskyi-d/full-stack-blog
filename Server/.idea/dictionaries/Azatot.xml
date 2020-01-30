@@ -3,6 +3,8 @@
     <words>
       <w>autoprefixer</w>
       <w>cssnano</w>
+      <w>nodemon</w>
+      <w>uglified</w>
     </words>
   </dictionary>
 </component>

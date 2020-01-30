@@ -12,8 +12,8 @@
                 <input type="password" name="password" id="log-password">
             </div>
             <div class="buttons">
-                <button class="reg-button secondary-inverse">Register</button>
-                <button class="login-button">Login</button>
+                <button id="submit-login" type="submit" class="login-button">Login</button>
+                <button class="switch-button secondary-inverse">To Register</button>
             </div>
         </form>
 
@@ -28,10 +28,15 @@
                 <label for="reg-password">Password:</label>
                 <input type="password" name="password" id="reg-password">
             </div>
-            <div class="buttons">
-                <button class="reg-button secondary-inverse">Register</button>
-                <button class="login-button">Login</button>
+            <div class="form-group">
+                <label for="pass-repeat">Repeat your password:</label>
+                <input type="password" name="pass-repeat" id="pass-repeat">
             </div>
+            <div class="buttons buttons-reg">
+                <button id="submit-register" type="submit" class="create-button">Create</button>
+                <button class="switch-button reg-button secondary-inverse">To Login</button>
+            </div>
+
         </form>
 
 

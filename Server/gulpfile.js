@@ -8,6 +8,7 @@ const concat = require('gulp-concat');
 const uglify = require('gulp-uglify-es').default;
 const rename = require('gulp-rename');
 const babel = require('gulp-babel');
+const config = require('./config');
 sass.compiler = require('node-sass');
 
 const dir = {
@@ -16,19 +17,19 @@ const dir = {
     hbs: './views/**/*.hbs',
     js: './dev/js/**/*.js',
     uglifiedJs: './public/javascript'
-}
+};
 
 
 
 // Nodemon
 gulp.task('start', function (done) {
     nodemon({
-        script: 'index.js'
+        script: 'app.js'
         , ext: 'js hbs html'
-        , env: { 'NODE_ENV': 'development' }
+        , env: { 'NODE_ENV': config.IS_PRODUCTION }
         , done: done
     })
-})
+});
 
 // uglify
 gulp.task('uglify', () => gulp.src(dir.js)
@@ -38,7 +39,7 @@ gulp.task('uglify', () => gulp.src(dir.js)
     }))
     .pipe(uglify())
     .pipe(gulp.dest(dir.uglifiedJs))
-)
+);
 
 
 
@@ -51,12 +52,12 @@ gulp.task('scss', () => gulp.src(dir.scss)
     .pipe(cssnano())
     .pipe(gulp.dest(dir.css)));
 
-console.log("!!!!SUCCESS!!!!")
+console.log("!!!!SUCCESS!!!!");
 
 
 // 
 gulp.task('default', gulp.parallel('scss', 'start', 'uglify', (done) => {
     gulp.watch(dir.scss, gulp.parallel('scss'));
-    gulp.watch(dir.js, gulp.parallel('uglify'))
+    gulp.watch(dir.js, gulp.parallel('uglify'));
     done()
 }));
