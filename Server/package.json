@@ -29,6 +29,7 @@
     "sass": "^1.25.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "browser-sync": "^2.26.7",
     "cross-env": "^6.0.3",

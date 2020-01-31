@@ -1,0 +1,15 @@
+
+.error {
+    display: flex;
+    padding: $freeSpace;
+    justify-content: center;
+    background-color: rgba(255, 0, 0, 0.16);
+    border: 1px solid rgba(255, 0, 0, 0.18);
+    border-radius: 2px;
+    text-align: center;
+}
+
+.success {
+    background-color: rgba(199, 255, 116, 0.712);
+    @extend .error
+}

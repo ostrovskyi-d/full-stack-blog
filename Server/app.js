@@ -45,10 +45,16 @@ partials.forEach(partial => {
 // Routes
 
 app.get('/', (req, res) => {
+    console.log(routes.auth.params);
     res.render("index", {
-        // title: title
+        
     })
 });
+// app.get('/api/auth/register', (req,res) => {
+//     res.render('./layout/sidebar', {
+        
+//     })
+// })
 
 app.use('/api/auth', routes.auth);
 

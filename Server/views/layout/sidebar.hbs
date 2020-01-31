@@ -3,6 +3,8 @@
 
         <form method="POST" class="login">
             <h2>Enter</h2>
+            <p>{{error.message}}</p>
+
             <div class="form-group">
                 <label for="log-login">Name:</label>
                 <input type="text" name="login" id="log-login">
@@ -20,6 +22,9 @@
 
         <form method="POST" class="register">
             <h2>Register</h2>
+            <div>
+                <p>{{error.message}}</p>
+            </div>
             <div class="form-group">
                 <label for="reg-login">Name:</label>
                 <input type="text" name="login" id="reg-login">
@@ -30,14 +35,16 @@
             </div>
             <div class="form-group">
                 <label for="pass-repeat">Repeat your password:</label>
-                <input type="password" name="pass-repeat" id="pass-repeat">
+                <input type="password" name="password-repeat" id="pass-repeat">
             </div>
             <div class="buttons buttons-reg">
                 <button id="submit-register" type="submit" class="create-button">Create</button>
                 <button class="switch-button reg-button secondary-inverse">To Login</button>
             </div>
-
         </form>
+
+        {{!-- Error message --}}
+
 
 
     </div>
