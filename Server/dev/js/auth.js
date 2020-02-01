@@ -55,11 +55,13 @@ $(() => {
                         $(`input[name = ${field}]`).css({ 'box-shadow': '0 0 0 2px #ff9595', 'transition-duration': '0.6s' });
                     });
                     $('.register h2').after(`<p class='error'> ${message} </p>`)
+
                 } else if (resultCode === 101) {
                     fields.forEach(field => {
                         $(`input[name = ${field}]`).css({ 'box-shadow': 'none' });
                     });
-                    $('.register h2').after(`<p class='success'> ${message} </p>`)
+                    // $('.register h2').after(`<p class='success'> ${message} </p>`);
+                    $(location).attr('href', '/')
                 }
             }
         )
@@ -67,7 +69,6 @@ $(() => {
 
     // login
     $('#submit-login').on('click', (e) => {
-        // basic behavior 
         e.preventDefault();
         $('p.error').remove();
         $('p.success').remove();
@@ -81,9 +82,7 @@ $(() => {
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',
-            url: 'api/auth/login',
-
-
+            url: 'api/auth/login'
         }).done(
             ({ resultCode, error, message, fields = [], ...data }) => {
                 if (resultCode === 102) {
@@ -95,12 +94,24 @@ $(() => {
                     fields.forEach(field => {
                         $(`input[name = ${field}]`).css({ 'box-shadow': 'none' });
                     });
-                    $('.login h2').after(`<p class='success'> ${message} </p>`)
+                    $(location).attr('href', '/')
+                    // $('.login h2').after(`<p class='success'> ${message} </p>`)
+
                 }
             }
         )
     });
 
+    // Logout
+    $('#logout').on('click', (e) => {
+        // basic behavior
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            url: 'api/auth/logout',
+        }).done(() => $(location).attr('href', '/'))
+    });
 
 });
 

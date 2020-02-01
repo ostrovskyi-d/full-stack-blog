@@ -8,7 +8,8 @@ const mongoose = require('mongoose');
 const config = require('./config');
 const routes = require('./routes');
 const session = require('express-session');
-const connectMongo = require('connect-mongo');
+const MongoStore = require('connect-mongo')(session);
+
 
 
 // Database
@@ -29,10 +30,12 @@ mongoose.connect(config.MONGO_URL, {useMongoClient: true});
 
 const app = express();
 app.set('view engine', 'hbs');
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/javascript', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
+
+
 app.use(session({
     secret: config.SESSION_SECRET,
     resave: true,
@@ -41,32 +44,37 @@ app.use(session({
         mongooseConnection: mongoose.connection
     })
 }));
-// handlebars partials (some kind of components)
-const partials = [
-    'header',
-    'footer',
-    'sidebar',
-];
 
-partials.forEach(partial => {
-    hbs.registerPartial(partial, fs.readFileSync(__dirname + `/views/layout/${partial}.hbs`, 'utf8'))
-});
 
 // Routes
-
-app.get('/', (req, res) => {
-    console.log(routes.auth.params);
-    res.render("index", {
-        
-    })
-});
-// app.get('/api/auth/register', (req,res) => {
-//     res.render('./layout/sidebar', {
-        
-//     })
-// })
-
+//// Auth
 app.use('/api/auth', routes.auth);
+app.get('/', (req, res, next) => {
+    const {userId: id, userLogin: login} = req.session;
+    res.render("index", {
+        user: {id, login}
+    });
+});
+//// Post
+app.use('/post', routes.post);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 404
 app.use((req, res, next) => {
@@ -81,9 +89,43 @@ app.use((error, req, res, next) => {
         message: error.message,
         error: !config.IS_PRODUCTION ? error : {},
         title: "Oops..."
-    })
+    });
+    // next()
 });
 
 app.listen(config.PORT, () => {
     console.log(`___SERVER LISTENING ON PORT ${config.PORT}___`)
 });
+
+// HBS-HELPERS
+hbs.registerHelper("log", function(something) {
+    console.log(something);
+});
+
+// -----------------------------------------------
+// handlebars partials (some kind of components)
+// RECURSIVELY AUTO-REGISTER PARTIALS
+const dir = path.join(__dirname, 'views');
+const walkSync = (dir, filelist = []) => {
+    fs.readdirSync(dir).forEach(file => {
+
+        filelist = fs.statSync(path.join(dir, file)).isDirectory()
+            ? walkSync(path.join(dir, file), filelist)
+            : filelist.concat(path.join(dir, file));
+
+    });
+    return filelist;
+};
+let filelist = walkSync(dir);
+if (filelist.length > 0) {
+    filelist.forEach(function (filename) {
+        let matches = /^([^.]+).hbs$/.exec(path.basename(filename));
+        if (!matches) {
+            return;
+        }
+        let name = matches[1];
+        // console.log(name);
+        let template = fs.readFileSync(filename, 'utf8');
+        hbs.registerPartial(name, template);
+    });
+}

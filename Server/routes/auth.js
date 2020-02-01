@@ -1,11 +1,3 @@
-// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-// 
-// Довести до ума реєстрацію
-// 
-// Помилка: тільки латинські символи і цифри
-// Помилка: пароль не менше 6 символів
-// 
-// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 const express = require('express');
 const router = express.Router();
@@ -17,13 +9,13 @@ const saltRounds = 10;
 
 
 // register: storing name, email and password and redirecting to home page after signup
-router.post('/register', async ({body: {login, password, passwordConfirm}, ...rest}, res) => {
-
+router.post('/register', async (req, res, next) => {
+    const {login, password, passwordConfirm} = req.body;
     const fields = [];
 
-    !login && fields.push('login')
-    !password && fields.push('password')
-    !passwordConfirm && fields.push('password-repeat')
+    !login && fields.push('login');
+    !password && fields.push('password');
+    !passwordConfirm && fields.push('password-repeat');
 
 
     if (!login || !password || !passwordConfirm) {
@@ -33,8 +25,7 @@ router.post('/register', async ({body: {login, password, passwordConfirm}, ...re
             message: "All fields must be filled",
             fields
         };
-        res.json({...error})
-
+        res.json({...error});
     } else if (!/^[a-zA-Z0-9]+$/.test(login)) {
         res.json({
             resultCode: 102,
@@ -49,6 +40,7 @@ router.post('/register', async ({body: {login, password, passwordConfirm}, ...re
             message: 'Login too short <br>(min symbols - 3, max symbols - 16)',
             fields
         })
+
     } else if (login.length > 16) {
         res.json({
             resultCode: 102,
@@ -75,10 +67,17 @@ router.post('/register', async ({body: {login, password, passwordConfirm}, ...re
         if (!user) {
             bcrypt.hash(password, saltRounds, async (err, hash) => {
                 try {
-                    let response = await db.User.create({
+                    let user = await db.User.create({
                         login,
                         password: hash
-                    })
+                    });
+                    req.session.userId = user.id;
+                    req.session.userLogin = user.login;
+                    res.json({
+                        resultCode: 101,
+                        message: "User created",
+                        fields
+                    });
                 } catch (err) {
                     res.json({
                         resultCode: 102,
@@ -86,16 +85,9 @@ router.post('/register', async ({body: {login, password, passwordConfirm}, ...re
                         fields: []
                     })
                 }
-                res.json({
-                    resultCode: 101,
-                    message: "User created",
-                    fields
-                });
-                console.log('USER CREATED');
-                res.redirect('/');
             });
         } else {
-            console.log("REJECT USER CREATING: USER EXISTS")
+            console.log("REJECT USER CREATING: USER EXISTS");
             res.json({
                 resultCode: 102,
                 message: "User already exist",
@@ -104,11 +96,13 @@ router.post('/register', async ({body: {login, password, passwordConfirm}, ...re
         }
     }
 });
-router.post('/login', async (req, res) => {
+
+
+router.post('/login', async (req, res, next) => {
     const {login, password} = req.body;
 
     const fields = [];
-    console.log(login, password)
+    console.log(login, password);
     !login && fields.push('login');
     !password && fields.push('password');
 
@@ -128,16 +122,23 @@ router.post('/login', async (req, res) => {
                 message: 'Login or password incorrect!',
                 fields: ['login', 'password']
             })
+
         } else {
             bcrypt.compare(password, user.password, (err, result) => {
                 console.log(result);
                 if (result) {
+
+                    // SESSION
+                    req.session.userId = user.id;
+                    req.session.userLogin = user.login;
+
                     res.json({
                         resultCode: 101,
                         type: 'success',
                         message: `Hello, ${login}!`
                     })
                 } else {
+
                     res.json({
                         resultCode: 102,
                         type: 'error',
@@ -145,9 +146,18 @@ router.post('/login', async (req, res) => {
                     })
                 }
             })
-
-
         }
+    }
+});
+
+router.get('/logout', (req, res, next) => {
+    if (req.session) {
+        req.session.destroy((err) => {
+            if (err) return next(err);
+            else return res.redirect('/')
+        });
+    } else {
+        res.redirect('/')
     }
 });
 

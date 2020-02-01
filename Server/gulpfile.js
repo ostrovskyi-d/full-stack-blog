@@ -1,63 +1,63 @@
+// const port = require('./config').PORT;
+
+const concat = require('gulp-concat');
 const gulp = require('gulp');
 const sass = require('gulp-sass');
-const port = require('./config').PORT;
 const autoprefixer = require('gulp-autoprefixer');
 const cssnano = require('gulp-cssnano');
 const nodemon = require('gulp-nodemon');
-const concat = require('gulp-concat');
 const uglify = require('gulp-uglify-es').default;
 const rename = require('gulp-rename');
 const babel = require('gulp-babel');
 const config = require('./config');
 sass.compiler = require('node-sass');
 
-const dir = {
+const dirs = {
     scss: './dev/scss/**/*.scss',
-    css: './public/stylesheets/',
     hbs: './views/**/*.hbs',
     js: './dev/js/**/*.js',
-    uglifiedJs: './public/javascript'
+    outerCSS: './public/stylesheets/',
+    outerUglifiedJs: '/public/javascript',
+    mediumEditor: 'node_modules/medium-editor/dist/js/medium-editor.min.js'
 };
-
 
 
 // Nodemon
 gulp.task('start', function (done) {
     nodemon({
         script: 'app.js'
-        , ext: 'js hbs html'
-        , env: { 'NODE_ENV': config.IS_PRODUCTION }
+        , ext: 'js hbs html jsx'
+        , env: {'NODE_ENV': config.IS_PRODUCTION}
         , done: done
     })
 });
 
 // uglify
-gulp.task('uglify', () => gulp.src(dir.js)
-    .pipe(rename('scripts.min.js'))
-    .pipe(babel({
-        presets: ['@babel/env']
-    }))
-    .pipe(uglify())
-    .pipe(gulp.dest(dir.uglifiedJs))
+gulp.task('uglify', () => gulp.src([dirs.js, dirs.mediumEditor])
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(concat('scripts.min.js'))
+        // .pipe(uglify())
+        .pipe(gulp.dest('public/javascript'))
 );
 
-
-
 // Gulp-sass
-gulp.task('scss', () => gulp.src(dir.scss)
+gulp.task('scss', () => gulp.src(dirs.scss)
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {
         cascade: true
     }))
     .pipe(cssnano())
-    .pipe(gulp.dest(dir.css)));
+    .pipe(gulp.dest(dirs.outerCSS)));
 
 console.log("!!!!SUCCESS!!!!");
 
 
-// 
+//
 gulp.task('default', gulp.parallel('scss', 'start', 'uglify', (done) => {
-    gulp.watch(dir.scss, gulp.parallel('scss'));
-    gulp.watch(dir.js, gulp.parallel('uglify'));
+    gulp.watch(dirs.scss, gulp.parallel('scss'));
+    gulp.watch(dirs.js, gulp.parallel('uglify'));
+
     done()
 }));
