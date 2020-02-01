@@ -26,7 +26,7 @@ $(() => {
         $('p.error').remove();
         $('input').css({ "box-shadow": "none" });
         $('p.success').remove();
-    })
+    });
 
 
     // register

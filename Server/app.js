@@ -7,6 +7,9 @@ const path = require("path");
 const mongoose = require('mongoose');
 const config = require('./config');
 const routes = require('./routes');
+const session = require('express-session');
+const connectMongo = require('connect-mongo');
+
 
 // Database
 mongoose.Promise = global.Promise;
@@ -30,7 +33,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/javascript', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
-
+app.use(session({
+    secret: config.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection
+    })
+}));
 // handlebars partials (some kind of components)
 const partials = [
     'header',
