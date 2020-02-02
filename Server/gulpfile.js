@@ -38,7 +38,7 @@ gulp.task('uglify', () => gulp.src([dirs.js, dirs.mediumEditor])
             presets: ['@babel/env']
         }))
         .pipe(concat('scripts.min.js'))
-        // .pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('public/javascript'))
 );
 
@@ -55,9 +55,9 @@ console.log("!!!!SUCCESS!!!!");
 
 
 //
-gulp.task('default', gulp.parallel('scss', 'start', 'uglify', (done) => {
+gulp.task('default', gulp.series('scss','uglify', 'start' , (done) => {
     gulp.watch(dirs.scss, gulp.parallel('scss'));
-    gulp.watch(dirs.js, gulp.parallel('uglify'));
+    gulp.watch(dirs.js, gulp.series('uglify'));
 
     done()
 }));

@@ -15,16 +15,19 @@ const MongoStore = require('connect-mongo')(session);
 // Database
 mongoose.Promise = global.Promise;
 mongoose.set('debug', config.IS_PRODUCTION);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useCreateIndex', true);
+
 
 mongoose.connection
-    .on('error', error => console.error(error))
+    .on('error', console.error.bind(console, 'connection error: '))
     .on('close', () => console.log('Database connection closed.'))
     .once('open', () => {
         const info = mongoose.connections[0];
         console.log(`Connected to db ${info.host}:${info.port}/${info.name}`);
     });
 
-mongoose.connect(config.MONGO_URL, {useMongoClient: true});
+mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true});
 
 // EXPRESS
 
