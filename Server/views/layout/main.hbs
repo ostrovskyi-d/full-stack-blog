@@ -1,7 +1,11 @@
 <main class="main">
     <div class="container">
         <div class="content">
-           {{> add}}
+        {{#if renderPostsPage}}
+            {{> post}}
+        {{else}}
+            {{> add}}
+        {{/if}}
         </div>
         {{> sidebar}}
     </div>

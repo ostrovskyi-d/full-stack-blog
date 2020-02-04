@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
@@ -19,13 +18,12 @@ router.post('/register', async (req, res, next) => {
 
 
     if (!login || !password || !passwordConfirm) {
-        const error = {
+        res.json({
             resultCode: 102,
             type: 'error',
             message: "All fields must be filled",
             fields
-        };
-        res.json({...error});
+        });
     } else if (!/^[a-zA-Z0-9]+$/.test(login)) {
         res.json({
             resultCode: 102,

@@ -52,7 +52,8 @@ app.use('/api/auth', routes.auth);
 app.get('/', (req, res, next) => {
     const {userId: id, userLogin: login} = req.session;
     res.render("index", {
-        user: {id, login}
+        user: {id, login},
+        renderPostsPage: true,
     });
 });
 //// Post

@@ -18,7 +18,8 @@ const dirs = {
     js: './dev/js/**/*.js',
     outerCSS: './public/stylesheets/',
     outerUglifiedJs: '/public/javascript',
-    mediumEditor: 'node_modules/medium-editor/dist/js/medium-editor.min.js'
+    mediumEditor: 'node_modules/medium-editor/dist/js/medium-editor.min.js',
+    jQuery: 'node_modules/jquery/dist/jquery.min.js'
 };
 
 
@@ -26,20 +27,20 @@ const dirs = {
 gulp.task('start', function (done) {
     nodemon({
         script: 'app.js'
-        , ext: 'js hbs html jsx'
+        , ext: 'js hbs html'
         , env: {'NODE_ENV': config.IS_PRODUCTION}
         , done: done
     })
 });
 
 // uglify
-gulp.task('uglify', () => gulp.src([dirs.js, dirs.mediumEditor])
-        .pipe(babel({
-            presets: ['@babel/env']
-        }))
-        .pipe(concat('scripts.min.js'))
-        // .pipe(uglify())
-        .pipe(gulp.dest('public/javascript'))
+gulp.task('uglify', () => gulp.src([dirs.js, dirs.mediumEditor, dirs.jQuery])
+    // .pipe(babel({
+    //     presets: ['@babel/preset-env']
+    // }))
+    .pipe(concat('scripts.min.js'))
+    // .pipe(uglify())
+    .pipe(gulp.dest('public/javascript'))
 );
 
 // Gulp-sass
@@ -54,10 +55,10 @@ gulp.task('scss', () => gulp.src(dirs.scss)
 console.log("!!!!SUCCESS!!!!");
 
 
-//
-gulp.task('default', gulp.parallel('scss', 'start', 'uglify', (done) => {
-    gulp.watch(dirs.scss, gulp.parallel('scss'));
+
+gulp.task('default', gulp.parallel('uglify', 'scss', 'start', (done) => {
     gulp.watch(dirs.js, gulp.parallel('uglify'));
+    gulp.watch(dirs.scss, gulp.parallel('scss'));
 
     done()
 }));

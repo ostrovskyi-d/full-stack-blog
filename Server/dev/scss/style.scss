@@ -24,6 +24,7 @@ html {
 body {
   display: inherit;
   flex-direction: inherit;
+  position: relative;
   flex: auto;
   color: $blockColor;
   background-color: lighten($greyColor, 6);
