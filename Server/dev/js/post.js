@@ -39,6 +39,13 @@ $(() => {
                 $('#post-added-message').toggleClass('active', true);
                 $('#close-message').focus();
             }, 1);
+            $('body').on('click', (e)=> {
+                if(e.target.id !== 'post-added-message' ) {
+                    $('.publish-button').prop("disabled", false);
+                    $('#post-added-message').toggleClass('active', false);
+                    $('#post-added-message').remove();
+                }
+            })
 
         })
     });

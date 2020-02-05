@@ -22,7 +22,7 @@ $(() => {
 
 
     // clear form fields
-    $('input').on('focus', () => {
+    $('form input').on('focus', () => {
         $('p.error').remove();
         $('input').css({ "box-shadow": "none" });
         $('p.success').remove();
@@ -49,7 +49,9 @@ $(() => {
             contentType: 'application/json',
             url: 'api/auth/register',
         }).done(
+            
             ({ resultCode, error, message, fields, ...data }) => {
+                
                 if (resultCode === 102) {
                     fields.forEach(field => {
                         $(`input[name = ${field}]`).css({ 'box-shadow': '0 0 0 2px #ff9595', 'transition-duration': '0.6s' });

@@ -13,7 +13,14 @@ body {
 p {
   margin-bottom: 1.3em;
 }
-
+a {
+  color: #20b5f1;
+  text-decoration: none;
+  &:hover{
+    color: #383838;
+    text-decoration: underline;
+  }
+}
 h1,
 h2,
 h3,

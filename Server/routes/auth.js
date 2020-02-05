@@ -9,7 +9,7 @@ const saltRounds = 10;
 
 // register: storing name, email and password and redirecting to home page after signup
 router.post('/register', async (req, res, next) => {
-    const {login, password, passwordConfirm} = req.body;
+    const { login, password, passwordConfirm } = req.body;
     const fields = [];
 
     !login && fields.push('login');
@@ -61,7 +61,7 @@ router.post('/register', async (req, res, next) => {
             fields
         })
     } else {
-        let user = await db.User.findOne({login});
+        let user = await db.User.findOne({ login });
         if (!user) {
             bcrypt.hash(password, saltRounds, async (err, hash) => {
                 try {
@@ -97,7 +97,7 @@ router.post('/register', async (req, res, next) => {
 
 
 router.post('/login', async (req, res, next) => {
-    const {login, password} = req.body;
+    const { login, password } = req.body;
 
     const fields = [];
     console.log(login, password);
@@ -112,7 +112,7 @@ router.post('/login', async (req, res, next) => {
             fields
         })
     } else {
-        let user = await db.User.findOne({login});
+        let user = await db.User.findOne({ login });
         if (!user) {
             res.json({
                 resultCode: 102,

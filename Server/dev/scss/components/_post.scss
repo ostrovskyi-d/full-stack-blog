@@ -19,7 +19,10 @@
   }
 
   .bottom {
-    font-size: 0.9em;
+    font-size: .9em;
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #e6e6e6;
     display: flex;
     justify-content: space-between;
   }

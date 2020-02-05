@@ -1,15 +1,15 @@
+const Post = require('./models/post');
+const routes = require('./routes');
+const config = require('./config');
+
 const express = require("express");
 const bodyParser = require('body-parser');
-const Post = require('./models/post');
 const hbs = require("hbs");
 const fs = require("fs");
 const path = require("path");
 const mongoose = require('mongoose');
-const config = require('./config');
-const routes = require('./routes');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-
 
 
 // Database
@@ -23,14 +23,14 @@ mongoose.connection
         const info = mongoose.connections[0];
         console.log(`Connected to db ${info.host}:${info.port}/${info.name}`);
     });
+mongoose.connect(config.MONGO_URL, { useMongoClient: true });
 
-mongoose.connect(config.MONGO_URL, {useMongoClient: true});
 
 // EXPRESS
 
 const app = express();
 app.set('view engine', 'hbs');
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/javascript', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
@@ -47,15 +47,19 @@ app.use(session({
 
 
 // Routes
+app.get('/', (req, res, next) => {
+    const { userId: id, userLogin: login } = req.session;
+    Post.find({}, function (err, docs) {
+        if (err) return console.log(err);
+        res.render("index", {
+            user: { id, login },
+            renderPostsPage: true,
+            postData: docs
+        });
+    });    
+});
 //// Auth
 app.use('/api/auth', routes.auth);
-app.get('/', (req, res, next) => {
-    const {userId: id, userLogin: login} = req.session;
-    res.render("index", {
-        user: {id, login},
-        renderPostsPage: true,
-    });
-});
 //// Post
 app.use('/post', routes.post);
 
@@ -99,7 +103,7 @@ app.listen(config.PORT, () => {
 });
 
 // HBS-HELPERS
-hbs.registerHelper("log", function(something) {
+hbs.registerHelper("log", function (something) {
     console.log(something);
 });
 
