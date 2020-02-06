@@ -1,3 +1,4 @@
+<%- include ('../layout/header'); -%> 
 <div class="post add-post">
     <div class="top">
         <h2>Add Post:</h2>
@@ -9,10 +10,10 @@
                 <input autocomplete="false" id="post-title" type="text">
             </label>
         </div>
-            <div class="post-body">
-                <p>Post text:</p>
-                <div id="post-medium-editor"></div>
-            </div>
+        <div class="post-body">
+            <p>Post text:</p>
+            <div id="post-medium-editor"></div>
+        </div>
         <div class="buttons">
             <button class="button publish-button">Publish</button>
             <button class="secondary-inverse button save-button">Save</button>
@@ -20,3 +21,5 @@
 
     </form>
 </div>
+
+<%- include ('../layout/footer'); -%>

@@ -6,28 +6,34 @@ const TurndownService = require('turndown');
 
 router.get('/add', (req, res) => {
     const { userId: id, userLogin: login } = req.session;
-    res.render('index', {
-        user: { id, login },
-        renderPostAddPage: true
-    })
+    if (!id || !login) {
+        res.redirect('/')
+    } else {
+        res.render('post/add', {
+            user: { id, login },
+            renderPostAddPage: true
+        })
+    }
+
 });
 router.post('/add', async ({
     body: {
         postTitle: title,
         postBody: body
     }, ...req }, res) => {
-
-    title.trim().replace(/ +(?=)/g, '');
+    const { userLogin: login, userId: id } = req.session;
     const turndownService = new TurndownService();
-    const { userLogin: login } = req.session;
     const fields = [];
-    const author = login;
-    
+    title.trim().replace(/ +(?= )/g, '');
+
+
     !title && fields.push('post-title');
     !body && fields.push('post-medium-editor');
-
-    console.log(title, body);
-    if (!title || !body) {
+    if (!id || !login) {
+        res.render('index', {
+            
+        })
+    } else if (!title || !body) {
         res.json({
             resultCode: 102,
             type: 'error',
@@ -36,9 +42,9 @@ router.post('/add', async ({
         })
     } else {
         await db.Post.create({
-            title, 
-            body: turndownService.turndown(body), 
-            author
+            title,
+            body: turndownService.turndown(body),
+            author: id
         })
         res.json({
             resultCode: 101,

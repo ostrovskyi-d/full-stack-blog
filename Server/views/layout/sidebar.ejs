@@ -1,12 +1,9 @@
 <aside class="sidebar">
     <div class="box auth">
-
-        {{#if user.id}}
-            {{#if user.login}}
-                <p>Hello, {{user.login}}</p>
-                <a href="/api/auth/logout">Log Out</a>
-            {{/if}}
-        {{else}}
+        <% if (user.login && user.id) { %>
+            <p>Hello, <%= user.login %></p>
+            <a href="/api/auth/logout">Log Out</a>
+        <% } else { %>
             <form method="POST" class="login">
                 <h2>Enter</h2>
                 <div class="form-group">
@@ -44,7 +41,7 @@
                     <button class="switch-button reg-button secondary-inverse">To Login</button>
                 </div>
             </form>
-        {{/if}}
+        <% } %>
 
 
     </div>

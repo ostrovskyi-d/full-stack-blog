@@ -27,7 +27,7 @@ const dirs = {
 gulp.task('start', function (done) {
     nodemon({
         script: 'app.js'
-        , ext: 'js hbs html'
+        , ext: 'js ejs html'
         , env: {'NODE_ENV': config.IS_PRODUCTION}
         , done: done
     })

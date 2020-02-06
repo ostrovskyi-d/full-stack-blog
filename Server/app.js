@@ -1,15 +1,15 @@
-const Post = require('./models/post');
-const routes = require('./routes');
-const config = require('./config');
-
 const express = require("express");
 const bodyParser = require('body-parser');
-const hbs = require("hbs");
 const fs = require("fs");
 const path = require("path");
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+
+const Post = require('./models/post');
+const routes = require('./routes');
+const config = require('./config');
+
 
 
 // Database
@@ -29,7 +29,7 @@ mongoose.connect(config.MONGO_URL, { useMongoClient: true });
 // EXPRESS
 
 const app = express();
-app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -103,34 +103,8 @@ app.listen(config.PORT, () => {
 });
 
 // HBS-HELPERS
-hbs.registerHelper("log", function (something) {
-    console.log(something);
-});
+
 
 // -----------------------------------------------
 // handlebars partials (some kind of components)
 // RECURSIVELY AUTO-REGISTER PARTIALS
-const dir = path.join(__dirname, 'views');
-const walkSync = (dir, filelist = []) => {
-    fs.readdirSync(dir).forEach(file => {
-
-        filelist = fs.statSync(path.join(dir, file)).isDirectory()
-            ? walkSync(path.join(dir, file), filelist)
-            : filelist.concat(path.join(dir, file));
-
-    });
-    return filelist;
-};
-let filelist = walkSync(dir);
-if (filelist.length > 0) {
-    filelist.forEach(function (filename) {
-        let matches = /^([^.]+).hbs$/.exec(path.basename(filename));
-        if (!matches) {
-            return;
-        }
-        let name = matches[1];
-        // console.log(name);
-        let template = fs.readFileSync(filename, 'utf8');
-        hbs.registerPartial(name, template);
-    });
-}
