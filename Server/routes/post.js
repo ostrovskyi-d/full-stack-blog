@@ -2,31 +2,35 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 const TurndownService = require('turndown');
-
+const { notAuthorised } = require('./common');
 
 router.get('/add', (req, res) => {
     const { userId: id, userLogin: login } = req.session;
-    res.render('index', {
-        user: { id, login },
-        renderPostAddPage: true
+    notAuthorised(id, login, res, () => {
+        res.render('index', {
+            user: { id, login },
+            renderPostAddPage: false
+        })
     })
 });
 router.post('/add', async ({
     body: {
         postTitle: title,
-        postBody: body
+        postBody: body, 
+    },
+    session: {
+        userId,
+        userLogin
     }, ...req }, res) => {
 
     title.trim().replace(/ +(?=)/g, '');
     const turndownService = new TurndownService();
-    const { userLogin: login } = req.session;
+    // const { userLogin: login } = req.session;
     const fields = [];
-    const author = login;
-    
+
     !title && fields.push('post-title');
     !body && fields.push('post-medium-editor');
 
-    console.log(title, body);
     if (!title || !body) {
         res.json({
             resultCode: 102,
@@ -36,9 +40,9 @@ router.post('/add', async ({
         })
     } else {
         await db.Post.create({
-            title, 
-            body: turndownService.turndown(body), 
-            author
+            title,
+            body: turndownService.turndown(body),
+            author: userId
         })
         res.json({
             resultCode: 101,

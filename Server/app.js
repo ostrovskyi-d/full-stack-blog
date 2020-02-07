@@ -10,7 +10,7 @@ const path = require("path");
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-
+const mocks = require('./mocks');
 
 // Database
 mongoose.Promise = global.Promise;
@@ -22,6 +22,7 @@ mongoose.connection
     .once('open', () => {
         const info = mongoose.connections[0];
         console.log(`Connected to db ${info.host}:${info.port}/${info.name}`);
+        mocks()
     });
 mongoose.connect(config.MONGO_URL, { useMongoClient: true });
 
@@ -62,8 +63,8 @@ app.get('/', (req, res, next) => {
 app.use('/api/auth', routes.auth);
 //// Post
 app.use('/post', routes.post);
-
-
+// 
+app.use('/archive', routes.archive)
 
 
 

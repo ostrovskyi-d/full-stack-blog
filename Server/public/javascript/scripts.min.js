@@ -1,6 +1,13 @@
 
 
 $(() => {
+    // Remove errors in validation
+    const removeErrors = () => {
+        $('p.error').remove();
+        $('p.success').remove();
+        $('input').css({ "box-shadow": "none" });
+    }
+
     let flag = true;
     $('.auth form .switch-button').on('click', (e) => {
         e.preventDefault();
@@ -15,17 +22,13 @@ $(() => {
         }
 
         // clear error/success form fields after switching
-        $('p.error').remove();
-        $('p.success').remove();
-        $('input').css({ "box-shadow": "none" });
+        removeErrors();
     });
 
 
     // clear form fields
     $('form input').on('focus', () => {
-        $('p.error').remove();
-        $('input').css({ "box-shadow": "none" });
-        $('p.success').remove();
+        removeErrors();
     });
 
 
@@ -33,8 +36,7 @@ $(() => {
     $('#submit-register').on('click', (e) => {
         // basic behavior
         e.preventDefault();
-        $('p.error').remove();
-        $('p.success').remove();
+        removeErrors()
 
 
         let data = {
@@ -72,8 +74,7 @@ $(() => {
     // login
     $('#submit-login').on('click', (e) => {
         e.preventDefault();
-        $('p.error').remove();
-        $('p.success').remove();
+        removeErrors()
 
         let data = {
             login: $('#log-login').val(),
