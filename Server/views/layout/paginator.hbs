@@ -1,0 +1,27 @@
+<div class="pagination">
+    {{!--  Numbers Pagination  --}}
+
+    {{#times totalPages}}
+        <a class="button" href={{this}}>{{this}}</a>
+    {{/times}}
+
+
+
+    {{!--
+
+    WORKS ( PREV - NEXT )
+
+     {{#unless prevPage}}
+        <a class="button" href='/archive/2'>NEXT</a>
+    {{else}}
+        {{#compare current 1 operator=">"}}
+            <a class="button" href={{prevPage}}>PREV</a>
+        {{/compare}}
+        {{#compare current totalPages operator="<"}}
+            <a class="button" href={{nextPage}}>NEXT</a>
+        {{/compare}}
+    {{/unless}}
+    --}}
+
+
+</div>

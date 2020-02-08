@@ -1,0 +1,13 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  a.button {
+    margin: 0 $freeSpace $freeSpace $freeSpace;
+  }
+
+  a.active {
+
+    background-color: grey;
+    border: 2px solid black;
+  }
+}

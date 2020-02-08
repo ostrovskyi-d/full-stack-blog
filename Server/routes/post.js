@@ -7,7 +7,7 @@ const { notAuthorised } = require('./common');
 router.get('/add', (req, res) => {
     const { userId: id, userLogin: login } = req.session;
     notAuthorised(id, login, res, () => {
-        res.render('index', {
+        res.render('post/add', {
             user: { id, login },
             renderPostAddPage: false
         })

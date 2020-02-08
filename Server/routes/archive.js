@@ -1,29 +1,29 @@
 const express = require('express');
 const router = express.Router();
-const { Post } = require('../models');
-const { perPage } = require('../config');
+const {Post} = require('../models');
+const config = require('../config');
 
-router.get('/:page', async (req, res) => {
-    const { userId, userLogin } = req.session;
-    const page = req.params.page || 1;
+const posts = async (req, res) => {
+    const {userId: id, userLogin: login} = req.session;
+    const perPage = +config.PER_PAGE;
+
+    const page = Math.abs(+req.params.page)
     try {
-        const posts = await Post.find({}).skip(perPage * page - perPage).limit(perPage)
-        const count = await Post.count()
-        console.log(page)
+        const posts = await Post.find({}).skip(perPage * page - perPage).limit(perPage);
+        const count = await Post.count();
         res.render('index', {
-            posts,
+            postsData: posts,
             current: page,
             totalPages: Math.ceil(count / perPage),
-            user: {
-                id: userId,
-                login: userLogin
-            }
+            user: {id, login},
+            nextPage: page + 1,
+            prevPage: page - 1,
         })
     } catch (error) {
         console.error(error)
     }
+}
+router.get('/', (req, res) => posts(req, res));
+router.get('/archive/:page', (req, res) => posts(req, res));
 
-
-})
-
-module.exports = router
+module.exports = router;

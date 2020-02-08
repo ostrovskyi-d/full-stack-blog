@@ -48,23 +48,12 @@ app.use(session({
 
 
 // Routes
-app.get('/', (req, res, next) => {
-    const { userId: id, userLogin: login } = req.session;
-    Post.find({}, function (err, docs) {
-        if (err) return console.log(err);
-        res.render("index", {
-            user: { id, login },
-            renderPostsPage: true,
-            postData: docs
-        });
-    });    
-});
 //// Auth
 app.use('/api/auth', routes.auth);
 //// Post
 app.use('/post', routes.post);
-// 
-app.use('/archive', routes.archive)
+// All posts by pieces
+app.use('/', routes.archive);
 
 
 
@@ -107,9 +96,44 @@ app.listen(config.PORT, () => {
 hbs.registerHelper("log", function (something) {
     console.log(something);
 });
+hbs.registerHelper('times', function(n, block) {
+    var accum = '';
+    for(var i = 1; i <= n; ++i)
+        accum += block.fn(i);
+    return accum;
+});
+hbs.registerHelper('compare', function(lvalue, rvalue, options) {
 
+    if (arguments.length < 3)
+        throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
+
+    var operator = options.hash.operator || "==";
+
+    var operators = {
+        '==':       function(l,r) { return l == r; },
+        '===':      function(l,r) { return l === r; },
+        '!=':       function(l,r) { return l != r; },
+        '<':        function(l,r) { return l < r; },
+        '>':        function(l,r) { return l > r; },
+        '<=':       function(l,r) { return l <= r; },
+        '>=':       function(l,r) { return l >= r; },
+        'typeof':   function(l,r) { return typeof l == r; }
+    }
+
+    if (!operators[operator])
+        throw new Error("Handlerbars Helper 'compare' doesn't know the operator "+operator);
+
+    var result = operators[operator](lvalue,rvalue);
+
+    if( result ) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+
+});
 // -----------------------------------------------
-// handlebars partials (some kind of components)
+// handlebars partials - weak and dumb components
 // RECURSIVELY AUTO-REGISTER PARTIALS
 const dir = path.join(__dirname, 'views');
 const walkSync = (dir, filelist = []) => {

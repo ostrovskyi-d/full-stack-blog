@@ -1,28 +1,39 @@
-{{#each postData}}
-<div class="post">
-    <div class="top">
-        <h2>
-            <a href={{url}}>{{title}}</a>
-        </h2>
-    </div>
-    <div class="body">
-        {{body}}
-    </div>
-    <div class="bottom">
-        <div class="author">
-            Author:
-            {{#if author}}
-            <a href="/">
-                {{author}}
-            </a>
-            {{else}}
-            Anonymous
-            {{/if}}
+<main class="main">
+    <div class="container">
+        <div class="content">
+            {{#each postsData}}
+                <div class="post">
+                    <div class="top">
+                        <h2>
+                            <a href={{url}}>{{title}}</a>
+                        </h2>
+                    </div>
+                    <div class="body">
+                        {{body}}
+                    </div>
+                    <div class="bottom">
+                        <div class="author">
+                            Author:
+                            {{#if author}}
+                                <a href="/">
+                                    {{author}}
+                                </a>
+                            {{else}}
+                                Anonymous
+                            {{/if}}
 
+                        </div>
+                        <div class="comments">
+                            <a href="">Comments</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            {{/each}}
+
+            {{> paginator}}
         </div>
-        <div class="comments">
-            <a href="">Comments</a>
-        </div>
+        {{> sidebar}}
     </div>
-</div>
-{{/each}}
+</main>
