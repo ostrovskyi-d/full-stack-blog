@@ -22,7 +22,7 @@ mongoose.connection
     .once('open', () => {
         const info = mongoose.connections[0];
         console.log(`Connected to db ${info.host}:${info.port}/${info.name}`);
-        mocks()
+        // mocks()
     });
 mongoose.connect(config.MONGO_URL, { useMongoClient: true });
 
@@ -97,8 +97,8 @@ hbs.registerHelper("log", function (something) {
     console.log(something);
 });
 hbs.registerHelper('times', function(n, block) {
-    var accum = '';
-    for(var i = 1; i <= n; ++i)
+    let accum = '';
+    for(let i = 1; i <= n; ++i)
         accum += block.fn(i);
     return accum;
 });

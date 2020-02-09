@@ -7,7 +7,7 @@ const posts = async (req, res) => {
     const {userId: id, userLogin: login} = req.session;
     const perPage = +config.PER_PAGE;
 
-    const page = Math.abs(+req.params.page)
+    const page = Math.abs(+req.params.page);
     try {
         const posts = await Post.find({}).skip(perPage * page - perPage).limit(perPage);
         const count = await Post.count();
@@ -22,7 +22,7 @@ const posts = async (req, res) => {
     } catch (error) {
         console.error(error)
     }
-}
+};
 router.get('/', (req, res) => posts(req, res));
 router.get('/archive/:page', (req, res) => posts(req, res));
 

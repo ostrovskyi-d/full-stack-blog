@@ -1,11 +1,13 @@
-<main class="main">
-    <div class="container">
-        <div class="content">
-            {{#each postsData}}
+{{#if standAlone}}
+    {{>header}}
+    <body>
+    <main class="main">
+        <div class="container">
+            <div class="content">
                 <div class="post">
                     <div class="top">
                         <h2>
-                            <a href={{url}}>{{title}}</a>
+                            {{title}}
                         </h2>
                     </div>
                     <div class="body">
@@ -21,19 +23,45 @@
                             {{else}}
                                 Anonymous
                             {{/if}}
-
                         </div>
                         <div class="comments">
                             <a href="">Comments</a>
                         </div>
                     </div>
                 </div>
-
-
-            {{/each}}
-
-            {{> paginator}}
+            </div>
+            {{> sidebar}}
         </div>
-        {{> sidebar}}
+    </main>
+    </body>
+
+    {{>footer}}
+{{else}}
+
+    <div class="post">
+        <div class="top">
+            <h2>
+                <a href='post/posts/{{url}}'>{{title}}</a>
+            </h2>
+        </div>
+        <div class="body">
+            {{body}}
+        </div>
+        <div class="bottom">
+            <div class="author">
+                Author:
+                {{#if author}}
+                    <a href="/">
+                        {{author}}
+                    </a>
+                {{else}}
+                    Anonymous
+                {{/if}}
+            </div>
+            <div class="comments">
+                <a href="">Comments</a>
+            </div>
+        </div>
     </div>
-</main>
+
+{{/if}}

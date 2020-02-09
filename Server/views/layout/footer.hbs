@@ -14,6 +14,10 @@
 {{!---------------------------------}}
 {{!--To prevent css and js caching--}}
 <script>
+    let current = Number({{current}});
+    let commonObj = {
+        currentPage: current || false
+    };
     $(document).ready(() => {
         const calcRandVer = () => Math.floor(Math.random() * (100000 - 1) + 1);
         $("head").append(`
@@ -23,9 +27,7 @@
             <script src="/javascript/scripts.min.js?dev=${calcRandVer()}">
         `)
     });
-    let commonObj = {
-        currentPage: {{current}}
-    }
+
 </script>
 </body>
 
