@@ -8,7 +8,7 @@ module.exports = () => {
         Array.from({length: 20}).forEach(() => {
             const turndownService = new TurndownService(); 
             models.Post.create({
-                title: faker.lorem.words(5),
+                    title: faker.lorem.words(5).charAt(0).toUpperCase() + faker.lorem.words(5).slice(1),
                 body: turndownService.turndown(faker.lorem.words(100)),
                 author
             }).then().catch(console.log)
