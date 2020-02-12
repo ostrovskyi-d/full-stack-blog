@@ -1,15 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import './Header.scss';
-
+import s from './Header.module.scss'
 
 const Header = () => {
     return (
-
-        <header className="header">
-            <div className="container">
-                <Link to="/" className="logo"/>
-                <nav className="menu">
+        <header className={s.header}>
+            <div className={s.container}>
+                <Link to="/" className={s.logo}/>
+                <nav className={s.menu}>
                     <Link to="post/add">
                         Add post
                     </Link>

@@ -1,0 +1,116 @@
+@import "./src/components/common/styles/main";
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: $freeSpace;
+
+  .container {
+    .content {
+      flex: 3;
+      margin-right: $freeSpace;
+      margin-bottom: $freeSpace;
+      //padding: $freeSpace;
+      min-height: 100px;
+      //border: 1px solid $greyColor;
+      .post {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid $greyColor;
+        padding: $freeSpace;
+        margin-bottom: $freeSpace;
+        background-color: $whiteColor;
+        border-radius: $borderRadius;
+
+        .top {
+          h2 {
+            margin-top: 0;
+          }
+        }
+        .body {
+          p {
+            text-align: justify;
+          }
+        }
+
+        .bottom {
+          font-size: .9em;
+          padding-top: 10px;
+          margin-top: 10px;
+          border-top: 1px solid #e6e6e6;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+
+      .add-post {
+        margin-bottom: $freeSpace;
+        padding: $freeSpace;
+        width: 100%;
+        min-height: 100px;
+        border: 1px solid $greyColor;
+        background-color: $whiteColor;
+        border-radius: $borderRadius;
+
+        h2 {
+          margin-top: 0;
+          margin-bottom: 30px;
+        }
+        form {
+          .buttons {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row-reverse;
+            margin: $freeSpace;
+            button {
+              margin-left: $freeSpace * 2;
+
+              &:disabled {
+                background-color: grey;
+                border-color: grey;
+                cursor: default;
+              }
+            }
+
+          }
+          #post-medium-editor {
+            min-height: 200px !important;
+            background-color: $whiteColor !important;
+            border: 1px solid $greyColor !important;
+            padding: 8px 10px;
+            outline: none;
+          }
+        }
+      }
+    }
+
+
+
+    /* Portrait tablets and small desktops */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .content {
+        flex: 1;
+        margin-right: 0;
+        margin-bottom: $freeSpace;
+      }
+
+
+    }
+
+    /* Landscape phones and portrait tablets */
+    @media (max-width: 767px) {
+      .content {
+        flex: 1;
+        margin-right: 0;
+        margin-bottom: $freeSpace;
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .container {
+      flex-direction: column-reverse;
+    }
+  }
+}

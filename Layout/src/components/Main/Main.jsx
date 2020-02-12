@@ -1,14 +1,20 @@
 import React from "react";
 import Sidebar from '../Sidebar/Sidebar'
-import Post from '../Post/Post'
-import PostAddForm from '../Post/PostAddForm'
-import Paginator from '../Common/Paginator'
-
+import Post from '../Posts/Post'
+import PostAddForm from '../Posts/PostAddForm'
+import Paginator from '../common/Paginator'
+import s from './Main.module.scss'
+import Posts from "../Posts/Posts";
 
 const Main = () => {
     const renderPostPage = true;
     return (
-        <h2>MAIN</h2>
+        <main className={s.main}>
+            <div className={s.container}>
+                <Posts />
+                <Sidebar />
+            </div>
+        </main>
     )
 };
 

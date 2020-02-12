@@ -7,17 +7,13 @@ import App from "./App.jsx"
 import "./index.css";
 
 let rerenderEntireTree = () => {
-    return (
-        ReactDOM.render(
-            <BrowserRouter>
-                <Provider store={store}>
-                    <App/>
-                </Provider>
-            </BrowserRouter>,
-
-            document.getElementById("root"))
-    )
-
+    return ReactDOM.render(
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>,
+        document.getElementById("root"))
 };
 
 rerenderEntireTree(store.getState());

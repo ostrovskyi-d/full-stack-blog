@@ -2,9 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f4636f9-52e0-4c39-8823-da114bd294b4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/App.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Auth/LoginForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Auth/RegisterForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Posts/PostAddForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Posts/Posts.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/common/Paginator.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/common/styles/_grid.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/common/styles/_reset.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/common/styles/_typography.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/common/styles/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/AuthContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Common/Paginator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/Footer.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Common/Preloader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Preloader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Common/Preloader.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Preloader.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/Footer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Main/Main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main/Main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Post/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main/Main.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Post/PostAddForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts/Post.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,12 +59,15 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User2019\Desktop\w\Blog\blog-ssr\Layout\src\components\common\styles" />
       <recent name="C:\Users\User2019\Desktop\w\Blog\blog-ssr\Layout\src\components\Sidebar" />
       <recent name="C:\Users\User2019\Desktop\w\Blog\blog-ssr\Layout\src\components\Main" />
       <recent name="C:\Users\User2019\Desktop\w\Blog\blog-ssr\Layout\src\components\Footer" />
       <recent name="C:\Users\User2019\Desktop\w\Blog\blog-ssr\Layout\src\components\Header" />
-      <recent name="C:\Users\User2019\Desktop\w\Blog\blog-ssr\Layout\src\components\Common" />
     </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="showServicesTree" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -60,6 +88,13 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/node_modules/wait-for-expect/lib/toBeInRangeMatcher.d.js" />
+        <option value="$PROJECT_DIR$/node_modules/wait-for-expect/lib/waitForExpect.spec.d.js" />
+        <option value="$PROJECT_DIR$/node_modules/wait-for-expect/lib/index.d.js" />
+      </list>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -93,9 +128,9 @@
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state x="301" y="78" key="SettingsEditor/0.0.1600.870@0.0.1600.870" timestamp="1581503293897" />
-    <state x="463" y="182" width="672" height="678" key="search.everywhere.popup" timestamp="1581431949557">
+    <state x="463" y="182" width="672" height="678" key="search.everywhere.popup" timestamp="1581509380351">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="463" y="182" width="672" height="678" key="search.everywhere.popup/0.0.1600.870@0.0.1600.870" timestamp="1581431949557" />
+    <state x="463" y="182" width="672" height="678" key="search.everywhere.popup/0.0.1600.870@0.0.1600.870" timestamp="1581509380351" />
   </component>
 </project>
