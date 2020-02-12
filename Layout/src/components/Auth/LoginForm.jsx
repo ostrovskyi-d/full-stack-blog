@@ -1,9 +1,12 @@
 import s from "../Sidebar/Sidebar.module.scss";
 import React from "react";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+    const onSwitchAuth = () => {
+
+    }
     return (
-        <form method="POST" className='login'>
+        <form method="POST" className={s.login}>
             <h2>Enter</h2>
             <div className={s.form_group}>
                 <label htmlFor="log-login">Name:</label>
@@ -15,7 +18,7 @@ const LoginForm = () => {
             </div>
             <div className={s.buttons}>
                 <button id="submit-login" type="submit" className={s.button}>Login</button>
-                <button className={s.secondaryInverse}>To Register</button>
+                <button onClick={onSwitchAuth} className={s.secondaryInverse}>To Register</button>
             </div>
         </form>
     )

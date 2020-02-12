@@ -5,14 +5,19 @@ import PostAddForm from '../Posts/PostAddForm'
 import Paginator from '../common/Paginator'
 import s from './Main.module.scss'
 import Posts from "../Posts/Posts";
+import {Route, Router} from "react-router-dom"
 
 const Main = () => {
     const renderPostPage = true;
     return (
         <main className={s.main}>
             <div className={s.container}>
-                <Posts />
-                <Sidebar />
+                <div className={s.content}>
+                    <Route path={`/post/add`} render={() => <PostAddForm/>}/>
+                    <Route exact path={`/`} render={() => <Posts/>}/>
+                </div>
+
+                <Sidebar/>
             </div>
         </main>
     )

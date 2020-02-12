@@ -1,0 +1,92 @@
+@import "./src/components/common/styles/main";
+
+
+.post {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $greyColor;
+  padding: $freeSpace;
+  margin-bottom: $freeSpace;
+  background-color: $whiteColor;
+  border-radius: $borderRadius;
+
+  .top {
+    h2 {
+      margin-top: 0;
+    }
+  }
+
+  .body {
+    p {
+      text-align: justify;
+    }
+  }
+
+  .bottom {
+    font-size: .9em;
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #e6e6e6;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.addPost {
+  margin-bottom: $freeSpace;
+  padding: $freeSpace;
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid $greyColor;
+  background-color: $whiteColor;
+  border-radius: $borderRadius;
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    .formGroup {
+      margin-bottom: $freeSpace;
+
+      div {
+        label {
+          font-size: 0.9em;
+          .quill  {
+            height: 300px;
+          }
+        }
+      }
+
+
+      .buttons {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row-reverse;
+        margin: $freeSpace;
+
+        button {
+          margin-left: $freeSpace * 2;
+
+          &:disabled {
+            background-color: grey;
+            border-color: grey;
+            cursor: default;
+          }
+        }
+
+      }
+
+      //EDITOR
+    }
+  }
+
+  form {
+
+
+  }
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import s from "../Main/Main.module.scss";
+import s from "./Posts.module.scss";
 
 const Post = () => {
     const posts = {

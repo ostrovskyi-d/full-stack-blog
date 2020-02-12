@@ -1,12 +1,11 @@
-import {authAPI} from "../API/api";
-import {stopSubmit} from 'redux-form'
-
 const SET_CAPTCHA_URL = "network/auth/SET-CAPTCHA-URL";
 const SET_USER_DATA   = "network/auth/SET-USER-DATA";
 const LOG_IN          = "network/auth/LOG-IN";
 const LOG_OUT         = "network/auth/LOG-OUT";
+const REGISTER        = "network/auth/REGISTER";
 
 let initialState = {
+    authType: 'login',
     userId: null,
     email: null,
     login: null,
@@ -44,23 +43,19 @@ let authReducer = (state = initialState, action) => {
                 captchaImgURL: action.captchaURL
             }
         }
+        case REGISTER: {
+            return state
+        }
         default:
             return state;
     }
 };
 
-export const setUserDataAC = (userId, login, email) => (
-    {
-        type: SET_USER_DATA,
-        data: {userId, login, email}
-    });
-export const logInAC = (userId) => ({type: LOG_IN, userId});
-export const logOutAC = (userId, email, login, rememberMe, isAuth) => (
-    {
-        type: LOG_OUT,
-        payload: {userId, email, login, rememberMe, isAuth}
-    });
-export const setCaptchaUrl = (captchaURL) => ({type: SET_CAPTCHA_URL, captchaURL});
+// export const setUserDataAC = (userId, login, email) => (
+//     {
+//         type: SET_USER_DATA,
+//         data: {userId, login, email}
+//     });
 
 
 
