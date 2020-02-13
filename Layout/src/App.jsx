@@ -6,6 +6,7 @@ import Main from "./components/Main/Main";
 import {getMyUserDataThunkCreator} from "./redux/app-reducer";
 import {connect} from "react-redux";
 import postsReducer, {getAllPostsTC} from "./redux/posts-reducer";
+import Preloader from "./components/common/Preloader";
 
 
 const App = (props) => {
@@ -13,11 +14,12 @@ const App = (props) => {
         props.getUserData();
         props.getPostsData();
     }, []);
-    debugger
+
+
     return (
         <div className={s.wrapper}>
             <Header/>
-            <Main {...props}/>
+            {props.posts.isFetching ? <Preloader /> : <Main {...props}/>}
             <Footer/>
         </div>
     );

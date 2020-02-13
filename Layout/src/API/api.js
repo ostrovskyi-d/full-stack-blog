@@ -10,8 +10,8 @@ const instance = axios.create({
 
 
 export const authAPI = {
-    getUserData() {
-        return instance.get(`/`);
+    async getUserData() {
+        return await instance.get(`/`);
         // console.log(data);
     }
 };

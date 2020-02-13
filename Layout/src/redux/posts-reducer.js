@@ -4,9 +4,12 @@ import {pureFinalPropsSelectorFactory} from "react-redux/lib/connect/selectorFac
 
 // Actions Types
 const GET_ALL_POSTS = "GET-ALL-POSTS";
+const IS_FETCHING = "IS-FETCHING";
+
 
 let initialState = {
-    postsStore: null
+    postsStore: null,
+    isFetching: true
 };
 
 
@@ -15,7 +18,14 @@ let postsReducer = (state = initialState, action) => {
         case GET_ALL_POSTS: {
             return {
                 ...state,
-                postsStore: action.posts
+                postsStore: action.posts,
+                isFetching: false
+            }
+        }
+        case IS_FETCHING: {
+            return {
+                ...state,
+                isFetching: true
             }
         }
         default:
@@ -24,11 +34,12 @@ let postsReducer = (state = initialState, action) => {
 };
 
 export const fillPostsStoreAC = (posts) => ({type: GET_ALL_POSTS, posts});
-
+export const isFetching = () => ({type: IS_FETCHING});
 
 
 export const getAllPostsTC = () => {
     return async (dispatch) => {
+        dispatch(isFetching());
         let {data: {posts}} = await authAPI.getUserData();
         dispatch(fillPostsStoreAC(posts))
     };
