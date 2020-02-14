@@ -11,6 +11,19 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const mocks = require('./mocks');
+const cors = require('cors');
+
+// CORS OPTIONS
+const whitelist = ['http://localhost:3000', 'http://localhost:3001'];
+let corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    },credentials: true
+};
 
 // Database
 mongoose.Promise = global.Promise;
@@ -24,18 +37,19 @@ mongoose.connection
         console.log(`Connected to db ${info.host}:${info.port}/${info.name}`);
         mocks()
     });
-mongoose.connect(config.MONGO_URL, { useMongoClient: true });
+mongoose.connect(config.MONGO_URL, {useMongoClient: true});
 
 
 // EXPRESS
 
 const app = express();
+
 app.set('view engine', 'hbs');
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/javascript', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
-
+app.use(cors());
 
 app.use(session({
     secret: config.SESSION_SECRET,
@@ -46,40 +60,35 @@ app.use(session({
     })
 }));
 
-
 // Routes
-app.get('/', (req, res, next) => {
-    const { userId: id, userLogin: login } = req.session;
-    Post.find({}, function (err, docs) {
-        if (err) return console.log(err);
-        res.render("index", {
-            user: { id, login },
-            renderPostsPage: true,
-            postData: docs
-        });
-    });    
+app.get('/', cors(corsOptions), (req, res, next) => {
+    const {userId: id, userLogin: login} = req.session;
+    console.log(id, login);
+    Post.find({}, (err, docs) => {
+        if (!id || !login) {
+            res.json({
+                resultCode: 102,
+                message: 'Not authorised',
+                posts: docs
+            })
+        } else if (err) {
+            res.send("error")
+        } else {
+            res.json({
+                resultCode: 101,
+                message: "Authorised",
+                user: {id, login},
+                posts: docs,
+            });
+        }
+    });
 });
 //// Auth
 app.use('/api/auth', routes.auth);
 //// Post
 app.use('/post', routes.post);
 // 
-app.use('/archive', routes.archive)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use('/archive', routes.archive);
 
 
 // 404
@@ -91,7 +100,7 @@ app.use((req, res, next) => {
 // error handler
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
-    res.render('error', {
+    res.json({
         message: error.message,
         error: !config.IS_PRODUCTION ? error : {},
         title: "Oops..."
@@ -107,22 +116,22 @@ app.listen(config.PORT, () => {
 hbs.registerHelper("log", function (something) {
     console.log(something);
 });
-hbs.registerHelper('iff', function(a, operator, b, opts) {
-    var bool = false;
-    switch(operator) {
-       case '==':
-           bool = a == b;
-           break;
-       case '>':
-           bool = a > b;
-           break;
-       case '<':
-           bool = a < b;
-           break;
-       default:
-           throw "Unknown operator " + operator;
+hbs.registerHelper('iff', (a, operator, b, opts) => {
+    let bool = false;
+    switch (operator) {
+        case '==':
+            bool = a === b;
+            break;
+        case '>':
+            bool = a > b;
+            break;
+        case '<':
+            bool = a < b;
+            break;
+        default:
+            throw "Unknown operator " + operator;
     }
- 
+
     if (bool) {
         return opts.fn(this);
     } else {
@@ -145,7 +154,7 @@ const walkSync = (dir, filelist = []) => {
 };
 let filelist = walkSync(dir);
 if (filelist.length > 0) {
-    filelist.forEach(function (filename) {
+    filelist.forEach(filename => {
         let matches = /^([^.]+).hbs$/.exec(path.basename(filename));
         if (!matches) {
             return;

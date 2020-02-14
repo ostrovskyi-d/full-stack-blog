@@ -7,7 +7,7 @@ const { notAuthorised } = require('./common');
 router.get('/add', (req, res) => {
     const { userId: id, userLogin: login } = req.session;
     notAuthorised(id, login, res, () => {
-        res.render('index', {
+        res.json( {
             user: { id, login },
             renderPostAddPage: false
         })
@@ -43,12 +43,11 @@ router.post('/add', async ({
             title,
             body: turndownService.turndown(body),
             author: userId
-        })
+        });
         res.json({
             resultCode: 101,
             type: 'success',
             message: 'Post created'
-
         })
     }
 });

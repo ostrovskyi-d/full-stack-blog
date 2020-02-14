@@ -5,6 +5,6 @@ const notAuthorised = (id, login, res, callback) => {
         callback()
     }
 
-}
+};
 
-module.exports = { notAuthorised }
+module.exports = { notAuthorised };

@@ -9,7 +9,7 @@ const saltRounds = 10;
 
 // register: storing name, email and password and redirecting to home page after signup
 router.post('/register', async (req, res, next) => {
-    const { login, password, passwordConfirm } = req.body;
+    const {login, password, passwordConfirm} = req.body;
     const fields = [];
 
     !login && fields.push('login');
@@ -61,7 +61,7 @@ router.post('/register', async (req, res, next) => {
             fields
         })
     } else {
-        let user = await db.User.findOne({ login });
+        let user = await db.User.findOne({login});
         if (!user) {
             bcrypt.hash(password, saltRounds, async (err, hash) => {
                 try {
@@ -71,11 +71,12 @@ router.post('/register', async (req, res, next) => {
                     });
                     req.session.userId = user.id;
                     req.session.userLogin = user.login;
-                    res.json({
-                        resultCode: 101,
-                        message: "User created",
-                        fields
-                    });
+                    res.redirect('/');
+                    // res.json({
+                    //     resultCode: 101,
+                    //     message: "User created",
+                    //     fields
+                    // });
                 } catch (err) {
                     res.json({
                         resultCode: 102,
@@ -97,10 +98,9 @@ router.post('/register', async (req, res, next) => {
 
 
 router.post('/login', async (req, res, next) => {
-    const { login, password } = req.body;
+    const {login, password} = req.body;
 
     const fields = [];
-    console.log(login, password);
     !login && fields.push('login');
     !password && fields.push('password');
 
@@ -112,8 +112,8 @@ router.post('/login', async (req, res, next) => {
             fields
         })
     } else {
-        let user = await db.User.findOne({ login });
-        if (!user) {
+        let user = await db.User.findOne({login});
+        if (user === undefined || null) {
             res.json({
                 resultCode: 102,
                 type: 'error',
@@ -131,7 +131,10 @@ router.post('/login', async (req, res, next) => {
                     res.json({
                         resultCode: 101,
                         type: 'success',
-                        message: `Hello, ${login}!`
+                        data: {
+                            authorisedUserName: user.login,
+                            authorisedUserId: user.id
+                        }
                     })
                 } else {
 

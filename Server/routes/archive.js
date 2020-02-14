@@ -8,9 +8,9 @@ router.get('/:page', async (req, res) => {
     const perPage = +config.PER_PAGE;
     const page = req.params.page || 1;
     try {
-        const posts = await Post.find({}).skip(+perPage * page - perPage).limit(perPage)
-        const count = await Post.count()
-        res.render('index', {
+        const posts = await Post.find({}).skip(+perPage * page - perPage).limit(perPage);
+        const count = await Post.count();
+        res.json( {
             postData: posts,
             current: page,
             totalPages: Math.ceil(count / perPage),
@@ -25,6 +25,6 @@ router.get('/:page', async (req, res) => {
     }
 
 
-})
+});
 
-module.exports = router
+module.exports = router;
