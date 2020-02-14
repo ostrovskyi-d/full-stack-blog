@@ -18,6 +18,6 @@ export const authAPI = {
             return await instance.post('/api/auth/login', {...data})
     },
     async logOut() {
-        return await instance.delete('/api/auth/logout')
+        return await instance.get('/api/auth/logout')
     }
 };

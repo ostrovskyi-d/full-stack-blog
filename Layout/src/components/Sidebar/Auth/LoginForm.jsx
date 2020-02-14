@@ -1,4 +1,4 @@
-import s from "../Sidebar/Sidebar.module.scss";
+import s from "../Sidebar.module.scss";
 import React from "react";
 import {Field, reduxForm} from 'redux-form'
 

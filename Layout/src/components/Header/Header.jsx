@@ -14,7 +14,7 @@ const Header = (props) => {
                     <NavLink to="post/add">
                         Add post
                     </NavLink>
-                    <Link onClick={onLogOut} to='auth/logout'>
+                    <Link onClick={onLogOut} to='#'>
                         Log out
                     </Link>
                 </nav>

@@ -1,14 +1,17 @@
 import {authAPI} from "../API/api";
 // On initialize app (no needed from start, but it would be useful for future)
 // Actions Types
-const CHANGE_AUTH_DATA = "network/auth/SET-USER-DATA";
+const CHANGE_AUTH_DATA = "network/auth/CHANGE-AUTH-DATA";
 const TOGGLE_AUTH_TYPE = "TOGGLE-AUTH-TYPE";
+const TOGGLE_FETCHING = "TOGGLE-FETCHING";
+
 
 let initialState = {
     isAuthorised: false,
     currentAuthType: null,
     userLogin: null,
-    userId: null
+    userId: null,
+    isFetching: false
 };
 
 
@@ -20,7 +23,7 @@ let authReducer = (state = initialState, action) => {
                 ...action.data,
                 isAuthorised: action.isAuthorised,
                 userLogin: action.login,
-                userId: action.id
+                userId: action.userId
             }
         }
 
@@ -28,6 +31,12 @@ let authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentAuthType: action.authType
+            }
+        }
+        case TOGGLE_FETCHING: {
+            return {
+                ...state,
+                isFetching: action.isFetching
             }
         }
         default:
@@ -43,21 +52,32 @@ export const toggleAuthTypeAC = (authType) => ({
     type: TOGGLE_AUTH_TYPE,
     authType
 });
+export const toggleFetchingAC = (isFetching) => ({
+    type: TOGGLE_FETCHING,
+    isFetching
+});
 
-
-export const logOutTC = () => (dispatch) =>
-    dispatch(setAuthorisedDataAC(null, null, false));
+export const logOutTC = () =>
+    async (dispatch) => {
+        dispatch(toggleFetchingAC(true))
+        const {data} = await authAPI.logOut();
+        if (data.resultCode === 101)
+            dispatch(setAuthorisedDataAC(null, null, false));
+        dispatch(toggleFetchingAC(false))
+    };
 
 export const toggleAuthTypeTC = (authType) => (dispatch) =>
     dispatch(toggleAuthTypeAC(authType));
 
 export const getMyUserDataTC = () =>
     async (dispatch) => {
+        dispatch(toggleFetchingAC(true));
         let {data} = await authAPI.getUserData();
         debugger
-        if (data.user) {
+        if (data.user)
             dispatch(setAuthorisedDataAC(data.user.id, data.user.login, true))
-        }
+        dispatch(toggleFetchingAC(false));
+
     };
 
 export const sendRegisterDataTC = (data) =>

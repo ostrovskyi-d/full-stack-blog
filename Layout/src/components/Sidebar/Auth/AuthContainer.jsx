@@ -2,7 +2,7 @@ import React from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import {connect} from "react-redux";
-import {getMyUserDataTC, sendRegisterDataTC, toggleAuthTypeTC} from "../../redux/auth-reducer";
+import {getMyUserDataTC, sendRegisterDataTC, toggleAuthTypeTC} from "../../../redux/auth-reducer";
 // import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 const AuthContainer = (props) => {

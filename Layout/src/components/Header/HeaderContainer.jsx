@@ -1,9 +1,6 @@
 import React from "react";
-import {Link, NavLink} from "react-router-dom";
-import s from './Header.module.scss'
 import Header from "./Header";
 import {connect} from "react-redux";
-import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
 import {logOutTC} from "../../redux/auth-reducer";
 
 const HeaderContainer = (props) => {

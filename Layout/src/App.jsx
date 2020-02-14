@@ -6,17 +6,19 @@ import MainRoutesContainer from "./components/Main/MainRoutesContainer";
 import {initializeApp} from "./redux/app-reducer";
 import {connect} from "react-redux";
 import {getMyUserDataTC} from "./redux/auth-reducer";
-
+import Preloader from "./components/common/Preloader";
 
 
 const App = (props) => {
-    const {initializeApp} = props;
-    useEffect(() => {
-        initializeApp();
-        getMyUserDataTC();
-    }, [initializeApp]);
+    const {initializeApp, getMyUserDataTC, initialized} = props;
 
-    return (
+    useEffect(() => {
+        getMyUserDataTC();
+        initializeApp();
+    }, [initializeApp, initialized, getMyUserDataTC]);
+
+    if (!initialized) return <Preloader/>
+    else return (
         <div className={s.wrapper}>
             <HeaderContainer/>
             <MainRoutesContainer/>
@@ -25,5 +27,10 @@ const App = (props) => {
     );
 };
 
+const mapStateToProps = (state) => {
+    return {
+        initialized: state.init.initialized
+    }
+};
 
-export default connect(null, {initializeApp,getMyUserDataTC})(App);
+export default connect(mapStateToProps, {initializeApp, getMyUserDataTC})(App);
