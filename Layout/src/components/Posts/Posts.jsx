@@ -2,14 +2,17 @@ import React from "react";
 import Post from "./Post";
 
 const Posts = (props) => {
-    let {postsStore: posts} = props;
+    const {postsStore: posts} = props.posts;
+    // debugger
     return <>
         {
-            props.postsStore.map(post =>
+            posts.map(post =>
                 <Post
                     postTitle={post.title}
                     postBody={post.body}
                     author={post.author}
+                    url={post.url}
+                    key={post.id}
                 />
             )
         }

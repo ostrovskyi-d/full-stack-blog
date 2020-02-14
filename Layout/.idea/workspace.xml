@@ -2,19 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f4636f9-52e0-4c39-8823-da114bd294b4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Header/HeaderContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Main/MainRoutesContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Posts/PostsContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/auth-reducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/validationForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/API/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/API/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Auth/AuthContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/AuthContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Auth/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/LoginForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Auth/RegisterForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/RegisterForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/FooterContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Main/Main.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Posts/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts/Post.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Posts/Posts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts/Posts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/styles/_reset.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/styles/_reset.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/app-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/app-reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/posts-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/posts-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/.idea/Blog-ssr.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/.idea/Blog-ssr.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/.idea/dictionaries/User2019.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/.idea/dictionaries/User2019.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/redux-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/redux-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/routes/archive.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/routes/archive.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/routes/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/routes/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/routes/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/routes/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/routes/post.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +64,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -76,6 +94,7 @@
       <workItem from="1581436801502" duration="32000" />
       <workItem from="1581503012300" duration="611000" />
       <workItem from="1581585919027" duration="21665000" />
+      <workItem from="1581665519352" duration="24215000" />
     </task>
     <servers />
   </component>
@@ -93,10 +112,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="392" y="94" key="#Inspections" timestamp="1581609108639">
+    <state x="392" y="94" key="#Inspections" timestamp="1581668387661">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="392" y="94" key="#Inspections/0.0.1600.870@0.0.1600.870" timestamp="1581609108639" />
+    <state x="392" y="94" key="#Inspections/0.0.1600.870@0.0.1600.870" timestamp="1581668387661" />
     <state x="555" y="231" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581436762160">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
@@ -109,6 +128,10 @@
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state x="530" y="183" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.870@0.0.1600.870" timestamp="1581434978097" />
+    <state x="383" y="237" key="FileChooserDialogImpl" timestamp="1581665836519">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="383" y="237" key="FileChooserDialogImpl/0.0.1600.870@0.0.1600.870" timestamp="1581665836519" />
     <state width="1557" height="209" key="GridCell.Tab.0.bottom" timestamp="1581433731547">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
@@ -125,17 +148,17 @@
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state width="1557" height="209" key="GridCell.Tab.0.right/0.0.1600.870@0.0.1600.870" timestamp="1581433731547" />
-    <state x="104" y="136" width="998" height="708" key="SettingsEditor" timestamp="1581587205857">
+    <state x="104" y="136" width="998" height="708" key="SettingsEditor" timestamp="1581688204411">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="104" y="136" width="998" height="708" key="SettingsEditor/0.0.1600.870@0.0.1600.870" timestamp="1581587205857" />
-    <state x="456" y="198" width="672" height="677" key="run.anything.popup" timestamp="1581609091941">
+    <state x="104" y="136" width="998" height="708" key="SettingsEditor/0.0.1600.870@0.0.1600.870" timestamp="1581688204411" />
+    <state x="456" y="198" width="672" height="677" key="run.anything.popup" timestamp="1581671939963">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="456" y="198" width="672" height="677" key="run.anything.popup/0.0.1600.870@0.0.1600.870" timestamp="1581609091941" />
-    <state x="463" y="182" width="672" height="678" key="search.everywhere.popup" timestamp="1581598494309">
+    <state x="456" y="198" width="672" height="677" key="run.anything.popup/0.0.1600.870@0.0.1600.870" timestamp="1581671939963" />
+    <state x="463" y="182" width="672" height="678" key="search.everywhere.popup" timestamp="1581676963171">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="463" y="182" width="672" height="678" key="search.everywhere.popup/0.0.1600.870@0.0.1600.870" timestamp="1581598494309" />
+    <state x="463" y="182" width="672" height="678" key="search.everywhere.popup/0.0.1600.870@0.0.1600.870" timestamp="1581676963171" />
   </component>
 </project>

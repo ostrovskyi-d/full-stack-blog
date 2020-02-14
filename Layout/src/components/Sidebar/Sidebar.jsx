@@ -1,16 +1,16 @@
 import React from "react";
 import s from "./Sidebar.module.scss"
-import LoginForm from "../Auth/LoginForm";
-import RegisterForm from "../Auth/RegisterForm";
-const Header = () => {
+import AuthContainer from "../Auth/AuthContainer";
+
+
+const Sidebar = () => {
     return (
         <aside className={s.sidebar}>
             <div className={`${s.box} ${s.auth}`}>
-                <LoginForm />
-                <RegisterForm />
+                <AuthContainer />
             </div>
             <div className={s.box}>box2</div>
         </aside>
 )};
 
-export default Header;
+export default Sidebar;

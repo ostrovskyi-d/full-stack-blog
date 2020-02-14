@@ -1,20 +1,24 @@
 import s from "../Sidebar/Sidebar.module.scss";
 import React from "react";
+import {Field, reduxForm} from 'redux-form'
 
-const LoginForm = (props) => {
-    const onSwitchAuth = () => {
+let LoginForm = (props) => {
 
-    }
+    const onSwitchAuth = (e) => {
+        e.preventDefault();
+        props.switchAuthType('register');
+    };
+    // debugger
     return (
-        <form method="POST" className={s.login}>
+        <form onSubmit={props.handleSubmit} method="POST" className={s.login}>
             <h2>Enter</h2>
             <div className={s.form_group}>
                 <label htmlFor="log-login">Name:</label>
-                <input type="text" name="login" id="log-login"/>
+                <Field component='input' type="text" name="login" id="log-login"/>
             </div>
             <div className={s.form_group}>
                 <label htmlFor="log-password">Password:</label>
-                <input type="password" name="password" id="log-password"/>
+                <Field component='input' type="password" name="password" id="log-password"/>
             </div>
             <div className={s.buttons}>
                 <button id="submit-login" type="submit" className={s.button}>Login</button>
@@ -24,4 +28,7 @@ const LoginForm = (props) => {
     )
 };
 
-export default LoginForm;
+export default LoginForm = reduxForm({
+    // a unique name for the form
+    form: 'login'
+})(LoginForm)

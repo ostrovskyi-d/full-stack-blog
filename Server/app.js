@@ -2,6 +2,7 @@ const Post = require('./models/post');
 const routes = require('./routes');
 const config = require('./config');
 
+const cookieParser = require('cookie-parser');
 const express = require("express");
 const bodyParser = require('body-parser');
 const hbs = require("hbs");
@@ -14,16 +15,7 @@ const mocks = require('./mocks');
 const cors = require('cors');
 
 // CORS OPTIONS
-const whitelist = ['http://localhost:3000', 'http://localhost:3001'];
-let corsOptions = {
-    origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
-    },credentials: true
-};
+
 
 // Database
 mongoose.Promise = global.Promise;
@@ -41,29 +33,34 @@ mongoose.connect(config.MONGO_URL, {useMongoClient: true});
 
 
 // EXPRESS
-
 const app = express();
 
-app.set('view engine', 'hbs');
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/javascript', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
-app.use(cors());
 
 app.use(session({
     secret: config.SESSION_SECRET,
     resave: true,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: new MongoStore({
         mongooseConnection: mongoose.connection
     })
 }));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use('/javascript', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
+let corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204,
+    credentials: true
+};
+app.use(cors(corsOptions));
 
 // Routes
-app.get('/', cors(corsOptions), (req, res, next) => {
+app.get('/', (req, res, next) => {
     const {userId: id, userLogin: login} = req.session;
-    console.log(id, login);
+    console.log(req.session);
     Post.find({}, (err, docs) => {
         if (!id || !login) {
             res.json({
@@ -86,7 +83,7 @@ app.get('/', cors(corsOptions), (req, res, next) => {
 //// Auth
 app.use('/api/auth', routes.auth);
 //// Post
-app.use('/post', routes.post);
+app.use('/posts', routes.post);
 // 
 app.use('/archive', routes.archive);
 
@@ -165,3 +162,5 @@ if (filelist.length > 0) {
         hbs.registerPartial(name, template);
     });
 }
+
+module.exports = app;

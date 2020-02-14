@@ -1,5 +1,4 @@
 import {authAPI} from "../API/api";
-import {pureFinalPropsSelectorFactory} from "react-redux/lib/connect/selectorFactory";
 // On initialize app (no needed from start, but it would be useful for future)
 
 // Actions Types
@@ -8,7 +7,7 @@ const IS_FETCHING = "IS-FETCHING";
 
 
 let initialState = {
-    postsStore: null,
+    postsStore: [],
     isFetching: true
 };
 

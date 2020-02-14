@@ -9,7 +9,10 @@ const saltRounds = 10;
 
 // register: storing name, email and password and redirecting to home page after signup
 router.post('/register', async (req, res, next) => {
-    const {login, password, passwordConfirm} = req.body;
+    const login = req.body['login'],
+        password = req.body['password'],
+        passwordConfirm = req.body['password-repeat'];
+    console.log(req.body);
     const fields = [];
 
     !login && fields.push('login');
@@ -71,12 +74,14 @@ router.post('/register', async (req, res, next) => {
                     });
                     req.session.userId = user.id;
                     req.session.userLogin = user.login;
-                    res.redirect('/');
-                    // res.json({
-                    //     resultCode: 101,
-                    //     message: "User created",
-                    //     fields
-                    // });
+                    res.json({
+                        resultCode: 101,
+                        message: "User created",
+                        userId: user.id,
+                        userLogin: user.login,
+                        fields
+                    });
+                    // res.redirect('/');
                 } catch (err) {
                     res.json({
                         resultCode: 102,
@@ -149,11 +154,11 @@ router.post('/login', async (req, res, next) => {
     }
 });
 
-router.get('/logout', (req, res, next) => {
+router.delete('/logout', (req, res, next) => {
     if (req.session) {
         req.session.destroy((err) => {
             if (err) return next(err);
-            else return res.redirect('/')
+            else return res.redirect('/');
         });
     } else {
         res.redirect('/')

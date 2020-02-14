@@ -2,7 +2,10 @@ import React from "react";
 import {Link, NavLink} from "react-router-dom";
 import s from './Header.module.scss'
 
-const Header = () => {
+const Header = (props) => {
+    const onLogOut =() => {
+        props.logOut();
+    };
     return (
         <header className={s.header}>
             <div className={s.container}>
@@ -11,6 +14,9 @@ const Header = () => {
                     <NavLink to="post/add">
                         Add post
                     </NavLink>
+                    <Link onClick={onLogOut} to='auth/logout'>
+                        Log out
+                    </Link>
                 </nav>
             </div>
         </header>
