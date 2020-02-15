@@ -9,9 +9,8 @@ router.get('/:page', async (req, res) => {
     const page = req.params.page || 1;
     try {
         const gettingPosts =  Post.find({}).skip(+perPage * page - perPage).limit(perPage);
-        const posts = await gettingPosts;
-
         const gettingCount = Post.count();
+        const posts = await gettingPosts;
         const count = await gettingCount;
 
         res.json( {

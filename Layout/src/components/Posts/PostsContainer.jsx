@@ -11,7 +11,7 @@ const PostsContainer = (props) => {
         getAllPostsTC()
     }, [getAllPostsTC]);
 
-    if (postsStore.length) return <Posts {...props} />;
+    if (postsStore.length !== 0) return <Posts {...props} />;
     else return <Preloader/>
 };
 

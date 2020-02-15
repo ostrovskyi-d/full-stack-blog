@@ -21,3 +21,8 @@ export const authAPI = {
         return await instance.get('/api/auth/logout')
     }
 };
+export const postsApi = {
+    async getPosts() {
+        return "PLACEHOLDER"
+    }
+};
