@@ -1,39 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7f4636f9-52e0-4c39-8823-da114bd294b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Header/HeaderContainer.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Main/MainRoutesContainer.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Posts/PostsContainer.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/auth-reducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/validationForm.jsx" afterDir="false" />
+    <list default="true" id="63fdadda-40aa-4425-9605-d4e5cb022221" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Layout.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Layout.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/User2019.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/API/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/API/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/AuthContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/AuthContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/LoginForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Auth/RegisterForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Auth/RegisterForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/FooterContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Main/Main.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Posts/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts/Post.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Posts/Posts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Posts/Posts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Main/MainRoutesContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main/MainRoutesContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Auth/AuthContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Auth/AuthContainer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/styles/_reset.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/styles/_reset.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/app-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/app-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/posts-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/posts-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/redux-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/redux-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/UserPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/UserPanel.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/auth-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/auth-reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/public/javascript/scripts.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/public/javascript/scripts.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/routes/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,122 +34,34 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="JsFlowSettings">
-    <service-enabled>true</service-enabled>
-    <exe-path />
-    <other-services-enabled>true</other-services-enabled>
-    <auto-save>true</auto-save>
-  </component>
-  <component name="ProjectId" id="1XfICJzgc7qlmlqzu8VSz90OC3S" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="1Xqbb9ktjJqLYUU6ZfxqNEqgoxH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\User2019\Desktop\w\Blog\blog-ssr\Layout\src\components\common\styles" />
-      <recent name="C:\Users\User2019\Desktop\w\Blog\blog-ssr\Layout\src\components\Sidebar" />
-      <recent name="C:\Users\User2019\Desktop\w\Blog\blog-ssr\Layout\src\components\Main" />
-      <recent name="C:\Users\User2019\Desktop\w\Blog\blog-ssr\Layout\src\components\Footer" />
-      <recent name="C:\Users\User2019\Desktop\w\Blog\blog-ssr\Layout\src\components\Header" />
-    </key>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="showServicesTree" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7f4636f9-52e0-4c39-8823-da114bd294b4" name="Default Changelist" comment="" />
-      <created>1581430599370</created>
+      <changelist id="63fdadda-40aa-4425-9605-d4e5cb022221" name="Default Changelist" comment="" />
+      <created>1581776653179</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1581430599370</updated>
-      <workItem from="1581430621838" duration="5072000" />
-      <workItem from="1581435891050" duration="871000" />
-      <workItem from="1581436801502" duration="32000" />
-      <workItem from="1581503012300" duration="611000" />
-      <workItem from="1581585919027" duration="21665000" />
-      <workItem from="1581665519352" duration="24215000" />
+      <updated>1581776653179</updated>
+      <workItem from="1581776699771" duration="29000" />
+      <workItem from="1581777011980" duration="141000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/node_modules/wait-for-expect/lib/toBeInRangeMatcher.d.js" />
-        <option value="$PROJECT_DIR$/node_modules/wait-for-expect/lib/waitForExpect.spec.d.js" />
-        <option value="$PROJECT_DIR$/node_modules/wait-for-expect/lib/index.d.js" />
-      </list>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="392" y="94" key="#Inspections" timestamp="1581668387661">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="392" y="94" key="#Inspections/0.0.1600.870@0.0.1600.870" timestamp="1581668387661" />
-    <state x="555" y="231" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581436762160">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="555" y="231" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.870@0.0.1600.870" timestamp="1581436762160" />
-    <state x="543" y="196" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper" timestamp="1581587135851">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="543" y="196" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper/0.0.1600.870@0.0.1600.870" timestamp="1581587135851" />
-    <state x="530" y="183" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581434978097">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="530" y="183" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.870@0.0.1600.870" timestamp="1581434978097" />
-    <state x="383" y="237" key="FileChooserDialogImpl" timestamp="1581665836519">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="383" y="237" key="FileChooserDialogImpl/0.0.1600.870@0.0.1600.870" timestamp="1581665836519" />
-    <state width="1557" height="209" key="GridCell.Tab.0.bottom" timestamp="1581433731547">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state width="1557" height="209" key="GridCell.Tab.0.bottom/0.0.1600.870@0.0.1600.870" timestamp="1581433731547" />
-    <state width="1557" height="209" key="GridCell.Tab.0.center" timestamp="1581433731546">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state width="1557" height="209" key="GridCell.Tab.0.center/0.0.1600.870@0.0.1600.870" timestamp="1581433731546" />
-    <state width="1557" height="209" key="GridCell.Tab.0.left" timestamp="1581433731546">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state width="1557" height="209" key="GridCell.Tab.0.left/0.0.1600.870@0.0.1600.870" timestamp="1581433731546" />
-    <state width="1557" height="209" key="GridCell.Tab.0.right" timestamp="1581433731547">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state width="1557" height="209" key="GridCell.Tab.0.right/0.0.1600.870@0.0.1600.870" timestamp="1581433731547" />
-    <state x="104" y="136" width="998" height="708" key="SettingsEditor" timestamp="1581688204411">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="104" y="136" width="998" height="708" key="SettingsEditor/0.0.1600.870@0.0.1600.870" timestamp="1581688204411" />
-    <state x="456" y="198" width="672" height="677" key="run.anything.popup" timestamp="1581671939963">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="456" y="198" width="672" height="677" key="run.anything.popup/0.0.1600.870@0.0.1600.870" timestamp="1581671939963" />
-    <state x="463" y="182" width="672" height="678" key="search.everywhere.popup" timestamp="1581676963171">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="463" y="182" width="672" height="678" key="search.everywhere.popup/0.0.1600.870@0.0.1600.870" timestamp="1581676963171" />
   </component>
 </project>

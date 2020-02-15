@@ -1,6 +1,8 @@
 import s from "../Sidebar.module.scss";
 import React from "react";
 import {Field, reduxForm} from 'redux-form'
+import {Button} from "antd";
+
 
 let LoginForm = (props) => {
 
@@ -10,7 +12,7 @@ let LoginForm = (props) => {
     };
     // debugger
     return (
-        <form onSubmit={props.handleSubmit} method="POST" className={s.login}>
+        <form onSubmit={props.handleSubmit} method="POST">
             <h2>Enter</h2>
             <div className={s.form_group}>
                 <label htmlFor="log-login">Name:</label>
@@ -21,8 +23,8 @@ let LoginForm = (props) => {
                 <Field component='input' type="password" name="password" id="log-password"/>
             </div>
             <div className={s.buttons}>
-                <button id="submit-login" type="submit" className={s.button}>Login</button>
-                <button onClick={onSwitchAuth} className={s.secondaryInverse}>To Register</button>
+                <Button htmlType='submit' type='primary' id="submit-login">Login</Button>
+                <Button onClick={onSwitchAuth} className={s.secondaryInverse}>To Register</Button>
             </div>
         </form>
     )

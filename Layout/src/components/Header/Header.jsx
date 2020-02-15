@@ -1,6 +1,7 @@
 import React from "react";
 import {Link, NavLink} from "react-router-dom";
 import s from './Header.module.scss'
+import {Button} from "antd";
 
 const Header = (props) => {
     const onLogOut =() => {
@@ -14,9 +15,9 @@ const Header = (props) => {
                     <NavLink to="post/add">
                         Add post
                     </NavLink>
-                    <Link onClick={onLogOut} to='#'>
+                    <Button onClick={onLogOut} to='#'>
                         Log out
-                    </Link>
+                    </Button>
                 </nav>
             </div>
         </header>

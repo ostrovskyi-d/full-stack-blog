@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import store from './redux/redux-store';
 import App from "./App.jsx"
 import "./index.css";
+import * as serviceWorker from './serviceWorker';
 
 let rerenderEntireTree = () => {
     return ReactDOM.render(
@@ -17,5 +18,5 @@ let rerenderEntireTree = () => {
 };
 rerenderEntireTree(store.getState());
 
-
 store.subscribe(rerenderEntireTree);
+serviceWorker.unregister();

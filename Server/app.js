@@ -41,10 +41,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: config.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: new MongoStore({
         mongooseConnection: mongoose.connection
-    })
+    }),
+    unset: 'destroy'
 }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -58,35 +59,13 @@ let corsOptions = {
 app.use(cors(corsOptions));
 
 // Routes
-app.get('/', (req, res, next) => {
-    const {userId: id, userLogin: login} = req.session;
-    console.log(req.session);
-    Post.find({}, (err, docs) => {
-        if (!id || !login) {
-            res.json({
-                resultCode: 102,
-                message: 'Not authorised',
-                posts: docs
-            })
-        } else if (err) {
-            res.send("error")
-        } else {
-            res.json({
-                resultCode: 101,
-                message: "Authorised",
-                user: {id, login},
-                posts: docs,
-            });
-        }
-    });
-});
+
 //// Auth
 app.use('/api/auth', routes.auth);
 //// Post
 app.use('/posts', routes.post);
-// 
-app.use('/archive', routes.archive);
-
+//
+app.use('/', routes.archive);
 
 // 404
 app.use((req, res, next) => {

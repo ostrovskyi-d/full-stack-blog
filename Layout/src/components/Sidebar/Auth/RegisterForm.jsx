@@ -1,6 +1,7 @@
 import s from "../Sidebar.module.scss";
 import React from "react";
 import {Field, reduxForm} from 'redux-form'
+import {Button} from "antd";
 
 let RegisterForm = (props) => {
 
@@ -25,9 +26,10 @@ let RegisterForm = (props) => {
                 <Field component='input' type="password" name="password-repeat" id="pass-repeat"/>
             </div>
             <div className={`${s.buttons} buttons-reg`}>
-                <button id="submit-register" type="submit" className="create-button">Create</button>
-                <button onClick={onSwitchAuth} className={`${s.secondaryInverse} switch-button reg-button`}>To Login
-                </button>
+                <Button htmlType='submit' type='primary' id="submit-login">Create</Button>
+                <Button onClick={onSwitchAuth} className={`${s.secondaryInverse} switch-button reg-button`}>To
+                    Login</Button>
+
             </div>
         </form>)
 };

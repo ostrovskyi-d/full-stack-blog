@@ -11,6 +11,7 @@ let initialState = {
     currentAuthType: null,
     userLogin: null,
     userId: null,
+
     isFetching: false
 };
 
@@ -57,28 +58,23 @@ export const toggleFetchingAC = (isFetching) => ({
     isFetching
 });
 
-export const logOutTC = () =>
-    async (dispatch) => {
-        dispatch(toggleFetchingAC(true))
+export const logOutTC = () =>{
+    return async (dispatch) => {
         const {data} = await authAPI.logOut();
-        if (data.resultCode === 101)
+        if (data.resultCode === 102)
             dispatch(setAuthorisedDataAC(null, null, false));
-        dispatch(toggleFetchingAC(false))
-    };
+    }};
 
 export const toggleAuthTypeTC = (authType) => (dispatch) =>
     dispatch(toggleAuthTypeAC(authType));
 
-export const getMyUserDataTC = () =>
-    async (dispatch) => {
-        dispatch(toggleFetchingAC(true));
-        let {data} = await authAPI.getUserData();
-        debugger
-        if (data.user)
-            dispatch(setAuthorisedDataAC(data.user.id, data.user.login, true))
-        dispatch(toggleFetchingAC(false));
-
-    };
+export const getMyUserDataTC = () =>{
+    return async (dispatch) => {
+        let response = await authAPI.getUserData();
+        if (response.data.resultCode === 101){
+            dispatch(setAuthorisedDataAC(response.data.user.id, response.data.user.login, true))
+        }
+    }};
 
 export const sendRegisterDataTC = (data) =>
     async (dispatch) => {
@@ -86,7 +82,7 @@ export const sendRegisterDataTC = (data) =>
         console.log(body);
         console.log(data);
         if (body.resultCode === 101) {
-            dispatch(setAuthorisedDataAC(body.userId, body.userLogin, true))
+            dispatch(setAuthorisedDataAC(body.authorisedUserId, body.authorisedUserName, true))
         }
     };
 

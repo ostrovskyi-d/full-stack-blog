@@ -10,12 +10,11 @@ import Preloader from "./components/common/Preloader";
 
 
 const App = (props) => {
-    const {initializeApp, getMyUserDataTC, initialized} = props;
+    const {initializeApp, initialized} = props;
 
     useEffect(() => {
-        getMyUserDataTC();
         initializeApp();
-    }, [initializeApp, initialized, getMyUserDataTC]);
+    }, [initializeApp, initialized]);
 
     if (!initialized) return <Preloader/>
     else return (
