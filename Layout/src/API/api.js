@@ -22,7 +22,8 @@ export const authAPI = {
     }
 };
 export const postsApi = {
-    async getPosts() {
-        return "PLACEHOLDER"
+    async getReqPost(postName) {
+        debugger
+        return await instance.get(`/posts/${postName}`)
     }
 };

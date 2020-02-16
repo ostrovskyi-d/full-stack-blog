@@ -5,23 +5,19 @@ import Sidebar from "../Sidebar/Sidebar";
 import s from './Main.module.scss'
 import {connect} from "react-redux";
 import {initializeApp} from "../../redux/app-reducer";
-import {Pagination} from "antd";
+import PostAddForm from "../Posts/PostAddForm";
 
 const MainRoutesContainer = (props) => {
     // MOCK
-    const pagination = {
-        totalPages: 50,
-        current: 1
-    };
-    const onPaginatorChange = (e) => {
-        console.log(`SEND_PAGE_NUMBER:${e}`)
-    };
+
     return (
         <main className={s.main}>
             <div className={s.container}>
                 <div className={s.content}>
                     <Route exact path={'/'} render={() => <PostsContainer/>}/>
-                    <Pagination onChange={onPaginatorChange} defaultCurrent={pagination.current} total={pagination.totalPages}/>
+                    <Route path={'/post/add'} render={() => <PostAddForm />} />
+                    <Route path={`/posts/:postName`} render={() => <PostsContainer />} />
+
                 </div>
                 <Sidebar/>
             </div>

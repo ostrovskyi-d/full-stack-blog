@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./Posts.module.scss";
+import s from "../Posts.module.scss";
 import {Link} from "react-router-dom";
 
 const Post = (props) => {
@@ -16,12 +16,12 @@ const Post = (props) => {
             <div className={s.bottom}>
                 <div className={s.author}>
                     Author:&nbsp;
-                    <Link to="#">
+                    <Link to={null}>
                         {props.author}
                     </Link>
                 </div>
                 <div className={s.comments}>
-                    <Link to='#'>Comments</Link>
+                    <Link to={null}>Comments</Link>
                 </div>
             </div>
         </div>

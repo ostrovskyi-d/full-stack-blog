@@ -4,10 +4,11 @@ import 'react-quill/dist/quill.bubble.css';
 import s from './Posts.module.scss'
 
 const style = {
-    height: "300px",
+    height: "200px",
     border: '1px solid #e8e8e8',
     margin: '15px 0',
-    borderRadius: '3px'
+    borderRadius: '3px',
+    cursor: 'text'
 };
 
 const PostAddForm = () => {
