@@ -1,43 +1,24 @@
 import React from "react";
-import Post from "./Post/Post";
-import {Pagination} from "antd";
+import PostItem from "./Post/PostItem";
+import Paginator from "../common/Paginator";
 
-const Posts = (props) => {
-    const {
-        postsStore: posts,
-        requestedPost,
-    } = props.posts;
+const Posts = props => {
+    const {postsStore} = props.posts;
 
-    debugger
-
-    const pagination = {
-        totalPages: 50,
-        current: 1
-    };
-    const onPaginatorChange = (e) => {
-        console.log(`SEND_PAGE_NUMBER:${e}`)
-    };
-    const RenderPosts = props => props.posts.map(post =>
-        <Post
+    return <>
+        {postsStore.map(post => <PostItem
             postTitle={post.title}
             postBody={post.body}
-            author={post.author}
+            author={post.author.login}
             url={`posts/${post.url}`}
             key={post.id}
-        />
-    );
+        />)}
+        {postsStore.length === 0
+            ? null
+            : <Paginator {...props} />
 
-    return (
-        <>
-            {requestedPost.length !== 0
-                ? <RenderPosts posts={requestedPost}/>
-                :  <RenderPosts posts={posts}/>
-            }
-
-            <Pagination onChange={onPaginatorChange} defaultCurrent={pagination.current} total={pagination.totalPages}/>
-
-        </>
-    )
+        }
+    </>
 };
 
 export default Posts;

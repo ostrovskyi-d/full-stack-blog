@@ -8,15 +8,14 @@ import {getMyUserDataTC, logOutTC} from "../../redux/auth-reducer";
 
 const Sidebar = (props) => {
     const {
-        userData: {
-            isAuthorised
-        },
+        userData: {isAuthorised},
         getMyUserDataTC
     } = props;
 
     useEffect(() => {
         getMyUserDataTC()
     }, [isAuthorised, getMyUserDataTC]);
+
 
     return (
         <aside className={s.sidebar}>

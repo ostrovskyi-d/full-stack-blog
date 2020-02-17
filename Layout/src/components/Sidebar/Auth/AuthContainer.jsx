@@ -14,7 +14,6 @@ const AuthContainer = (props) => {
 
     const submitForm = values => {
         props.sendRegisterDataTC(values);
-
     };
 
     if (auth.currentAuthType === "register") {
@@ -33,6 +32,7 @@ export default connect(
     //mapDispatchToProps
     {
         toggleAuthTypeTC,
-        sendRegisterDataTC
+        sendRegisterDataTC,
+
     }
 )(AuthContainer);

@@ -6,7 +6,7 @@ const {
 const config = require('../config');
 
 
-const posts = async (req, res) => {
+const getPosts = async (req, res) => {
     const {
         userId,
         userLogin
@@ -30,7 +30,9 @@ const posts = async (req, res) => {
                 resultCode: 101,
                 message: 'Authorised',
                 posts: posts,
-                current: reqPage,
+                postsTotal: count,
+                page: reqPage,
+                perPage: perPage,
                 totalPages: Math.ceil(count / perPage),
                 user: {
                     id: userId,
@@ -53,8 +55,10 @@ const posts = async (req, res) => {
         console.error(`Server Error: `, error)
     }
 }
-router.get('/archive/:page', (req, res) => posts(req, res));
-router.get('/', (req, res) => posts(req, res));
+router.get('/archive/:page', (req, res) => getPosts(req, res));
+router.get('/', (req, res) => getPosts(req, res));
+
+
 router.get('/posts/:postName', async (req, res, next) => {
     const url = req.params.postName.trim().replace(/ +(?= )/g, '');
     const userId = req.session.userId;
@@ -94,8 +98,8 @@ router.get('/posts/:postName', async (req, res, next) => {
 //     const perPage = +config.PER_PAGE;
 //     const page = req.params.page || 1;
 //     try {
-//         const gettingPosts =  Post.find({}).skip(+perPage * page - perPage).limit(perPage);
-//         const gettingCount = Post.count();
+//         const gettingPosts =  PostItem.find({}).skip(+perPage * page - perPage).limit(perPage);
+//         const gettingCount = PostItem.count();
 //         const posts = await gettingPosts;
 //         const count = await gettingCount;
 
@@ -118,7 +122,7 @@ router.get('/posts/:postName', async (req, res, next) => {
 // router.get('/', (req, res, next) => {
 //     const {userId: id, userLogin: login} = req.session;
 //     console.log(req.session);
-//     Post.find({}, (err, docs) => {
+//     PostItem.find({}, (err, docs) => {
 //         if (!id || !login) {
 //             res.json({
 //                 resultCode: 102,

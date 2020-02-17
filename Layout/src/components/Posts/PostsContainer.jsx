@@ -1,28 +1,34 @@
 import React, {useEffect} from "react";
 import Posts from "./Posts";
 import {connect} from "react-redux";
-import {getAllPostsTC, requestPostTC} from "../../redux/posts-reducer";
+import {getAllPostsTC, getPostsPageNumberTC, requestPostTC} from "../../redux/posts-reducer";
 import Preloader from "../common/Preloader";
 import {withRouter} from "react-router-dom";
 import {compose} from 'redux';
 
 const PostsContainer = (props) => {
+    // ------ DESTRUCT PROPS ------ //
     const {
-        match: {params},
-        posts: {postsStore},
+        posts: {isFetching},
         getAllPostsTC,
-        requestPostTC,
+        getPostsPageNumberTC
     } = props;
 
+    // ------ EFFECTS ------ //
     useEffect(() => {
-        let postName = params.postName;
-        if(postName === undefined) getAllPostsTC();
-        else requestPostTC(postName);
-        debugger
-    }, [getAllPostsTC, requestPostTC]);
-    debugger
-    if (postsStore.length > 1) return <Posts {...props}  />;
-    else return <Preloader/>
+        getAllPostsTC();
+    }, [getAllPostsTC, props.posts.postsStore]);
+
+    // ------ CUSTOM FUNCTIONS ------ //
+    const onPostsPageChange = (pageNumber) => {
+        getPostsPageNumberTC(pageNumber);
+    };
+
+    // ------ RENDERING ------ //
+    if (isFetching)
+        return <Preloader/>;
+    else
+        return <Posts {...props} onPostsPageChange={onPostsPageChange}/>;
 };
 
 const mapStateToProps = (state) => {
@@ -34,6 +40,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     getAllPostsTC,
     requestPostTC,
+    getPostsPageNumberTC
 };
 
 export default compose(

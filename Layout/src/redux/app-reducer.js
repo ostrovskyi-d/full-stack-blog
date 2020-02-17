@@ -1,4 +1,4 @@
-import {getMyUserDataTC} from "./auth-reducer";
+// import {getMyUserDataTC} from "./auth-reducer";
 // On initialize app (no needed from start, but it would be useful for future)
 // Actions Types
 const INITIALIZED_SUCCESS = "INITIALIZED-SUCCESS";
