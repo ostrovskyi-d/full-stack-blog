@@ -62,7 +62,7 @@ app.use(cors(corsOptions));
 
 //// Auth
 app.use('/api/auth', routes.auth);
-//// Post
+//// PostItem
 app.use('/posts', routes.post);
 //
 app.use('/', routes.archive);

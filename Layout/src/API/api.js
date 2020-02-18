@@ -25,5 +25,8 @@ export const postsApi = {
     async getReqPost(postName) {
         debugger
         return await instance.get(`/posts/${postName}`)
+    },
+    async getReqPage(reqPage) {
+        return await  instance.get(`/archive/${reqPage}`)
     }
 };

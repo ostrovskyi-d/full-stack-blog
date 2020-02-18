@@ -2,30 +2,31 @@ import React from "react";
 import s from "../Posts.module.scss";
 import {Link} from "react-router-dom";
 
-const Post = (props) => {
+const PostItem = (props) => {
+    debugger
     return (
         <div className={s.post}>
             <div className={s.top}>
                 <h2>
                     <Link to={props.url}>
-                        {props.postTitle}
+                        {props.title}
                     </Link>
                 </h2>
             </div>
-            <div className={s.body}>{props.postBody}</div>
+            <div className={s.body}>{props.body}</div>
             <div className={s.bottom}>
                 <div className={s.author}>
                     Author:&nbsp;
-                    <Link to={null}>
+                    <Link to='#'>
                         {props.author}
                     </Link>
                 </div>
                 <div className={s.comments}>
-                    <Link to={null}>Comments</Link>
+                    <Link to='#'>Comments</Link>
                 </div>
             </div>
         </div>
     )
 };
 
-export default Post;
+export default PostItem;

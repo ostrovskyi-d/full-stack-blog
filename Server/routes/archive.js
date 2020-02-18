@@ -14,23 +14,26 @@ const posts = async (req, res) => {
     const perPage = +config.PER_PAGE;
     const reqPage = req.params.page || 1;
     try {
-        // Created promises-variables for parralel operations
+        // Created promises-variables for parallel operations
         const postsPromise = Post.find({})
             .skip(perPage * reqPage - perPage)
             .limit(perPage)
             .populate('author')
             .sort({
                 createdAt: -1
-            })
+            });
         const countPromise = Post.count();
         const posts = await postsPromise;
         const count = await countPromise;
+
         if (userId && userLogin) {
             res.json({
                 resultCode: 101,
                 message: 'Authorised',
                 posts: posts,
-                current: reqPage,
+                perPage: perPage,
+                totalPostsCount: count,
+                currentPage: Number(reqPage),
                 totalPages: Math.ceil(count / perPage),
                 user: {
                     id: userId,
@@ -42,17 +45,17 @@ const posts = async (req, res) => {
                 resultCode: 102,
                 message: 'Not authorised',
                 posts: posts,
+                perPage: perPage,
+                totalPostsCount: count,
+                currentPage: Number(reqPage),
                 totalPages: Math.ceil(count / perPage),
-                currentPage: reqPage,
-                totalPages: Math.ceil(count / perPage),
-
             })
         }
 
     } catch (error) {
         console.error(`Server Error: `, error)
     }
-}
+};
 router.get('/archive/:page', (req, res) => posts(req, res));
 router.get('/', (req, res) => posts(req, res));
 router.get('/posts/:postName', async (req, res, next) => {
@@ -60,7 +63,7 @@ router.get('/posts/:postName', async (req, res, next) => {
     const userId = req.session.userId;
     const userLogin = req.session.userLogin;
 
-    if (!url || url === undefined || url === null) {
+    if (!url) {
         const err = new Error('Not Found');
         err.status = 404;
         next(err);
@@ -77,7 +80,7 @@ router.get('/posts/:postName', async (req, res, next) => {
             } else {
                 res.json({
                     resultCode: 101,
-                    post,
+                    post: [post],
                     user: {
                         id: userId,
                         login: userLogin
@@ -94,8 +97,8 @@ router.get('/posts/:postName', async (req, res, next) => {
 //     const perPage = +config.PER_PAGE;
 //     const page = req.params.page || 1;
 //     try {
-//         const gettingPosts =  Post.find({}).skip(+perPage * page - perPage).limit(perPage);
-//         const gettingCount = Post.count();
+//         const gettingPosts =  PostItem.find({}).skip(+perPage * page - perPage).limit(perPage);
+//         const gettingCount = PostItem.count();
 //         const posts = await gettingPosts;
 //         const count = await gettingCount;
 
@@ -118,7 +121,7 @@ router.get('/posts/:postName', async (req, res, next) => {
 // router.get('/', (req, res, next) => {
 //     const {userId: id, userLogin: login} = req.session;
 //     console.log(req.session);
-//     Post.find({}, (err, docs) => {
+//     PostItem.find({}, (err, docs) => {
 //         if (!id || !login) {
 //             res.json({
 //                 resultCode: 102,

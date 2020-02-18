@@ -47,7 +47,7 @@ router.post('/add', async ({
         res.json({
             resultCode: 101,
             type: 'success',
-            message: 'Post created'
+            message: 'PostItem created'
         })
     }
 });

@@ -6,6 +6,7 @@ import s from './Main.module.scss'
 import {connect} from "react-redux";
 import {initializeApp} from "../../redux/app-reducer";
 import PostAddForm from "../Posts/PostAddForm";
+import FullPost from "../Posts/Post/FullPost";
 
 const MainRoutesContainer = (props) => {
     // MOCK
@@ -15,9 +16,8 @@ const MainRoutesContainer = (props) => {
             <div className={s.container}>
                 <div className={s.content}>
                     <Route exact path={'/'} render={() => <PostsContainer/>}/>
-                    <Route path={'/post/add'} render={() => <PostAddForm />} />
-                    <Route path={`/posts/:postName`} render={() => <PostsContainer />} />
-
+                    <Route path={`/post/add`} render={() => <PostAddForm />} />
+                    <Route path={`/posts/:postName`} render={() => <FullPost />} />
                 </div>
                 <Sidebar/>
             </div>
