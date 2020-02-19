@@ -46,47 +46,8 @@
     margin-bottom: 30px;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-
-    .formGroup {
-      margin-bottom: $freeSpace;
-
-      div {
-        label {
-          font-size: 0.9em;
-          .quill  {
-            height: 300px;
-          }
-        }
-      }
-
-
-      .buttons {
-        display: flex;
-        justify-content: flex-start;
-        flex-direction: row-reverse;
-        margin: $freeSpace;
-
-        button {
-          margin-left: $freeSpace * 2;
-
-          &:disabled {
-            background-color: grey;
-            border-color: grey;
-            cursor: default;
-          }
-        }
-
-      }
-
-      //EDITOR
-    }
-  }
-
-  form {
-
-
-  }
+}
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
 }

@@ -3,7 +3,7 @@ import s from "./Sidebar.module.scss"
 import AuthContainer from "./Auth/AuthContainer";
 import {connect} from "react-redux";
 import UserPanel from "./UserPanel";
-import {getMyUserDataTC, logOutTC} from "../../redux/auth-reducer";
+import {getMyUserDataTC, logOutTC, sendRegisterDataTC, toggleAuthTypeTC} from "../../redux/auth-reducer";
 
 
 const Sidebar = (props) => {
@@ -20,13 +20,13 @@ const Sidebar = (props) => {
 
     return (
         <aside className={s.sidebar}>
-            <div className={`${s.box} ${s.auth}`}>
+            <div className={`${s.box}`}>
                 {!isAuthorised
-                    ? <AuthContainer/>
-                    : <UserPanel {...props.userData} logOut={props.logOut}/>
+                    ? <AuthContainer {...props}/>
+                    : <UserPanel {...props} logOut={props.logOut}/>
                 }
             </div>
-            <div className={s.box}>box2</div>
+            <div className={`${s.box} ${s.second_box}`}>box2</div>
         </aside>
     )
 };
@@ -34,7 +34,14 @@ const Sidebar = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        userData: state.auth
+        userData: state.auth,
+        isFetching: state.auth.isFetching,
+        auth: state.auth,
     }
 };
-export default connect(mapStateToProps, {getMyUserDataTC, logOut: logOutTC})(Sidebar);
+export default connect(mapStateToProps, {
+    getMyUserDataTC,
+    logOut: logOutTC,
+    toggleAuthTypeTC,
+    sendRegisterDataTC
+})(Sidebar);

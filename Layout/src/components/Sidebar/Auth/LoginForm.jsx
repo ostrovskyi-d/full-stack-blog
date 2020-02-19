@@ -1,36 +1,56 @@
-import s from "../Sidebar.module.scss";
-import React from "react";
-import {Field, reduxForm} from 'redux-form'
-import {Button} from "antd";
+import {Form, Icon, Input, Button, Checkbox} from 'antd';
+import React from 'react';
+import "../Sidebar.module.scss";
 
 
-let LoginForm = (props) => {
+const NormalLoginForm = props => {
+    const {getFieldDecorator} = props.form;
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        props.form.validateFields((err, values) => {
+            if (!err) {
+                props.submitForm(values)
+            }
+        });
+    };
     const onSwitchAuth = (e) => {
         e.preventDefault();
         props.switchAuthType('register');
     };
-    // debugger
     return (
-        <form onSubmit={props.handleSubmit} method="POST">
-            <h2>Enter</h2>
-            <div className={s.form_group}>
-                <label htmlFor="log-login">Name:</label>
-                <Field component='input' type="text" name="login" id="log-login"/>
-            </div>
-            <div className={s.form_group}>
-                <label htmlFor="log-password">Password:</label>
-                <Field component='input' type="password" name="password" id="log-password"/>
-            </div>
-            <div className={s.buttons}>
-                <Button htmlType='submit' type='primary' id="submit-login">Login</Button>
-                <Button onClick={onSwitchAuth} className={s.secondaryInverse}>To Register</Button>
-            </div>
-        </form>
+        <Form onSubmit={handleSubmit}>
+            <h2>Login</h2>
+            <Form.Item>
+                {getFieldDecorator("login", {rules: [{required: true, message: "Please input your username!"}]})(
+                    <Input
+                        prefix={<Icon type="user" style={{color: "rgba(0,0,0,.25)"}}/>}
+                        placeholder="Username"
+                    />
+                )}
+            </Form.Item>
+            <Form.Item>
+                {getFieldDecorator("password", {rules: [{required: true, message: "Please input your Password!"}]})(
+                    <Input
+                        prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}}/>}
+                        type="password"
+                        placeholder="Password"
+                    />
+                )}
+            </Form.Item>
+            <Form.Item>
+                <Button shape='round' loading={props.auth.isFetching} block type="primary" htmlType="submit">
+                    Log in
+                </Button>
+                <Button shape='round' block onClick={onSwitchAuth}>
+                    To register
+                </Button>
+            </Form.Item>
+        </Form>
     )
 };
 
-export default LoginForm = reduxForm({
-    // a unique name for the form
-    form: 'login'
-})(LoginForm)
+const LoginForm = Form.create({name: "normal_login"})(
+    NormalLoginForm
+);
+export default LoginForm;

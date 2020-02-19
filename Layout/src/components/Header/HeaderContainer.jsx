@@ -7,9 +7,14 @@ const HeaderContainer = (props) => {
     const onLogOut = () => {
         props.logOut();
     };
-    return <Header logOut={onLogOut}/>
+    return <Header {...props} logOut={onLogOut}/>
 };
 
-export default connect(null, {
+const mapStateToProps =(state) => ({
+    isAuth: state.auth.isAuthorised,
+    isFetching: state.auth.isFetching
+});
+
+export default connect(mapStateToProps, {
     logOut: logOutTC
 })(HeaderContainer);

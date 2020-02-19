@@ -8,10 +8,9 @@ const TOGGLE_FETCHING = "TOGGLE-FETCHING";
 
 let initialState = {
     isAuthorised: false,
-    currentAuthType: null,
+    currentAuthType: 'register',
     userLogin: null,
     userId: null,
-
     isFetching: false
 };
 
@@ -60,7 +59,9 @@ export const toggleFetchingAC = (isFetching) => ({
 
 export const logOutTC = () =>{
     return async (dispatch) => {
+        dispatch(toggleFetchingAC(true));
         const {data} = await authAPI.logOut();
+        dispatch(toggleFetchingAC(false));
         if (data.resultCode === 102)
             dispatch(setAuthorisedDataAC(null, null, false));
     }};
@@ -78,9 +79,9 @@ export const getMyUserDataTC = () =>{
 
 export const sendRegisterDataTC = (data) =>
     async (dispatch) => {
+        dispatch(toggleFetchingAC(true));
         let {data: body} = await authAPI.sendFormData(data);
-        console.log(body);
-        console.log(data);
+        dispatch(toggleFetchingAC(false));
         if (body.resultCode === 101) {
             dispatch(setAuthorisedDataAC(body.authorisedUserId, body.authorisedUserName, true))
         }

@@ -1,100 +1,5 @@
 @import "./src/components/common/styles/main";
 
-form {
-  display: flex;
-  flex-direction: column;
-
-  .form_group {
-    margin-bottom: $freeSpace;
-
-    label {
-      font-size: 0.9em;
-    }
-  }
-}
-
-button,
-.button {
-  color: $whiteColor;
-  background-color: $primaryColor;
-  font-size: 14px;
-  border: 1px solid $primaryColor;
-  cursor: pointer;
-  height: 33px;
-  padding-left: $freeSpace;
-  padding-right: $freeSpace;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: $borderRadius;
-
-  &:active {
-    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
-  }
-
-  &:hover {
-    text-decoration: none;
-  }
-
-  &.inverse {
-    background-color: $whiteColor;
-    color: $primaryColor;
-  }
-
-  &.secondary {
-    background-color: $secondaryColor;
-    border: 1px solid $secondaryColor;
-  }
-
-  &.secondaryInverse {
-    color: $secondaryColor;
-    border-color: $secondaryColor;
-    background-color: $whiteColor;
-  }
-}
-
-input,
-textarea {
-  background-color: $whiteColor;
-  border: 1px solid $greyColor;
-  display: table;
-  border-collapse: separate;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  font-size: 14px;
-  border-radius: $borderRadius;
-
-  &:disabled {
-    background-color: $greyColor;
-  }
-
-  &:hover {
-    box-shadow: none;
-  }
-
-  &:focus {
-    border-color: lighten($primaryColor, 40%);
-  }
-
-  &::placeholder {
-    opacity: 0.8;
-    font-style: italic;
-  }
-}
-
-input {
-  height: 36px;
-  padding-left: 10px;
-  padding-right: 10px;
-  box-sizing: border-box;
-}
-
-textarea {
-  padding: 8px 10px;
-  min-height: 80px;
-}
-
 .sidebar {
   flex: 1;
   position: relative;
@@ -109,65 +14,11 @@ textarea {
     border: 1px solid $greyColor;
     background-color: $whiteColor;
     border-radius: $borderRadius;
-
     h2 {
       margin-top: 0;
     }
   }
 }
-
-.auth {
-  display: flex;
-  flex-direction: column;
-
-  h2 {
-    margin-top: 0;
-    font-size: 1.7em;
-  }
-
-  form {
-    .buttons {
-      display: flex;
-      justify-content: space-around;
-      flex-direction: row-reverse;
-
-      button {
-        font-size: 13px;
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-    }
-
-  }
-
-  // .register {
-  //   display: none;
-  // }
-}
-
-
-form.register {
-  display: flex;
-  flex-direction: column;
-
-  h2 {
-    margin-top: 0;
-    font-size: 1.7em;
-  }
-
-  .buttons {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-around;
-
-    button {
-      font-size: 13px;
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-  }
-}
-
 
 @media (min-width: 768px) and (max-width: 991px) {
   .sidebar {
@@ -180,4 +31,20 @@ form.register {
     }
   }
 
+}
+@media (max-width: 767px) {
+    .sidebar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .box {
+        border: none;
+        background-color: transparent;
+        width: 60%;
+      }
+      .second_box {
+        display: none;
+      }
+    }
 }

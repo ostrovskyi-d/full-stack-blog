@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import s from './Posts.module.scss'
+import {Button, Form, Input} from "antd";
+
 
 const style = {
     height: "200px",
@@ -12,32 +14,36 @@ const style = {
 };
 
 const PostAddForm = () => {
+    const [postText, setPostText] = useState('');
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(postText)
+    };
+    const handleChange =(changedText) => {
+        setPostText(changedText);
+    };
     return (
         <div className={`${s.post}  ${s.addPost}`}>
             <div className={s.top}>
                 <h2>Add Post:</h2>
             </div>
-            <form action="">
-                <div className={s.formGroup}>
-                    <label>
-                        Post title:
-                        <input autoComplete="false" id="post-title" type="text"/>
-                    </label>
-                </div>
+            <Form onSubmit={handleSubmit}>
+                Post title:
+                <Input autoComplete="false" id="post-title" type="text"/>
                 <div className={s.postBody}>
                     <label form="react_quill">
                         Post text:
-                        <ReactQuill id='react_quill' style={style} theme='bubble'/>
+                        <ReactQuill onChange={handleChange}  id='react_quill' style={style} theme='bubble'/>
                     </label>
 
                 </div>
-                <div className="buttons">
-                    <button className="button publish-button">Publish</button>
-                    <button className="secondary-inverse button save-button">Save</button>
+                <div className={s.buttons}>
+                    <Button htmlType='submit' size='large' type='primary' shape='round'>Publish</Button>
+                    <Button size='large' shape='round'>Save</Button>
                 </div>
 
-            </form>
+            </Form>
         </div>
     )
 };

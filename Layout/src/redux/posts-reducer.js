@@ -1,11 +1,9 @@
-import {authAPI, postsApi} from "../API/api";
-import {toggleFetchingAC} from "./auth-reducer";
+import {postsApi, authAPI} from '../API/api'
 // On initialize app (no needed from start, but it would be useful for future)
 
-// Actions Types
+// Action Types
 const IS_FETCHING = "IS-FETCHING";
 const SET_TOTAL_POSTS_COUNT = "SET-TOTAL-POSTS-COUNT";
-const GET_REQ_POST = "GET-REQ-POST";
 const GET_REQ_PAGE = "GET-REQ-PAGE";
 const SET_PAGES_COUNT = "SET-TOTAL-PAGES-COUNT";
 const SET_POSTS_STORE = "GET-PAGE-SIZE";
@@ -24,7 +22,6 @@ let initialState = {
 let postsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_POSTS_STORE: {
-            debugger
             return {
                 ...state,
                 postsStore: action.posts,
@@ -39,7 +36,7 @@ let postsReducer = (state = initialState, action) => {
         case IS_FETCHING: {
             return {
                 ...state,
-                isFetching: true
+                isFetching: action.isFetching
             }
         }
         case GET_REQ_PAGE: {
@@ -60,35 +57,37 @@ let postsReducer = (state = initialState, action) => {
 };
 
 export const setPostsStoreAC = (posts) => ({type: SET_POSTS_STORE, posts});
-export const isFetchingAC = (isFetching) => ({type: IS_FETCHING, isFetching});
+export const toggleFetchingAC = (isFetching) => ({type: IS_FETCHING, isFetching});
 export const setTotalPostsCountAC = (totalPostsCount) => ({type: SET_TOTAL_POSTS_COUNT, totalPostsCount});
-// export const getReqPostAC = (reqPost) => ({type: GET_REQ_POST, reqPost});
 export const getReqPageAC = (reqPage) => ({type: GET_REQ_PAGE, reqPage});
 export const setTotalPagesAC = (totalPages) => ({type: SET_PAGES_COUNT, totalPages});
 
 export const getOnePostTC = (postName) =>
     async (dispatch) => {
+        dispatch(toggleFetchingAC(true));
         let {data} = await postsApi.getReqPost(postName);
-        debugger
-        dispatch(setPostsStoreAC(data.post))
+        dispatch(toggleFetchingAC(false));
+        dispatch(setPostsStoreAC(data.post));
     };
 
-export const getAllPostsTC = () => {
-    return async (dispatch) => {
-        dispatch(isFetchingAC(true));
+export const getAllPostsTC = () =>
+    async (dispatch) => {
+        dispatch(toggleFetchingAC(true));
         let {data} = await authAPI.getUserData();
-        dispatch(isFetchingAC(false));
+        dispatch(toggleFetchingAC(false));
         dispatch(setTotalPagesAC(data.totalPages));
         dispatch(setTotalPostsCountAC(data.totalPostsCount));
         dispatch(setPostsStoreAC(data.posts))
     };
-};
+
 export const getReqPageTC = (reqPage) =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
         let {data} = await postsApi.getReqPage(reqPage);
+        dispatch(toggleFetchingAC(false));
         dispatch(setPostsStoreAC(data.posts));
         dispatch(getReqPageAC(data.reqPage));
-        dispatch(toggleFetchingAC(false))
+
     };
+
 export default postsReducer;

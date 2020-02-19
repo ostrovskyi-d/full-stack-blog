@@ -8,10 +8,8 @@ import {compose} from "redux";
 const FullPost = props => {
     const {match: {params}} = props;
     useEffect(() => {
-        debugger
         props.getOnePostTC(params.postName)
-    },[props.getOnePostTC,params.postName]);
-    debugger
+    }, []);
     return props.post.map(post => <RenderPost {...post} key={post.id} />)
 };
 const RenderPost = (post) => (
@@ -28,7 +26,7 @@ const RenderPost = (post) => (
             <div className={s.author}>
                 Author:&nbsp;
                 <Link to='#'>
-                    {post.author}
+                    {post.author.login}
                 </Link>
             </div>
             <div className={s.comments}>

@@ -8,8 +8,8 @@ const UserPanel = (props) => {
     };
     return (
         <div>
-            <h2>Hello, {props.userLogin}</h2>
-            <Button onClick={onLogOut}>
+            <h2>Hello, {props.userData.userLogin}</h2>
+            <Button loading={props.isFetching} onClick={onLogOut}>
                 Log Out
                 <Icon type="logout" />
             </Button>

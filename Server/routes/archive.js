@@ -71,7 +71,7 @@ router.get('/posts/:postName', async (req, res, next) => {
         try {
             const post = await Post.findOne({
                 url
-            });
+            }).populate('author');
 
             if (!post) {
                 const err = new Error('Not Found');

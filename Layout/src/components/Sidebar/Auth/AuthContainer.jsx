@@ -14,25 +14,13 @@ const AuthContainer = (props) => {
 
     const submitForm = values => {
         props.sendRegisterDataTC(values);
-
     };
 
     if (auth.currentAuthType === "register") {
-        return <RegisterForm onSubmit={submitForm} switchAuthType={switchAuthType} {...props}/>
+        return <RegisterForm submitForm={submitForm} switchAuthType={switchAuthType} {...props}/>
     } else {
-        return <LoginForm onSubmit={submitForm} switchAuthType={switchAuthType} {...props}/>
+        return <LoginForm submitForm={submitForm} switchAuthType={switchAuthType} {...props}/>
     }
 };
-const mapStateToProps = (state) => {
-    return {
-        auth: state.auth
-    }
-};
-export default connect(
-    mapStateToProps,
-    //mapDispatchToProps
-    {
-        toggleAuthTypeTC,
-        sendRegisterDataTC
-    }
-)(AuthContainer);
+
+export default AuthContainer

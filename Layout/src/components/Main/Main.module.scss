@@ -5,21 +5,15 @@
   flex-direction: column;
   flex-grow: 1;
   margin-top: $freeSpace;
+  min-height: calc(100vh - 113px);
 
   .container {
     .content {
       flex: 3;
       margin-right: $freeSpace;
       margin-bottom: $freeSpace;
-      //padding: $freeSpace;
       min-height: 100px;
-      //border: 1px solid $greyColor;
-
-
-
     }
-
-
 
     /* Portrait tablets and small desktops */
     @media (min-width: 768px) and (max-width: 991px) {
@@ -28,10 +22,7 @@
         margin-right: 0;
         margin-bottom: $freeSpace;
       }
-
-
     }
-
     /* Landscape phones and portrait tablets */
     @media (max-width: 767px) {
       .content {

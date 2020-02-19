@@ -42,7 +42,7 @@ router.post('/register', async (req, res, next) => {
             fields
         })
 
-    } else if (login.length > 16) {
+    } else if (login.length > 30) {
         res.json({
             resultCode: 102,
             type: 'error',

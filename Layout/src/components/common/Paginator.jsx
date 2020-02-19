@@ -1,16 +1,18 @@
 import React from "react";
-import {Pagination} from "antd";
-
+import { Pagination } from "antd";
+import s from './Paginator.module.scss'
 
 const Paginator = (props) => {
 
     return (
-        <Pagination
-            total={props.posts.totalPages * 10}
-            onChange={props.onPageChange}
-            defaultCurrent={1}
-            size='small'
-        />
+        <div className={s.paginator}>
+            <Pagination
+                total={props.posts.totalPages * 10}
+                onChange={props.onPageChange}
+                defaultCurrent={1}
+                size='small'
+            />
+        </div>
     )
 };
 

@@ -1,4 +1,4 @@
-@import '../common/styles/main';
+@import "../common/styles/main";
 
 .header {
   position: sticky;
@@ -20,7 +20,7 @@
     padding: 0 $freeSpace 0 $freeSpace;
 
     .logo {
-      background-image: url('https://s.dou.ua/img/static/companies/random-6-logo.png');
+      background-image: url("https://s.dou.ua/img/static/companies/random-6-logo.png");
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
@@ -38,6 +38,15 @@
       align-items: center;
       a {
         color: $whiteColor;
+        display: flex;
+        align-items: center;
+        &:hover {
+          text-decoration: underline;
+        }
+        i {
+          display: flex;
+          margin: $freeSpace - 10px;
+        }
       }
     }
   }

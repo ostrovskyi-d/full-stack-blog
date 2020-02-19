@@ -3,7 +3,6 @@ import s from "../Posts.module.scss";
 import {Link} from "react-router-dom";
 
 const PostItem = (props) => {
-    debugger
     return (
         <div className={s.post}>
             <div className={s.top}>
@@ -18,7 +17,7 @@ const PostItem = (props) => {
                 <div className={s.author}>
                     Author:&nbsp;
                     <Link to='#'>
-                        {props.author}
+                        {props.author.login}
                     </Link>
                 </div>
                 <div className={s.comments}>
