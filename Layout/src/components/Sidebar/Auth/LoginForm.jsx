@@ -1,10 +1,11 @@
-import {Form, Icon, Input, Button, Checkbox} from 'antd';
-import React from 'react';
-import "../Sidebar.module.scss";
+import {Form, Icon, Input, Button, message} from 'antd';
+import React, {useEffect, useState} from 'react';
+import s from "../Sidebar.module.scss";
 
 
 const NormalLoginForm = props => {
     const {getFieldDecorator} = props.form;
+    const {isAuthorised} = props.auth;
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -14,6 +15,7 @@ const NormalLoginForm = props => {
             }
         });
     };
+
     const onSwitchAuth = (e) => {
         e.preventDefault();
         props.switchAuthType('register');
@@ -38,11 +40,12 @@ const NormalLoginForm = props => {
                     />
                 )}
             </Form.Item>
+
             <Form.Item>
                 <Button shape='round' loading={props.auth.isFetching} block type="primary" htmlType="submit">
                     Log in
                 </Button>
-                <Button shape='round' block onClick={onSwitchAuth}>
+                <Button  shape='round' block onClick={onSwitchAuth}>
                     To register
                 </Button>
             </Form.Item>

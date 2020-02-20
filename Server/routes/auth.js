@@ -12,34 +12,24 @@ router.post('/register', async (req, res, next) => {
     const login = req.body['login'],
         password = req.body['password'],
         passwordConfirm = req.body['password-repeat'];
-    console.log(req.body);
-    const fields = [];
-
-    !login && fields.push('login');
-    !password && fields.push('password');
-    !passwordConfirm && fields.push('password-repeat');
-
 
     if (!login || !password || !passwordConfirm) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: "All fields must be filled",
-            fields
         });
     } else if (!/^[a-zA-Z0-9]+$/.test(login)) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: 'Only latin letters and numbers',
-            fields: ['login']
         })
     } else if (login.length < 3) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: 'Login too short <br>(min symbols - 3, max symbols - 16)',
-            fields
         })
 
     } else if (login.length > 30) {
@@ -47,21 +37,18 @@ router.post('/register', async (req, res, next) => {
             resultCode: 102,
             type: 'error',
             message: 'Login too long <br>(min symbols - 3, max symbols - 16)',
-            fields
         })
     } else if (password.length < 6) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: 'Minimum password length - 6 chars',
-            fields: ['password']
         })
     } else if (password !== passwordConfirm) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: 'Passwords not equal',
-            fields
         })
     } else {
         let user = await db.User.findOne({login});
@@ -79,7 +66,6 @@ router.post('/register', async (req, res, next) => {
                         message: "User created",
                         userId: user.id,
                         userLogin: user.login,
-                        fields
                     });
                     // res.redirect('/');
                 } catch (err) {
@@ -95,7 +81,6 @@ router.post('/register', async (req, res, next) => {
             res.json({
                 resultCode: 102,
                 message: "User already exist",
-                fields
             })
         }
     }
@@ -104,30 +89,24 @@ router.post('/register', async (req, res, next) => {
 
 router.post('/login', async (req, res, next) => {
     const {login, password} = req.body;
-
-    const fields = [];
-    !login && fields.push('login');
-    !password && fields.push('password');
-
     if (!login || !password) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: 'All fields must be filled',
-            fields
         })
     } else {
         let user = await db.User.findOne({login});
-        if (user === undefined || null) {
+        if (!user) {
             res.json({
                 resultCode: 102,
                 type: 'error',
                 message: 'Login or password incorrect!',
-                fields: ['login', 'password']
             })
 
         } else {
-            bcrypt.compare(password, user.password, (err, result) => {
+            return bcrypt.compare(password, user.password, (err, result) => {
+                console.log('USER::::::::',user);
                 if (result) {
                     // SESSION
                     req.session.userId = user.id;
@@ -135,6 +114,7 @@ router.post('/login', async (req, res, next) => {
 
                     res.json({
                         resultCode: 101,
+                        message: 'Successful logged in',
                         type: 'success',
                         data: {
                             authorisedUserName: user.login,
@@ -155,9 +135,14 @@ router.post('/login', async (req, res, next) => {
 });
 
 router.get('/logout', (req, res, next) => {
+
     if (req.session) {
-        req.session.destroy(() => {
-            return res.redirect('/');
+        req.session.destroy(err => {
+            req.session = null;
+            res.json({
+                resultCode: 101,
+                message: 'Successful logged out of your account'
+            })
         });
     } else {
         res.redirect('/')

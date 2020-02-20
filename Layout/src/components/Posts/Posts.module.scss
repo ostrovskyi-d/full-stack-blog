@@ -17,6 +17,12 @@
   }
 
   .body {
+    max-height: 100px;
+    min-height: 50px;
+    overflow: hidden;
+    * {
+      max-height: inherit;
+    }
     p {
       text-align: justify;
     }

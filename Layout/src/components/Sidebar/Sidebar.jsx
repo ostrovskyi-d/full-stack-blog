@@ -4,7 +4,7 @@ import AuthContainer from "./Auth/AuthContainer";
 import {connect} from "react-redux";
 import UserPanel from "./UserPanel";
 import {getMyUserDataTC, logOutTC, sendRegisterDataTC, toggleAuthTypeTC} from "../../redux/auth-reducer";
-
+import {message} from 'antd'
 
 const Sidebar = (props) => {
     const {
@@ -34,8 +34,10 @@ const Sidebar = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        // SHIIIITY double state.auth
         userData: state.auth,
         isFetching: state.auth.isFetching,
+        authMessage: state.auth.authMessage,
         auth: state.auth,
     }
 };

@@ -1,6 +1,8 @@
 import React from "react";
 import s from "../Posts.module.scss";
 import {Link} from "react-router-dom";
+import ReactMarkdown from 'react-markdown';
+
 
 const PostItem = (props) => {
     return (
@@ -12,7 +14,7 @@ const PostItem = (props) => {
                     </Link>
                 </h2>
             </div>
-            <div className={s.body}>{props.body}</div>
+            <div className={s.body}><ReactMarkdown source={props.body} /></div>
             <div className={s.bottom}>
                 <div className={s.author}>
                     Author:&nbsp;

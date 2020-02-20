@@ -10,27 +10,30 @@ const FullPost = props => {
     useEffect(() => {
         props.getOnePostTC(params.postName)
     }, []);
-    return props.post.map(post => <RenderPost {...post} key={post.id} />)
+    return props.post.map(post => <RenderPost {...post} key={post.id}/>)
 };
 const RenderPost = (post) => (
-    <div className={s.post}>
-        <div className={s.top}>
-            <h2>
-                <Link to={post.url || '#'}>
-                    {post.title}
-                </Link>
-            </h2>
-        </div>
-        <div className={s.body}>{post.body}</div>
-        <div className={s.bottom}>
-            <div className={s.author}>
-                Author:&nbsp;
-                <Link to='#'>
-                    {post.author.login}
-                </Link>
+    <div>
+        <h1>FULL POST</h1>
+        <div className={s.post}>
+            <div className={s.top}>
+                <h2>
+                    <Link to={post.url || '#'}>
+                        {post.title}
+                    </Link>
+                </h2>
             </div>
-            <div className={s.comments}>
-                <Link to='#'>Comments</Link>
+            <div className={s.body}>{post.body}</div>
+            <div className={s.bottom}>
+                <div className={s.author}>
+                    Author:&nbsp;
+                    <Link to='#'>
+                        {post.author.login}
+                    </Link>
+                </div>
+                <div className={s.comments}>
+                    <Link to='#'>Comments</Link>
+                </div>
             </div>
         </div>
     </div>

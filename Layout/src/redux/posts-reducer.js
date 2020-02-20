@@ -89,5 +89,11 @@ export const getReqPageTC = (reqPage) =>
         dispatch(getReqPageAC(data.reqPage));
 
     };
-
+export const sendCreatedPostTC = (data) =>
+    async (dispatch) => {
+        dispatch(toggleFetchingAC(true))
+        let response = await postsApi.sendNewPost(data);
+        dispatch(toggleFetchingAC(false))
+        debugger
+    };
 export default postsReducer;

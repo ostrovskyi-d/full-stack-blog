@@ -3,15 +3,20 @@ import {authAPI} from "../API/api";
 // Actions Types
 const CHANGE_AUTH_DATA = "network/auth/CHANGE-AUTH-DATA";
 const TOGGLE_AUTH_TYPE = "TOGGLE-AUTH-TYPE";
+
+// Toggling preloaders
 const TOGGLE_FETCHING = "TOGGLE-FETCHING";
 
+// Setting server message as result of handling form
+const SET_VALIDATING_MESSAGE = "SET-VALIDATING-MESSAGE";
 
 let initialState = {
     isAuthorised: false,
-    currentAuthType: 'register',
+    currentAuthType: null,
     userLogin: null,
     userId: null,
-    isFetching: false
+    isFetching: false,
+    authMessage: null,
 };
 
 
@@ -26,7 +31,6 @@ let authReducer = (state = initialState, action) => {
                 userId: action.userId
             }
         }
-
         case TOGGLE_AUTH_TYPE: {
             return {
                 ...state,
@@ -37,6 +41,12 @@ let authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: action.isFetching
+            }
+        }
+        case SET_VALIDATING_MESSAGE: {
+            return {
+                ...state,
+                authMessage: action.message
             }
         }
         default:
@@ -56,32 +66,40 @@ export const toggleFetchingAC = (isFetching) => ({
     type: TOGGLE_FETCHING,
     isFetching
 });
+export const setValidatingMessageAC = (message) => ({
+    type: SET_VALIDATING_MESSAGE,
+    message
+});
 
-export const logOutTC = () =>{
+export const logOutTC = () => {
     return async (dispatch) => {
         dispatch(toggleFetchingAC(true));
         const {data} = await authAPI.logOut();
         dispatch(toggleFetchingAC(false));
-        if (data.resultCode === 102)
+        dispatch(setValidatingMessageAC(data));
+        if (data.resultCode === 101)
             dispatch(setAuthorisedDataAC(null, null, false));
-    }};
+    }
+};
 
 export const toggleAuthTypeTC = (authType) => (dispatch) =>
     dispatch(toggleAuthTypeAC(authType));
 
-export const getMyUserDataTC = () =>{
+export const getMyUserDataTC = () => {
     return async (dispatch) => {
         let response = await authAPI.getUserData();
-        if (response.data.resultCode === 101){
+        if (response.data.resultCode === 101) {
             dispatch(setAuthorisedDataAC(response.data.user.id, response.data.user.login, true))
         }
-    }};
+    }
+};
 
 export const sendRegisterDataTC = (data) =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
         let {data: body} = await authAPI.sendFormData(data);
         dispatch(toggleFetchingAC(false));
+        dispatch(setValidatingMessageAC(body));
         if (body.resultCode === 101) {
             dispatch(setAuthorisedDataAC(body.authorisedUserId, body.authorisedUserName, true))
         }
