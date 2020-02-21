@@ -13,7 +13,7 @@ let initialState = {
     postsStore: [],
     isFetching: false,
     totalPostsCount: null,
-    requiredPage: 1,
+    requiredPage: null,
     totalPages: null,
     pageSize: 5,
 };
@@ -76,6 +76,7 @@ export const getAllPostsTC = () =>
         let {data} = await authAPI.getUserData();
         dispatch(toggleFetchingAC(false));
         dispatch(setTotalPagesAC(data.totalPages));
+        dispatch(getReqPageAC(data.currentPage));
         dispatch(setTotalPostsCountAC(data.totalPostsCount));
         dispatch(setPostsStoreAC(data.posts))
     };
@@ -84,9 +85,12 @@ export const getReqPageTC = (reqPage) =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
         let {data} = await postsApi.getReqPage(reqPage);
+
         dispatch(toggleFetchingAC(false));
+        dispatch(setTotalPagesAC(data.totalPages));
         dispatch(setPostsStoreAC(data.posts));
-        dispatch(getReqPageAC(data.reqPage));
+        dispatch(getReqPageAC(data.currentPage));
+
 
     };
 export const sendCreatedPostTC = (data) =>

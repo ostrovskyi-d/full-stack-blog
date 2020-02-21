@@ -12,7 +12,8 @@ const posts = async (req, res) => {
         userLogin
     } = req.session;
     const perPage = +config.PER_PAGE;
-    const reqPage = req.params.page || 1;
+    const reqPage = Number(req.params.page) || Number(req.path.split('/')[2]);
+    console.log(`RECEIVED URI-PARAMS:::►`, req.params);
     try {
         // Created promises-variables for parallel operations
         const postsPromise = Post.find({})
@@ -25,6 +26,7 @@ const posts = async (req, res) => {
         const countPromise = Post.count();
         const posts = await postsPromise;
         const count = await countPromise;
+        const totalPages = Math.ceil(count / perPage);
 
         if (userId && userLogin) {
             res.json({
@@ -33,8 +35,8 @@ const posts = async (req, res) => {
                 posts: posts,
                 perPage: perPage,
                 totalPostsCount: count,
-                currentPage: Number(reqPage),
-                totalPages: Math.ceil(count / perPage),
+                currentPage: reqPage,
+                totalPages: totalPages,
                 user: {
                     id: userId,
                     login: userLogin
@@ -47,8 +49,8 @@ const posts = async (req, res) => {
                 posts: posts,
                 perPage: perPage,
                 totalPostsCount: count,
-                currentPage: Number(reqPage),
-                totalPages: Math.ceil(count / perPage),
+                currentPage: reqPage,
+                totalPages: totalPages,
             })
         }
 
@@ -60,4 +62,4 @@ router.get('/archive/:page', (req, res) => posts(req, res));
 router.get('/', (req, res) => posts(req, res));
 
 module.exports = router;
-module.exports = posts;
+// module.exports = posts;

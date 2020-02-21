@@ -20,7 +20,7 @@ const Sidebar = (props) => {
 
     return (
         <aside className={s.sidebar}>
-            <div className={`${s.box}`}>
+            <div className={`${s.box} ${s.first_box}`}>
                 {!isAuthorised
                     ? <AuthContainer {...props}/>
                     : <UserPanel {...props} logOut={props.logOut}/>

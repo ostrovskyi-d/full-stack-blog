@@ -4,12 +4,9 @@ import Paginator from "../common/Paginator";
 import Preloader from "../common/Preloader";
 
 const Posts = (props) => {
-    const onPageChange = (reqPage) => {
-        props.getReqPageTC(reqPage)
-    };
     return (
         <>
-            <Paginator {...props} onPageChange={onPageChange}/>
+            <Paginator {...props} />
             {props.posts.isFetching
                 ? <Preloader/>
                 : <RenderPosts posts={props.posts.postsStore}/>
@@ -19,11 +16,11 @@ const Posts = (props) => {
 
 };
 
-const RenderPosts = props => props.posts.map(post => {
+export const RenderPosts = React.memo(props => props.posts.map(post => {
     return <PostItem
         {...post}
-        url={`posts/${post.url}`}
+        url={`/posts/${post.url}`}
         key={post.id}
     />
-});
+}));
 export default Posts;

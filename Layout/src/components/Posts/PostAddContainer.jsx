@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import {sendCreatedPostTC} from "../../redux/posts-reducer";
 import PostAdd from "./PostAdd";
-import {Redirect} from 'react-router-dom'
+import {Redirect, withRouter} from 'react-router-dom'
+import {compose} from "redux";
+import {message} from "antd";
 
-const PostAddContainer = (props) => {
-    const {isAuth} = props;
+const PostAddContainer = React.memo((props) => {
+    const {isAuth, location} = props;
     if(isAuth) return <PostAdd {...props}/>;
     return <Redirect to='/'/>
-};
+});
 
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuthorised
@@ -16,4 +18,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     sendCreatedPost: sendCreatedPostTC,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(PostAddContainer);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withRouter
+)(PostAddContainer);

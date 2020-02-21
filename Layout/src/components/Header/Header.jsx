@@ -14,18 +14,18 @@ const Header = (props) => {
     return (
         <header className={s.header}>
             <div className={s.container}>
-                <Link to="/" className={s.logo} />
+                <NavLink to="/"  className={s.logo} />
                 <nav className={s.menu}>
                     {
                         pathname === '/post/add'
-                            ? <NavLink to='/'>
+                            ? <Link to='/'>
                                 <Icon type="left-circle" theme="filled" />
                                 Back to posts
-                            </NavLink>
-                            : <NavLink onClick={showMessage} to={isAuth && 'post/add'}>
+                            </Link>
+                            : <Link onClick={showMessage} to={(isAuth && '/post/add') || pathname}>
                                 <Icon type="plus-circle" />
                                 Add post
-                            </NavLink>
+                            </Link>
                     }
                     <div style={{'margin': '10px'}}>
                         {isAuth && <Button loading={props.isFetching} onClick={onLogOut} type='ghost'>Log Out</Button>}

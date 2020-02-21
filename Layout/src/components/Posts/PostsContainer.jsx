@@ -5,14 +5,6 @@ import {getAllPostsTC, getReqPageTC} from "../../redux/posts-reducer";
 import {compose} from 'redux';
 
 const PostsContainer = (props) => {
-    const {
-        getAllPostsTC,
-    } = props;
-
-    useEffect(() => {
-        getAllPostsTC();
-    }, [getAllPostsTC]);
-
     return <Posts {...props} />;
 };
 
@@ -28,5 +20,5 @@ const mapDispatchToProps = {
 };
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps)
+    connect(mapStateToProps, mapDispatchToProps),
 )(PostsContainer);

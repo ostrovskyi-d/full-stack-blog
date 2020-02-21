@@ -4,6 +4,7 @@ import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {getOnePostTC} from "../../../redux/posts-reducer";
 import {compose} from "redux";
+import ReactMarkdown from "react-markdown";
 
 const FullPost = props => {
     const {match: {params}} = props;
@@ -14,7 +15,6 @@ const FullPost = props => {
 };
 const RenderPost = (post) => (
     <div>
-        <h1>FULL POST</h1>
         <div className={s.post}>
             <div className={s.top}>
                 <h2>
@@ -23,7 +23,9 @@ const RenderPost = (post) => (
                     </Link>
                 </h2>
             </div>
-            <div className={s.body}>{post.body}</div>
+            <div className={s.body}>
+                <ReactMarkdown source={post.body}/>
+            </div>
             <div className={s.bottom}>
                 <div className={s.author}>
                     Author:&nbsp;

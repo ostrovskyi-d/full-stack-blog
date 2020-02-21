@@ -1,7 +1,5 @@
 @import "./src/components/common/styles/main";
-
-
-.post {
+.post_item {
   display: flex;
   flex-direction: column;
   border: 1px solid $greyColor;
@@ -9,17 +7,33 @@
   margin-bottom: $freeSpace;
   background-color: $whiteColor;
   border-radius: $borderRadius;
-
   .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: row;
     h2 {
       margin-top: 0;
     }
   }
-
-  .body {
-    max-height: 100px;
+  .item_body {
+    display: flex;
+    width: inherit;
     min-height: 50px;
+    max-height: 120px;
+    position: relative;
     overflow: hidden;
+    flex-wrap: wrap;
+    white-space: normal;
+    word-break: break-word;
+    &:before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      content: '';
+      background: linear-gradient(transparent 65%, white 95%);
+      z-index: 10;
+    }
     * {
       max-height: inherit;
     }
@@ -36,6 +50,17 @@
     display: flex;
     justify-content: space-between;
   }
+}
+
+.post {
+  @extend .post_item;
+
+
+  .body {
+    overflow: visible;
+    max-height: fit-content;
+  }
+
 }
 
 .addPost {

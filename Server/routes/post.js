@@ -7,6 +7,7 @@ router.get('/:postName', async (req, res, next) => {
     const url = req.params.postName.trim().replace(/ +(?= )/g, '');
     const userId = req.session.userId;
     const userLogin = req.session.userLogin;
+    console.log(`RECEIVED URI-PARAMS:::►`, req.params);
 
     if (!url) {
         const err = new Error('Not Found');
