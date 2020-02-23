@@ -1,0 +1,37 @@
+@import "../../common/styles/main";
+
+
+.post {
+
+  &_top {
+
+    // h2.post_title
+    &_title {
+      font-weight: lighter;
+      font-size: 36px;
+      margin: $freeSpace*2 0;
+    }
+  }
+
+  &_body {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    max-height: fit-content;
+
+
+  }
+
+  &_bottom {
+
+    &_author {
+
+    }
+
+    &_comments {
+
+    }
+  }
+
+}
+

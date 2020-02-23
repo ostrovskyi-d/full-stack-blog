@@ -7,6 +7,21 @@ $freeSpace: 15px;
 $headerHeight: 49px;
 $footerHeight: 49px;
 $borderRadius: 4px;
+$boxShadow: 0 2px 5px -2px $greyColor;
+$hoverBoxShadow: 0 2px 7px -1px #cecece;
+
+@mixin hover-for-desktop {
+    &:hover {
+      transition: .3s linear;
+      box-shadow: $hoverBoxShadow ;
+    }
+}
+@mixin disableHover {
+  &:hover {
+    transition: none;
+    box-shadow: $boxShadow ;
+  }
+}
 
 
 @import "reset.module";

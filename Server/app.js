@@ -1,4 +1,3 @@
-const Post = require('./models/post');
 const routes = require('./routes');
 const config = require('./config');
 
@@ -27,7 +26,7 @@ mongoose.connection
     .once('open', () => {
         const info = mongoose.connections[0];
         console.log(`Connected to db ${info.host}:${info.port}/${info.name}`);
-        mocks()
+        // mocks()
     });
 mongoose.connect(config.MONGO_URL, {useMongoClient: true});
 
@@ -60,12 +59,12 @@ app.use(cors(corsOptions));
 
 // Routes
 
-//// Auth
-app.use('/api/auth', routes.auth);
-//// PostItem
-app.use('/posts', routes.post);
-//
+
 app.use('/', routes.archive);
+app.use('/api/auth', routes.auth);
+app.use('/posts', routes.post);
+app.use('/users', routes.users);
+app.use('/test', routes.test);
 
 // 404
 app.use((req, res, next) => {

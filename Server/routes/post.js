@@ -1,43 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../models');
+const {User, Post} = require('../models');
 const TurndownService = require('turndown');
 const {notAuthorised} = require('./common');
-router.get('/:postName', async (req, res, next) => {
-    const url = req.params.postName.trim().replace(/ +(?= )/g, '');
-    const userId = req.session.userId;
-    const userLogin = req.session.userLogin;
-    console.log(`RECEIVED URI-PARAMS:::►`, req.params);
-
-    if (!url) {
-        const err = new Error('Not Found');
-        err.status = 404;
-        next(err);
-    } else {
-        try {
-            const post = await db.Post.findOne({
-                url
-            }).populate('author');
-
-            if (!post) {
-                const err = new Error('Not Found');
-                err.status = 404;
-                next(err);
-            } else {
-                res.json({
-                    resultCode: 101,
-                    post: [post],
-                    user: {
-                        id: userId,
-                        login: userLogin
-                    }
-                });
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
+router.get('/my-posts', async (req, res, next) => {
+    // db.find({})
 });
+
 router.get('/add', (req, res) => {
     const {userId: id, userLogin: login} = req.session;
     notAuthorised(id, login, res, () => {
@@ -69,11 +38,14 @@ router.post('/add', async ({
             message: 'All fields must be filled',
         })
     } else {
-        await db.Post.create({
+        console.log(title, body)
+        let newPost = await Post.create({
             title,
             body: turndownService.turndown(body),
-            author: userId
-        });
+            author: userId,
+        })
+        await User.findOneAndUpdate({_id: userId}, {  "$push": { posts: newPost }})
+
         res.json({
             resultCode: 101,
             type: 'success',
@@ -94,7 +66,6 @@ router.put('/:postName/edit', async (req, res, next) => {
         } catch (e) {
             console.log(e)
         }
-
     });
 });
 

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
-import {sendCreatedPostTC} from "../../redux/posts-reducer";
+import {sendCreatedPostTC} from "../../../redux/posts-reducer";
 import PostAdd from "./PostAdd";
 import {Redirect, withRouter} from 'react-router-dom'
 import {compose} from "redux";

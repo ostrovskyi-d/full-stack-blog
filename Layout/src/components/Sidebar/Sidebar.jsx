@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import s from "./Sidebar.module.scss"
 import AuthContainer from "./Auth/AuthContainer";
 import {connect} from "react-redux";
-import UserPanel from "./UserPanel";
+import UserPanel from "./UserPanel/UserPanel";
 import {getMyUserDataTC, logOutTC, sendRegisterDataTC, toggleAuthTypeTC} from "../../redux/auth-reducer";
 import {message} from 'antd'
 

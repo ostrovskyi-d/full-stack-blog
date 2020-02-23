@@ -1,4 +1,6 @@
-@import "./src/components/common/styles/main";
+@import "../common/styles/main";
+
+
 
 .sidebar {
   flex: 1;
@@ -7,20 +9,38 @@
   flex-direction: column;
 
   .box {
+
+    @include hover-for-desktop;
+
     margin-bottom: $freeSpace;
     padding: $freeSpace;
     width: 100%;
     min-height: 100px;
     border: 1px solid $greyColor;
     background-color: $whiteColor;
-    border-radius: $borderRadius;
-    h2 {
-      margin-top: 0;
-    }
-  }
-  .first_box {
+    border-radius: $borderRadius + 12px;
+    box-shadow: $boxShadow;
     position: sticky;
     top: calc(#{$headerHeight} + #{$freeSpace});
+
+    .auth_type {
+      font-size: 24px;
+      text-align: center;
+      display: flex;
+      margin: 0 0 24px 0;
+      padding: 0 0 5px 0;
+      /* padding-bottom: 15px; */
+      border-bottom: 1px solid #e8e8e8;
+    }
+  }
+
+  .first_box {
+    z-index: 2;
+  }
+
+  .second_box {
+    z-index: 1;
+
   }
 }
 
@@ -31,24 +51,30 @@
     align-items: flex-start;
 
     .box {
-      margin-right: $freeSpace;
+      margin: 5px;
+      @include disableHover;
+
     }
   }
 
 }
-@media (max-width: 767px) {
-    .sidebar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
 
-      .box {
-        border: none;
-        background-color: transparent;
-        width: 60%;
-      }
-      .second_box {
-        display: none;
-      }
+@media (max-width: 767px) {
+  .sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .box {
+      border: none;
+      background-color: transparent;
+      width: 60%;
+      @include disableHover;
+
     }
+
+    .second_box {
+      display: none;
+    }
+  }
 }

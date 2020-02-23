@@ -30,5 +30,11 @@ export const postsApi = {
     },
     async sendNewPost(data) {
         return await instance.post('/posts/add', data)
+    },
+};
+
+export const usersApi = {
+    async getUserPosts(reqUser) {
+        return await instance.get(`/users/${reqUser}`)
     }
 };

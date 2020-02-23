@@ -1,15 +1,17 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import appReducer from "./app-reducer";
 import thunk from 'redux-thunk';
-import postsReducer from "./posts-reducer";
 import { reducer as formReducer } from 'redux-form'
+import appReducer from "./app-reducer";
 import authReducer from "./auth-reducer";
+import postsReducer from "./posts-reducer";
+import profileReducer from './profile-reducer';
 
 
 let reducers = combineReducers({
     init: appReducer,
     postsPage: postsReducer,
     auth: authReducer,
+    profilePage: profileReducer,
     form: formReducer
 });
 

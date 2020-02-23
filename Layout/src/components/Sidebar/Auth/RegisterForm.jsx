@@ -18,7 +18,7 @@ let AntdRegisterForm = (props) => {
     };
     return (
         <Form onSubmit={handleSubmit}>
-            <h2>Register</h2>
+            <span className={s.auth_type}> Register</span>
             <Form.Item>
                 {getFieldDecorator("login", {rules: [{required: true, message: "Please input your username!"}]})(
                     <Input

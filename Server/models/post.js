@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const URLSlugs = require('mongoose-url-slugs');
 const { transliter, slugify, isCyrillic } = require('transliter');
+const splitCreatedAt = require('./customPlugins');
 
 const schema = new Schema({
     title: {
@@ -14,7 +15,7 @@ const schema = new Schema({
     },
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
     }
 },
     {
@@ -26,7 +27,9 @@ schema.plugin(
         field: 'url',
         generator: text => slugify(text)
     })
-)
+);
+// console.log(typeof splitCreatedAt)
+
 schema.set('toJSON', {
     virtuals: true
 });

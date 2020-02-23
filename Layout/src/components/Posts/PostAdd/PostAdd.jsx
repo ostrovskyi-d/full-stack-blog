@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
-import s from './Posts.module.scss'
+import s from './PostAdd.module.scss'
 import {Button, Form, Input} from "antd";
 import {Field, reduxForm} from 'redux-form'
 

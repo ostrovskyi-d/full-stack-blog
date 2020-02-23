@@ -1,0 +1,12 @@
+@import '../../common/styles/main';
+
+.greeting{
+  display: flex;
+  padding: 0 0 5px 0;
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  border-bottom: 1px solid $greyColor;
+}
+.logout {
+  text-align: center;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import PostItem from "./Post/PostItem";
+import PostItem from "./PostItem/PostItem";
 import Paginator from "../common/Paginator";
 import Preloader from "../common/Preloader";
 
@@ -19,6 +19,7 @@ const Posts = (props) => {
 export const RenderPosts = React.memo(props => props.posts.map(post => {
     return <PostItem
         {...post}
+        showAuthor={true}
         url={`/posts/${post.url}`}
         key={post.id}
     />
