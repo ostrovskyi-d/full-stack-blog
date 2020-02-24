@@ -7,7 +7,6 @@ const UserPanel = (props) => {
     const onLogOut = () => {
         props.logOut()
     };
-    debugger
     return (
         <>
             <span className={s.greeting}>{props.userData.userLogin}</span>

@@ -38,19 +38,23 @@ router.post('/add', async ({
             message: 'All fields must be filled',
         })
     } else {
-        console.log(title, body)
-        let newPost = await Post.create({
-            title,
-            body: turndownService.turndown(body),
-            author: userId,
-        })
-        await User.findOneAndUpdate({_id: userId}, {  "$push": { posts: newPost }})
+        try {
+            let newPost = await Post.create({
+                title,
+                body: turndownService.turndown(body),
+                author: userId,
+            });
+            await User.findOneAndUpdate({_id: userId}, {"$push": {posts: newPost}})
 
-        res.json({
-            resultCode: 101,
-            type: 'success',
-            message: 'PostItem created'
-        })
+            res.json({
+                resultCode: 101,
+                type: 'success',
+                message: 'PostItem created'
+            })
+        } catch (e) {
+            throw new Error('Server Error')
+        }
+
     }
 });
 

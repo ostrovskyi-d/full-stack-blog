@@ -96,41 +96,46 @@ router.post('/login', async (req, res, next) => {
             message: 'All fields must be filled',
         })
     } else {
-        let user = await db.User.findOne({login});
-        if (!user) {
-            res.json({
-                resultCode: 102,
-                type: 'error',
-                message: 'Login or password incorrect!',
-            })
+        try {
+            let user = await db.User.findOne({login});
+            if (!user) {
+                res.json({
+                    resultCode: 102,
+                    type: 'error',
+                    message: 'Login or password incorrect!',
+                })
 
-        } else {
-            return bcrypt.compare(password, user.password, (err, result) => {
-                console.log('USER::::::::',user);
-                if (result) {
-                    // SESSION
-                    req.session.userId = user.id;
-                    req.session.userLogin = user.login;
+            } else {
+                return bcrypt.compare(password, user.password, (err, result) => {
+                    console.log('USER::::::::', user);
+                    if (result) {
+                        // SESSION
+                        req.session.userId = user.id;
+                        req.session.userLogin = user.login;
 
-                    res.json({
-                        resultCode: 101,
-                        message: 'Successful logged in',
-                        type: 'success',
-                        data: {
-                            authorisedUserName: user.login,
-                            authorisedUserId: user.id
-                        }
-                    })
-                } else {
+                        res.json({
+                            resultCode: 101,
+                            message: 'Successful logged in',
+                            type: 'success',
+                            data: {
+                                authorisedUserName: user.login,
+                                authorisedUserId: user.id
+                            }
+                        })
+                    } else {
 
-                    res.json({
-                        resultCode: 102,
-                        type: 'error',
-                        message: 'Login or password incorrect!',
-                    })
-                }
-            })
+                        res.json({
+                            resultCode: 102,
+                            type: 'error',
+                            message: 'Login or password incorrect!',
+                        })
+                    }
+                })
+            }
+        } catch (e) {
+            throw new Error('Server Error')
         }
+
     }
 });
 

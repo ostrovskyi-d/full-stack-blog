@@ -10,13 +10,14 @@ const {
 router.get('/:userName/:page*?', async (req, res, next) => {
     const {userId, userLogin} = req.session;
     const userName = req.params.userName;
-    const userData = await User.findOne({login: userName}).populate('posts');
-
-    res.json({
-        userData
-    });
-
-    console.log('----USER----', user);
+    try {
+        const userData = await User.findOne({login: userName}).populate('posts');
+        return res.json({
+            userData
+        });
+    } catch (e) {
+        throw new Error('Server Error')
+    }
 });
 
 module.exports = router;
