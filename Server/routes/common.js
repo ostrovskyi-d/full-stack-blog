@@ -23,7 +23,7 @@ const posts = async (req, res) => {
     } = req.session;
     const perPage = +config.PER_PAGE;
     const reqPage = Number(req.params.page) || Number(req.path.split('/')[2]);
-    console.log(`RECEIVED URI-PARAMS:::►`, req.params);
+    // console.log(`RECEIVED URI-PARAMS:::►`, req.params);
     try {
         // Created promises-variables for parallel operations
         const postsPromise = Post.find({})
@@ -37,7 +37,7 @@ const posts = async (req, res) => {
         const posts = await postsPromise;
         const count = await countPromise;
         const totalPages = Math.ceil(count / perPage);
-
+        // console.log(posts[0].author)
         if (userId && userLogin) {
             res.json({
                 resultCode: 101,

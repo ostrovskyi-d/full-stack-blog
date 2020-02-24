@@ -72,7 +72,6 @@ router.post('/register', async (req, res, next) => {
                     res.json({
                         resultCode: 102,
                         message: "Error, try later",
-                        fields: []
                     })
                 }
             });

@@ -22,7 +22,7 @@ const NormalLoginForm = props => {
     return (
         <>
             <span className={s.auth_type}>Login</span>
-            <Form onSubmit={handleSubmit}>
+            <Form className={s.antForm} onSubmit={handleSubmit}>
                 <Form.Item>
                     {getFieldDecorator("login", {rules: [{required: true, message: "Please input your username!"}]})(
                         <Input

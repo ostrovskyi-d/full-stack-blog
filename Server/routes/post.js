@@ -9,12 +9,16 @@ router.get('/my-posts', async (req, res, next) => {
 
 router.get('/add', (req, res) => {
     const {userId: id, userLogin: login} = req.session;
-    notAuthorised(id, login, res, () => {
-        res.json({
-            user: {id, login},
-            renderPostAddPage: false
+    if(!id || !login) {
+        res.json("FALSE")
+    } else {
+        notAuthorised(id, login, res, () => {
+            res.json({
+                user: {id, login},
+            })
         })
-    })
+    }
+    
 });
 router.post('/add', async ({
                                body: {
@@ -29,7 +33,6 @@ router.post('/add', async ({
 
     title.trim().replace(/ +(?=)/g, '');
     const turndownService = new TurndownService();
-    // const { userLogin: login } = req.session;
 
     if (!title || !body) {
         res.json({

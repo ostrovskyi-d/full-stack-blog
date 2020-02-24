@@ -11,22 +11,23 @@ const MongoStore = require('connect-mongo')(session);
 const mocks = require('./mocks');
 const cors = require('cors');
 
-// CORS OPTIONS
-
 
 // Database
-mongoose.Promise = global.Promise;
-mongoose.set('debug', config.IS_PRODUCTION);
+(Database = () => {
+    mongoose.Promise = global.Promise;
+    mongoose.set('debug', config.IS_PRODUCTION);
+    
+    mongoose.connection
+        .on('error', error => console.error(error))
+        .on('close', () => console.log('Database connection closed.'))
+        .once('open', () => {
+            const info = mongoose.connections[0];
+            console.log(`Connected to db ${info.host}:${info.port}/${info.name}`);
+            // mocks()
+        });
+    mongoose.connect(config.MONGO_URL, {useMongoClient: true});
+})()
 
-mongoose.connection
-    .on('error', error => console.error(error))
-    .on('close', () => console.log('Database connection closed.'))
-    .once('open', () => {
-        const info = mongoose.connections[0];
-        console.log(`Connected to db ${info.host}:${info.port}/${info.name}`);
-        // mocks()
-    });
-mongoose.connect(config.MONGO_URL, {useMongoClient: true});
 
 
 // EXPRESS

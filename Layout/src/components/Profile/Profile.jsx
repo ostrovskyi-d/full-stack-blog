@@ -4,8 +4,10 @@ import s from './Profile.module.scss';
 import PostItem from "../Posts/PostItem/PostItem";
 
 const Profile = props => {
-    const {userProfile} = props;
+    debugger
+    const { userProfile } = props;
     const {login, posts} = userProfile;
+
     return (
         <>
             <section className={s.data}>
@@ -23,9 +25,10 @@ const Profile = props => {
                     />)
                 }
             </section>
-            <ReactJson src={userProfile} theme="monokai"/>
         </>
     )
+
+
 };
 
 export default Profile;

@@ -7,25 +7,29 @@ import {withRouter} from "react-router-dom";
 import Preloader from "../common/Preloader";
 
 const ProfileContainer = props => {
+    debugger
     const {
         getUserProfileTC,
         match: {params: {userName}},
+        isFetching,
+        userProfile,
         ...rest
     } = props;
-
+    
     useEffect(() => {
         getUserProfileTC(userName);
     }, [getUserProfileTC, userName]);
 
-    if(rest.userProfile) {
-        return <Profile {...rest}/>
-    } else {
+    if(isFetching || userProfile === null || userProfile === undefined) {
         return <Preloader />
+    } else {
+        return <Profile {...props}/>
     }
 };
 
 const mapStateToProps = (state) => ({
-    userProfile: state.profilePage.userProfile
+    userProfile: state.profilePage.userProfile,
+    isFetching: state.profilePage.isFetching,
 });
 const mapDispatchToProps = {
     getUserProfileTC
