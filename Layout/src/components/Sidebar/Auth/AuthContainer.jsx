@@ -3,14 +3,18 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
 const AuthContainer = (props) => {
-    const {auth} = props;
-
+    const {
+        auth,
+        toggleAuthTypeTC,
+        sendRegisterDataTC
+    } = props;
+    debugger
     const switchAuthType = (authType) => {
-        props.toggleAuthTypeTC(authType)
+        toggleAuthTypeTC(authType)
     };
 
     const submitForm = values => {
-        props.sendRegisterDataTC(values);
+        sendRegisterDataTC(values);
     };
     if (auth.currentAuthType === "register") {
         return <RegisterForm submitForm={submitForm} switchAuthType={switchAuthType} {...props}/>

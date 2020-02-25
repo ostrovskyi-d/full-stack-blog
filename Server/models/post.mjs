@@ -1,11 +1,9 @@
 import mongoose from 'mongoose';
-// const Schema = _Schema;
 import URLSlugs from 'mongoose-url-slugs'
 import slugify from 'transliter'
-// import {  } from ;
-import splitCreatedAt from './customPlugins.mjs';
+// const Schema = ;
 
-const schema = mongoose.Schema({
+const schema = new mongoose.Schema({
     title: {
         type: String,
         required: true

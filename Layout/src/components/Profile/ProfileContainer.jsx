@@ -7,7 +7,7 @@ import {withRouter} from "react-router-dom";
 import Preloader from "../common/Preloader";
 
 const ProfileContainer = props => {
-    debugger
+
     const {
         getUserProfileTC,
         match: {params: {userName}},
@@ -21,10 +21,9 @@ const ProfileContainer = props => {
     }, [getUserProfileTC, userName]);
 
     if(isFetching || userProfile === null || userProfile === undefined) 
-        return <Preloader />
+        return <Preloader />;
      else 
         return <Profile {...props}/>
-    
 };
 
 const mapStateToProps = (state) => ({

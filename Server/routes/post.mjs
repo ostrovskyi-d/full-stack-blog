@@ -1,16 +1,20 @@
-import Router from 'express';
-const router = Router();
+import express from 'express';
 import Post from '../models/post';
 import User from '../models/user';
 import TurndownService from 'turndown';
-import { notAuthorised } from './common';
+import {notAuthorised} from './common';
+
+const router = express.Router();
+
+
 router.get('/my-posts', async (req, res, next) => {
     // db.find({})
 });
 
 router.get('/add', (req, res) => {
     const {userId: id, userLogin: login} = req.session;
-    if(!id || !login) {
+
+    if (!id || !login) {
         res.json("FALSE")
     } else {
         notAuthorised(id, login, res, () => {
@@ -19,7 +23,7 @@ router.get('/add', (req, res) => {
             })
         })
     }
-    
+
 });
 router.post('/add', async ({
                                body: {
@@ -34,7 +38,7 @@ router.post('/add', async ({
 
     title.trim().replace(/ +(?=)/g, '');
     const turndownService = new TurndownService();
-
+    console.log(body);
     if (!title || !body) {
         res.json({
             resultCode: 102,
@@ -43,12 +47,15 @@ router.post('/add', async ({
         })
     } else {
         try {
-            let newPost = await Post.create({
+            let newPost = {
                 title,
                 body: turndownService.turndown(body),
                 author: userId,
-            });
-            await User.findOneAndUpdate({_id: userId}, {"$push": {posts: newPost}})
+            };
+            const newPostPromise = Post.create(newPost);
+            const updateUserPromise = User.findOneAndUpdate({_id: userId}, {"$push": {posts: newPost}});
+            await newPostPromise;
+            await updateUserPromise;
 
             res.json({
                 resultCode: 101,

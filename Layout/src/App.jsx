@@ -3,7 +3,7 @@ import s from './App.module.scss';
 import HeaderContainer from './components/Header/HeaderContainer'
 import FooterContainer from './components/Footer/FooterContainer'
 import MainRoutesContainer from "./components/Main/MainRoutesContainer";
-import {initializeApp} from "./redux/app-reducer";
+import {initializeApp} from "./redux/common-app-reducer";
 import {connect} from "react-redux";
 import {getMyUserDataTC} from "./redux/auth-reducer";
 import Preloader from "./components/common/Preloader";
@@ -26,10 +26,8 @@ const App = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        initialized: state.init.initialized
-    }
-};
+const mapStateToProps = (state) => ({
+    initialized: state.common.initialized
+});
 
 export default connect(mapStateToProps, {initializeApp, getMyUserDataTC})(App);

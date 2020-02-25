@@ -29,6 +29,7 @@ export const postsApi = {
         return await  instance.get(`/archive/${reqPage}`)
     },
     async sendNewPost(data) {
+        debugger
         return await instance.post('/posts/add', data)
     },
 };

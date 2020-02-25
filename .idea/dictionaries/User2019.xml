@@ -2,7 +2,10 @@
   <dictionary name="User2019">
     <words>
       <w>antd</w>
+      <w>dotenv</w>
+      <w>lorem</w>
       <w>preloaders</w>
+      <w>slugify</w>
     </words>
   </dictionary>
 </component>

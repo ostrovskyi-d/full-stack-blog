@@ -4,20 +4,28 @@ import s from './UserPanel.module.scss';
 import {NavLink} from "react-router-dom";
 
 const UserPanel = (props) => {
+    const {
+        logOut,
+        isFetching,
+        auth: {
+            userLogin
+        }
+    } = props;
+    debugger
     const onLogOut = () => {
-        props.logOut()
+        logOut()
     };
     return (
         <>
-            <span className={s.greeting}>{props.userData.userLogin}</span>
+            <span className={s.greeting}>{userLogin}</span>
             <div className={s.logout}>
-                <Button size='small' loading={props.isFetching}>
-                    <NavLink to={`/users/${props.auth.userLogin}`}>My Posts</NavLink>
+                <Button size='small' loading={isFetching}>
+                    <NavLink to={`/users/${userLogin}`}>My Posts</NavLink>
                     <Icon type="snippets"/>
                 </Button>
             </div>
             <div className={s.logout}>
-                <Button loading={props.isFetching} onClick={onLogOut}>
+                <Button loading={isFetching} onClick={onLogOut}>
                    Log Out
                     <Icon type="logout"/>
                 </Button>

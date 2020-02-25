@@ -12,5 +12,9 @@ const commentsReducer = (state = initialState, action) => {
 
             }
         }
+        default:
+            return state
     }
-}
+};
+
+export default commentsReducer;

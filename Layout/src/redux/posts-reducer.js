@@ -1,5 +1,4 @@
 import {postsApi, authAPI, usersApi} from '../API/api'
-import {withFetchToggling} from "./reducer-helpers";
 // On initialize app (no needed from start, but it would be useful for future)
 
 // Action Types
@@ -73,19 +72,25 @@ export const setMyPostsAC = (myPosts) => ({type: SET_MY_POSTS, myPosts});
 
 export const getOnePostTC = (postName) =>
     async (dispatch) => {
-        let {data} = await withFetchToggling(dispatch, postsApi.getReqPost(postName));
+        dispatch(toggleFetchingAC(true));
+        let {data} = await postsApi.getReqPost(postName);
+        dispatch(toggleFetchingAC(false));
         dispatch(setPostsStoreAC(data.post));
     };
 
 export const getMyPostsTC = () =>
     async (dispatch) => {
-        let data = await withFetchToggling(dispatch, postsApi.getMyPosts());
+        dispatch(toggleFetchingAC(true));
+        let data = await postsApi.getUserPosts();
+        dispatch(toggleFetchingAC(false));
         dispatch(setMyPostsAC(data.posts));
     };
 
 export const getAllPostsTC = () =>
     async (dispatch) => {
-        let {data} = await withFetchToggling(dispatch, authAPI.getUserData());
+        dispatch(toggleFetchingAC(true));
+        let {data} = await authAPI.getUserData();
+        dispatch(toggleFetchingAC(false));
         dispatch(setTotalPagesAC(data.totalPages));
         dispatch(getReqPageAC(data.currentPage));
         dispatch(setTotalPostsCountAC(data.totalPostsCount));
@@ -94,14 +99,20 @@ export const getAllPostsTC = () =>
 
 export const getReqPageTC = (reqPage) =>
     async (dispatch) => {
-        let {data} = await withFetchToggling(dispatch, postsApi.getReqPage(reqPage));
+        dispatch(toggleFetchingAC(true));
+        let {data} = await postsApi.getReqPage(reqPage);
+        dispatch(toggleFetchingAC(false));
         dispatch(setTotalPagesAC(data.totalPages));
         dispatch(setPostsStoreAC(data.posts));
         dispatch(getReqPageAC(data.currentPage));
     };
 export const sendCreatedPostTC = (data) =>
     async (dispatch) => {
-        await withFetchToggling(dispatch, postsApi.sendNewPost(data));
+        debugger
+        dispatch(toggleFetchingAC(true));
+        let response = await postsApi.sendNewPost(data);
+        debugger
+        dispatch(toggleFetchingAC(false));
     };
 
 

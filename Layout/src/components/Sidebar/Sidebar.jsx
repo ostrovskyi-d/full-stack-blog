@@ -8,10 +8,11 @@ import {message} from 'antd'
 
 const Sidebar = (props) => {
     const {
-        userData: {
+        auth: {
             isAuthorised
         },
-        getMyUserDataTC
+        getMyUserDataTC,
+        logOutTC
     } = props;
 
     useEffect(() => {
@@ -23,7 +24,7 @@ const Sidebar = (props) => {
             <div className={`${s.box} ${s.first_box}`}>
                 {!isAuthorised
                     ? <AuthContainer {...props}/>
-                    : <UserPanel {...props} logOut={props.logOut}/>
+                    : <UserPanel {...props} logOut={logOutTC}/>
                 }
             </div>
             <div className={`${s.box} ${s.second_box}`}>box2</div>
@@ -34,16 +35,13 @@ const Sidebar = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        // SHIIIITY double state.auth
-        userData: state.auth,
-        isFetching: state.auth.isFetching,
-        authMessage: state.auth.authMessage,
+        isFetching: state.common.isFetching,
         auth: state.auth,
     }
 };
 export default connect(mapStateToProps, {
     getMyUserDataTC,
-    logOut: logOutTC,
+    logOutTC,
     toggleAuthTypeTC,
     sendRegisterDataTC
 })(Sidebar);

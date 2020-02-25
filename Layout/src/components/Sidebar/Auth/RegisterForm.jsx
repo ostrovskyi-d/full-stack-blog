@@ -1,9 +1,10 @@
-import s from "../Sidebar.module.scss";
 import React from "react";
-import {Button, Form, Icon, Input} from "antd";
+import {Form, Icon, Input, Button} from 'antd';
+import s from "../Sidebar.module.scss";
 
 let AntdRegisterForm = (props) => {
     const {getFieldDecorator} = props.form;
+
     const handleSubmit = e => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
@@ -12,10 +13,12 @@ let AntdRegisterForm = (props) => {
             }
         });
     };
+
     const onSwitchAuth = (e) => {
         e.preventDefault();
         props.switchAuthType('login');
     };
+
     return (
         <Form className={s.antForm} onSubmit={handleSubmit}>
             <span className={s.auth_type}> Register</span>

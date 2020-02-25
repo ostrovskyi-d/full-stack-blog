@@ -2,7 +2,6 @@ import React from 'react';
 import {Form, Icon, Input, Button} from 'antd';
 import s from "../Sidebar.module.scss";
 
-
 const NormalLoginForm = props => {
     const {getFieldDecorator} = props.form;
 
@@ -19,6 +18,7 @@ const NormalLoginForm = props => {
         e.preventDefault();
         props.switchAuthType('register');
     };
+
     return (
         <>
             <span className={s.auth_type}>Login</span>

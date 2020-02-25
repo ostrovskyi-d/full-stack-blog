@@ -4,9 +4,10 @@
   "main": "index.js",
   "author": "azatot2014 <azatot2014@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon ./app.js PORT=3001  "
+    "start": "node app.mjs",
+    "dev": "nodemon --no-warnings --experimental-modules --es-module-specifier-resolution=node --loader ./custom-loader.mjs app.mjs"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -43,5 +44,6 @@
       "babel-cli": "^6.26.0"
     }
   }
+  
 }
 

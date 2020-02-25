@@ -1,5 +1,5 @@
-import Schema from 'mongoose';
-// const Schema = _Schema;
+import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
 const schema = new Schema({
         body: {
@@ -36,4 +36,4 @@ const schema = new Schema({
 schema.set('toJSON', {
     virtuals: true
 });
-export default Schema.model('Comment', schema);
+export default mongoose.model('Comment', schema);

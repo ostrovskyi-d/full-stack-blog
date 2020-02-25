@@ -1,9 +1,13 @@
-import React, {useState} from "react";
+import React from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import s from './PostAdd.module.scss'
 import {Button, Form, Input} from "antd";
 import {Field, reduxForm} from 'redux-form'
+import {withAuth} from "../../../HOC/withAuth";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {sendCreatedPostTC} from "../../../redux/posts-reducer";
 
 
 const style = {
@@ -14,9 +18,10 @@ const style = {
     cursor: 'text'
 };
 const PostAdd = (props) => {
-    const {sendCreatedPost} = props;
+    const {sendCreatedPostTC} = props;
+
     const addPost = (data) => {
-        sendCreatedPost(data)
+        sendCreatedPostTC(data)
     };
 
     const handleChange = (data) => {
@@ -34,7 +39,7 @@ const PostAdd = (props) => {
 };
 
 
-const PostAddForm = ({handleSubmit, handleChange}) => (
+const PostAddForm = ({handleSubmit}) => (
     <Form onSubmit={handleSubmit}>
         Post title:
         <Field
@@ -46,7 +51,7 @@ const PostAddForm = ({handleSubmit, handleChange}) => (
                 Post text:
                 <Field
                     name='postBody'
-                    component={RenderPostBodyField}
+                    component={PostBodyQuill}
                     style={style}
                 />
             </label>
@@ -62,7 +67,7 @@ const PostAddForm = ({handleSubmit, handleChange}) => (
 const renderPostTitleField = ({input, ...props}) => (
     <Input {...input} autoComplete="false" id="post-title" type="text"/>
 );
-const RenderPostBodyField = ({input, style}) => (
+const PostBodyQuill = ({input, style}) => (
     <ReactQuill
         {...input}
         onBlur={(e) => e}
@@ -71,10 +76,15 @@ const RenderPostBodyField = ({input, style}) => (
         theme='bubble'
     />
 );
+export default compose(
+    connect(null, {
+        sendCreatedPostTC,
+    }),
+    withAuth
+)(PostAdd);
 
 export const ReduxPostAddForm = reduxForm({
     form: 'postAddForm'
 })(PostAddForm);
 
 
-export default PostAdd;

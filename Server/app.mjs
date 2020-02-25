@@ -1,34 +1,32 @@
 import router from './routes';
-import { IS_PRODUCTION, MONGO_URL, SESSION_SECRET, PORT } from './config';
-import {Promise, set, connection, connect, connections} from 'mongoose';
+import {IS_PRODUCTION, MONGO_URL, SESSION_SECRET, PORT} from './config';
+// import {Promise, set, connection, connect, connections} from 'mongoose';
 import cookieParser from 'cookie-parser';
-import express from "express";
 import bodyParser from 'body-parser';
+import express from "express";
 import path from "path";
-// import mongoose from 'mongoose'
 import session from 'express-session';
+import mongoose from 'mongoose';
 import connectMongo from 'connect-mongo';
-const MongoStore = connectMongo(session)
-import mocks from './mocks';
+import {mocks} from './mocks';
 import cors from 'cors';
 const __dirname = path.resolve();
+const MongoStore = connectMongo(session);
 
 // Database
-(() => {
-    Promise = global.Promise;
-    set('debug', IS_PRODUCTION);
 
-    connection
-        .on('error', error => console.error(error))
-        .on('close', () => console.log('Database connection closed.'))
-        .once('open', () => {
-            const info = connections[0];
-            console.log(`Connected to db ${info.host}:${info.port}/${info.name}`);
-            // mocks()
-        });
-    connect(MONGO_URL, { useMongoClient: true });
-})()
+mongoose.Promise = global.Promise;
+mongoose.set('debug', IS_PRODUCTION);
 
+mongoose.connection
+    .on('error', error => console.error(error))
+    .on('close', () => console.log('Database connection closed.'))
+    .once('open', () => {
+        const info = mongoose.connections[0];
+        console.log(`Connected to db ${info.host}:${info.port}/${info.name}`);
+        mocks().then(posts => console.log(posts))
+    });
+mongoose.connect(MONGO_URL, {useMongoClient: true});
 
 
 // EXPRESS
@@ -36,19 +34,22 @@ const app = express();
 
 
 // Middlewares
+
 app.use(express.static(path.resolve(__dirname, 'public')));
+
 app.use(session({
     secret: SESSION_SECRET,
     resave: true,
     saveUninitialized: false,
     store: new MongoStore({
-        mongooseConnection: connection
+        mongooseConnection: mongoose.connection
     }),
     unset: 'destroy'
 }));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
 let corsOptions = {
     origin: 'http://localhost:3000',
     // some legacy browsers (IE11, various SmartTVs) choke on 204,

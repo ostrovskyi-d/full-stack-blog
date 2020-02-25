@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
-const schema =  mongoose.Schema({
+const schema =  new Schema({
         login: {
             type: String,
             required: true,

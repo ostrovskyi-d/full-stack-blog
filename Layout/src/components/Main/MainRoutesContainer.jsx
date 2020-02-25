@@ -4,11 +4,11 @@ import PostsContainer from "../Posts/PostsContainer";
 import Sidebar from "../Sidebar/Sidebar";
 import s from './Main.module.scss'
 import {connect} from "react-redux";
-import {initializeApp} from "../../redux/app-reducer";
+import {initializeApp} from "../../redux/common-app-reducer";
 import FullPost from "../Posts/FullPost/FullPost";
-import PostAddContainer from "../Posts/PostAdd/PostAddContainer";
 import Home from "../Newest/Newest";
 import ProfileContainer from "../Profile/ProfileContainer";
+import PostAdd from "../Posts/PostAdd/PostAdd";
 
 const MainRoutesContainer = (props) => {
     return (
@@ -17,7 +17,7 @@ const MainRoutesContainer = (props) => {
                 <div className={s.content}>
 
                     <Route exact strict path={`/`} render={() => <Home/>}/>
-                    <Route path={`/post/add`} render={() => <PostAddContainer/> }/>
+                    <Route path={`/post/add`} render={() => <PostAdd/> }/>
                     <Route path={`/posts/:postName`} render={() => <FullPost/>}/>
                     <Route path={`/archive/:page`} render={() => <PostsContainer/>}/>
                     <Route path={`/users/:userName`} render={() => <ProfileContainer />} />
