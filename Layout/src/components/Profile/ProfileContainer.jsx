@@ -20,11 +20,11 @@ const ProfileContainer = props => {
         getUserProfileTC(userName);
     }, [getUserProfileTC, userName]);
 
-    if(isFetching || userProfile === null || userProfile === undefined) {
+    if(isFetching || userProfile === null || userProfile === undefined) 
         return <Preloader />
-    } else {
+     else 
         return <Profile {...props}/>
-    }
+    
 };
 
 const mapStateToProps = (state) => ({
