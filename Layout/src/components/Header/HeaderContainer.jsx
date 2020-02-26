@@ -12,7 +12,7 @@ const HeaderContainer = (props) => {
 
 const mapStateToProps =(state) => ({
     isAuth: state.auth.isAuthorised,
-    isFetching: state.auth.isFetching
+    isFetching: state.common.isFetching
 });
 
 export default connect(mapStateToProps, {

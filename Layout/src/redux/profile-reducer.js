@@ -1,4 +1,5 @@
 import {usersApi} from "../API/api";
+import {toggleFetchingAC} from "./common-app-reducer";
 
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 // const SET_USER_POSTS_STORE = 'SET-USER-POSTS-STORE'
@@ -27,8 +28,16 @@ export const setUserProfileAC = (userProfile) => ({type: SET_USER_PROFILE, userP
 
 export const getUserProfileTC = (reqUser) =>
     async (dispatch) => {
-        let {data} = await usersApi.getUserPosts(reqUser);
-        dispatch(setUserProfileAC(data.userData));
+        if (reqUser) {
+            dispatch(toggleFetchingAC(true));
+            let {data} = await usersApi.getUserPosts(reqUser);
+            dispatch(toggleFetchingAC(false));
+            dispatch(setUserProfileAC(data.userData));
+        } else {
+            dispatch(setUserProfileAC(null));
+        }
+
+
     };
 
 export default profileReducer;

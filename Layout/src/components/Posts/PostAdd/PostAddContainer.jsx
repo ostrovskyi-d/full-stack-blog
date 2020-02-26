@@ -4,7 +4,7 @@ import {sendCreatedPostTC} from "../../../redux/posts-reducer";
 import PostAdd from "./PostAdd";
 import {Redirect, withRouter} from 'react-router-dom'
 import {compose} from "redux";
-import {message} from "antd";
+import {withAuthOnly} from "../../../HOC/withAuthOnly";
 
 const PostAddContainer = React.memo((props) => {
     const {isAuth, location} = props;
@@ -20,5 +20,6 @@ const mapDispatchToProps = {
 };
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
-    withRouter
+    withRouter,
+    withAuthOnly
 )(PostAddContainer);

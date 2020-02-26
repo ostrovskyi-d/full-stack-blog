@@ -15,6 +15,9 @@ const ProfileContainer = props => {
 
     useEffect(() => {
         getUserProfileTC(userName);
+        return () => {
+            getUserProfileTC(null);
+        }
     }, [getUserProfileTC, userName]);
 
     if(rest.userProfile) {

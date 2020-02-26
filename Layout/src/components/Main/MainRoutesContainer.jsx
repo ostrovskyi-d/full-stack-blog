@@ -3,8 +3,6 @@ import {Route} from "react-router-dom"
 import PostsContainer from "../Posts/PostsContainer";
 import Sidebar from "../Sidebar/Sidebar";
 import s from './Main.module.scss'
-import {connect} from "react-redux";
-import {initializeApp} from "../../redux/app-reducer";
 import FullPost from "../Posts/FullPost/FullPost";
 import PostAddContainer from "../Posts/PostAdd/PostAddContainer";
 import Home from "../Newest/Newest";
@@ -29,11 +27,6 @@ const MainRoutesContainer = (props) => {
 };
 
 
-const mapStateToProps = (state) => {
-    return {
-        isFetching: state.auth.isFetching,
-        isAuth: state.auth.isAuthorised,
-    }
-};
 
-export default connect(mapStateToProps, {initializeApp})(MainRoutesContainer);
+
+export default MainRoutesContainer;

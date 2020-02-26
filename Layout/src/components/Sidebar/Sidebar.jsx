@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
     return {
         // SHIIIITY double state.auth
         userData: state.auth,
-        isFetching: state.auth.isFetching,
+        isFetching: state.common.isFetching,
         authMessage: state.auth.authMessage,
         auth: state.auth,
     }
