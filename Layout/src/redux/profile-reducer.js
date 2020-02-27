@@ -1,4 +1,5 @@
 import {usersApi} from "../API/api";
+import {toggleFetchingAC} from "./common-app-reducer";
 
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
@@ -33,10 +34,14 @@ export const toggleFetchingAC = (isFetching) => ({type: TOGGLE_FETCHING, isFetch
 
 export const getUserProfileTC = (reqUser) =>
     async (dispatch) => {
-        dispatch(toggleFetchingAC(true))
-        let {data} = await usersApi.getUserPosts(reqUser);        
-        dispatch(setUserProfileAC(data.userData));
-        dispatch(toggleFetchingAC(false))
+        if (reqUser) {
+            dispatch(toggleFetchingAC(true));
+            let {data} = await usersApi.getUserPosts(reqUser);
+            dispatch(toggleFetchingAC(false));
+            dispatch(setUserProfileAC(data.userData));
+        } else {
+            dispatch(setUserProfileAC(null));
+        }    
     };
 
 export default profileReducer;

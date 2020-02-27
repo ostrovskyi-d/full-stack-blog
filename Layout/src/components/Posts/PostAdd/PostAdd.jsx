@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import s from './PostAdd.module.scss'
@@ -34,7 +34,7 @@ const PostAdd = (props) => {
 };
 
 
-const PostAddForm = ({handleSubmit, handleChange}) => (
+const PostAddForm = ({handleSubmit}) => (
     <Form onSubmit={handleSubmit}>
         Post title:
         <Field

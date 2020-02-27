@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const URLSlugs = require('mongoose-url-slugs');
-const { transliter, slugify, isCyrillic } = require('transliter');
-const splitCreatedAt = require('./customPlugins');
+const { slugify } = require('transliter');
 
 const schema = new Schema({
     title: {

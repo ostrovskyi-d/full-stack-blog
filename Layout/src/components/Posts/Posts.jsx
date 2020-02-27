@@ -7,7 +7,7 @@ const Posts = (props) => {
     return (
         <>
             <Paginator {...props} />
-            {props.posts.isFetching
+            {props.isFetching
                 ? <Preloader/>
                 : <RenderPosts posts={props.posts.postsStore}/>
             }
