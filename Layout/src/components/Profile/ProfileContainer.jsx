@@ -7,13 +7,12 @@ import {withRouter} from "react-router-dom";
 import Preloader from "../common/Preloader";
 
 const ProfileContainer = props => {
-    debugger
+
     const {
         getUserProfileTC,
         match: {params: {userName}},
         isFetching,
         userProfile,
-        ...rest
     } = props;
     
     useEffect(() => {

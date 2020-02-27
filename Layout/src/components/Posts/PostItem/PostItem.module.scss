@@ -5,7 +5,7 @@
   @include hover-for-desktop;
   display: flex;
   flex-direction: column;
-  border: 1px solid $greyColor;
+  border: 1px solid $borderColor;
   padding: $freeSpace;
   margin-bottom: $freeSpace;
   background-color: $whiteColor;
@@ -17,7 +17,7 @@
   .top {
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     flex-direction: row;
 
     h2 {
@@ -68,7 +68,10 @@
     }
 
     p {
-      text-align: justify;
+      code {
+        display: inline-flex;
+      }
+      // text-align: justify;
     }
   }
 

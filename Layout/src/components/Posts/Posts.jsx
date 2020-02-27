@@ -19,7 +19,7 @@ const Posts = (props) => {
 export const RenderPosts = React.memo(props => props.posts.map(post => {
     return <PostItem
         {...post}
-        showAuthor={true}
+        renderAuthor={true}
         url={`/posts/${post.url}`}
         key={post.id}
     />

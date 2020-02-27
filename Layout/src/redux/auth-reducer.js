@@ -94,6 +94,7 @@ export const getMyUserDataTC = () =>
         dispatch(toggleFetchingAC(false));
 
         if (response.data.resultCode === 101) {
+            debugger
             dispatch(setAuthorisedDataAC(response.data.user.id, response.data.user.login, true))
         }
     };
@@ -102,11 +103,13 @@ export const getMyUserDataTC = () =>
 export const sendRegisterDataTC = (data) =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
-        let {data: body} = await authAPI.sendFormData(data);
+        let response = await authAPI.sendFormData(data);
         dispatch(toggleFetchingAC(false));
-        dispatch(setValidatingMessageAC(body));
-        if (body.resultCode === 101) {
-            dispatch(setAuthorisedDataAC(body.authorisedUserId, body.authorisedUserName, true))
+        dispatch(setValidatingMessageAC(response.data.message));
+        
+        if (response.data.resultCode === 101) {
+            debugger
+            dispatch(setAuthorisedDataAC(response.data.data.authorisedUserId, response.data.data.authorisedUserName, true))
         }
     };
 

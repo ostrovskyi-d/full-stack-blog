@@ -1,19 +1,19 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {connect} from "react-redux";
 import {sendCreatedPostTC} from "../../../redux/posts-reducer";
 import PostAdd from "./PostAdd";
-import {Redirect, withRouter} from 'react-router-dom'
+import { withRouter} from 'react-router-dom'
 import {compose} from "redux";
 import {withAuthOnly} from "../../../HOC/withAuthOnly";
 
 const PostAddContainer = React.memo((props) => {
-    const {isAuth, location} = props;
-    if(isAuth) return <PostAdd {...props}/>;
-    return <Redirect to='/'/>
+    return <PostAdd {...props}/>;
+    // return message.warn('Please Log in first!')
 });
 
 const mapStateToProps = (state) => ({
-  isAuth: state.auth.isAuthorised
+  isAuth: state.auth.isAuthorised,
+  status: state.postsPage.status
 });
 const mapDispatchToProps = {
     sendCreatedPost: sendCreatedPostTC,

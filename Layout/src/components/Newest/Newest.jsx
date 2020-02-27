@@ -1,17 +1,17 @@
-import React, {useEffect} from "react";
-import {RenderPosts} from "../Posts/Posts";
-import {connect} from "react-redux";
-import {getReqPageTC} from "../../redux/posts-reducer";
-import {NavLink} from "react-router-dom";
-import {Button, Icon} from "antd";
+import React, { useEffect } from "react";
+import { RenderPosts } from "../Posts/Posts";
+import { connect } from "react-redux";
+import { getReqPageTC } from "../../redux/posts-reducer";
+import { NavLink } from "react-router-dom";
+import { Button, Icon } from "antd";
 import s from './Newest.module.scss'
 
-const Newest = ({posts, getReqPageTC}) => {
+const Newest = ({ posts, getReqPageTC }) => {
     useEffect(() => {
         getReqPageTC()
-    }, []);
+    }, [getReqPageTC]);
     return <>
-        <RenderPosts posts={posts.postsStore}/>
+        <RenderPosts posts={posts.postsStore} />
         <div className={s.home_wrapper}>
             <NavLink className={s.to_archive} to={`/archive/2`}>
                 <Button shape='round'>

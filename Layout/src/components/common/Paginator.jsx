@@ -3,12 +3,12 @@ import {Pagination} from "antd";
 import s from './Paginator.module.scss'
 import { withRouter} from "react-router-dom";
 
-const Paginator = ({getReqPageTC, posts, ...props}) => {
+const Paginator = ({getReqPageTC, posts, history, ...props}) => {
     const [currentPage, setCurrentPage] = useState(+props.match.params.page);
     useEffect(() => {
-        props.history.push(`/archive/${currentPage}`);
+        history.push(`/archive/${currentPage}`);
         getReqPageTC(currentPage)
-    }, [currentPage]);
+    }, [currentPage, getReqPageTC, history]);
 
     return (
         <div className={s.paginator}>

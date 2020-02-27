@@ -1,13 +1,14 @@
 import React from "react";
-import ReactJson from 'react-json-view';
 import s from './Profile.module.scss';
 import PostItem from "../Posts/PostItem/PostItem";
+import { Empty, Button } from 'antd';
+import {  withRouter } from "react-router-dom";
 
 const Profile = props => {
-    debugger
-    const { userProfile } = props;
-    const {login, posts} = userProfile;
 
+    const { userProfile, history } = props;
+    const { login, posts } = userProfile;
+    
     return (
         <>
             <section className={s.data}>
@@ -16,13 +17,26 @@ const Profile = props => {
             </section>
             <section className={s.posts}>
 
-                {posts.map(post =>
+                {posts.length ? posts.map(post =>
                     <PostItem
                         {...post}
                         key={post.id}
                         url={`/posts/${post.url}`}
                         showAuthor={false}
                     />)
+                    : <Empty
+                        image="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"
+                        imageStyle={{
+                            height: 60,
+                        }}
+                        description={
+                            <span>
+                                No posts yet
+                            </span>
+                        }
+                    >
+                        <Button onClick={() => history.push('/post/add')} type="primary">Create Post</Button>
+                    </Empty>
                 }
             </section>
         </>
@@ -31,4 +45,4 @@ const Profile = props => {
 
 };
 
-export default Profile;
+export default withRouter(Profile);

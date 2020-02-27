@@ -2,21 +2,17 @@ import React from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import s from './PostAdd.module.scss'
-import {Button, Form, Input} from "antd";
-import {Field, reduxForm} from 'redux-form'
+import { Button, Form, Input, message } from "antd";
+import { Field, reduxForm } from 'redux-form'
 
 
-const style = {
-    height: "200px",
-    border: '1px solid #e8e8e8',
-    margin: '15px 0',
-    borderRadius: '3px',
-    cursor: 'text'
-};
+
 const PostAdd = (props) => {
-    const {sendCreatedPost} = props;
-    const addPost = (data) => {
-        sendCreatedPost(data)
+    const { sendCreatedPost } = props;
+    
+    const addPost = async (data) => {
+        let promise = await sendCreatedPost(data)
+        message[`${promise.resolved ? 'success' : 'error' }`](promise.message)
     };
 
     const handleChange = (data) => {
@@ -27,14 +23,14 @@ const PostAdd = (props) => {
         <div className={`${s.post}  ${s.addPost}`}>
             <div className={s.top}>
                 <h2>Add Post:</h2>
-                <ReduxPostAddForm onSubmit={addPost} onChange={handleChange}/>
+                <ReduxPostAddForm onSubmit={addPost} onChange={handleChange} />
             </div>
         </div>
     )
 };
 
 
-const PostAddForm = ({handleSubmit}) => (
+const PostAddForm = ({ handleSubmit }) => (
     <Form onSubmit={handleSubmit}>
         Post title:
         <Field
@@ -59,10 +55,18 @@ const PostAddForm = ({handleSubmit}) => (
     </Form>
 );
 
-const renderPostTitleField = ({input, ...props}) => (
-    <Input {...input} autoComplete="false" id="post-title" type="text"/>
+const renderPostTitleField = ({ input, ...props }) => (
+    <Input {...input} autoComplete="false" id="post-title" type="text" />
 );
-const RenderPostBodyField = ({input, style}) => (
+
+const style = {
+    height: "200px",
+    border: '1px solid #e8e8e8',
+    margin: '15px 0',
+    borderRadius: '3px',
+    cursor: 'text'
+};
+const RenderPostBodyField = ({ input, style }) => (
     <ReactQuill
         {...input}
         onBlur={(e) => e}

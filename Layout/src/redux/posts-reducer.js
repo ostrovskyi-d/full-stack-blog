@@ -1,5 +1,5 @@
-import {postsApi, authAPI, usersApi} from '../API/api'
-import {toggleFetchingAC} from "./common-app-reducer";
+import { postsApi, authAPI } from '../API/api'
+import { toggleFetchingAC } from "./common-app-reducer";
 // On initialize app (no needed from start, but it would be useful for future)
 
 // Action Types
@@ -9,6 +9,7 @@ const GET_REQ_PAGE = "GET-REQ-PAGE";
 const SET_PAGES_COUNT = "SET-TOTAL-PAGES-COUNT";
 const SET_POSTS_STORE = "GET-PAGE-SIZE";
 const SET_MY_POSTS = "SET-MY-POSTS";
+const SET_POST_CREATING_STATUS = "posts/SET-POST-CREATING-STATUS";
 
 let initialState = {
     postsStore: [],
@@ -17,6 +18,7 @@ let initialState = {
     requiredPage: null,
     totalPages: null,
     pageSize: 5,
+    status: null
 };
 
 
@@ -59,24 +61,31 @@ let postsReducer = (state = initialState, action) => {
                 myPosts: action.myPosts
             }
         }
+        case SET_POST_CREATING_STATUS: {
+            return {
+                ...state,
+                status: action.statusMessage
+            }
+        }
         default:
             return state;
     }
 };
 
-export const setPostsStoreAC = (posts) => ({type: SET_POSTS_STORE, posts});
+export const setPostsStoreAC = (posts) => ({ type: SET_POSTS_STORE, posts });
 // export const toggleFetchingAC = (isFetching) => ({type: IS_FETCHING, isFetching});
-export const setTotalPostsCountAC = (totalPostsCount) => ({type: SET_TOTAL_POSTS_COUNT, totalPostsCount});
-export const getReqPageAC = (reqPage) => ({type: GET_REQ_PAGE, reqPage});
-export const setTotalPagesAC = (totalPages) => ({type: SET_PAGES_COUNT, totalPages});
-export const setMyPostsAC = (myPosts) => ({type: SET_MY_POSTS, myPosts});
+export const setTotalPostsCountAC = (totalPostsCount) => ({ type: SET_TOTAL_POSTS_COUNT, totalPostsCount });
+export const getReqPageAC = (reqPage) => ({ type: GET_REQ_PAGE, reqPage });
+export const setTotalPagesAC = (totalPages) => ({ type: SET_PAGES_COUNT, totalPages });
+export const setMyPostsAC = (myPosts) => ({ type: SET_MY_POSTS, myPosts });
+export const setPostCreatingStatus = (statusMessage) => ({ type: SET_POST_CREATING_STATUS, statusMessage })
 
 export const getOnePostTC = (postName) =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
-        let {data} = await postsApi.getReqPost(postName);
-        dispatch(toggleFetchingAC(false));
+        let { data } = await postsApi.getReqPost(postName);
         dispatch(setPostsStoreAC(data.post));
+        dispatch(toggleFetchingAC(false));
     };
 
 export const getMyPostsTC = () =>
@@ -91,7 +100,7 @@ export const getMyPostsTC = () =>
 export const getAllPostsTC = () =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
-        let {data} = await authAPI.getUserData();
+        let { data } = await authAPI.getUserData();
         dispatch(toggleFetchingAC(false));
 
         dispatch(setTotalPagesAC(data.totalPages));
@@ -103,20 +112,33 @@ export const getAllPostsTC = () =>
 export const getReqPageTC = (reqPage) =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
-        let {data} = await postsApi.getReqPage(reqPage);
+        let { data } = await postsApi.getReqPage(reqPage);
         dispatch(toggleFetchingAC(false));
 
         dispatch(setTotalPagesAC(data.totalPages));
         dispatch(setPostsStoreAC(data.posts));
         dispatch(getReqPageAC(data.currentPage));
     };
+
+// thunk-creator
 export const sendCreatedPostTC = (data) =>
+    // thunk 
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
-        await postsApi.sendNewPost(data);
+        let response = await postsApi.sendNewPost(data);
         dispatch(toggleFetchingAC(false));
-
-    };
+        // promise
+        return new Promise((resolve, reject) => {
+            if (response.data.resultCode === 101) {
+                dispatch(setPostCreatingStatus('Post created successfully!'))
+                resolve({resolved: true, message: 'Post created successfully!'})
+            } else if (response.data.resultCode === 102) {
+                dispatch(setPostCreatingStatus('Cant\'t create post...'))
+                reject()
+            }
+        })
+        .catch(() => ({rejected: true, message: 'Cant\'t create post now, please try again later'}))
+    }
 
 
 export default postsReducer;

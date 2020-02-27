@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Posts from "./Posts";
 import {connect} from "react-redux";
 import {getAllPostsTC, getReqPageTC} from "../../redux/posts-reducer";
@@ -6,7 +6,7 @@ import {compose} from 'redux';
 import Preloader from "../common/Preloader";
 
 const PostsContainer = (props) => {
-    if (props.postsPage.length <= 0) return <Preloader />;
+    if (props.posts.postsStore.length <= 0) return <Preloader />;
     return <Posts {...props} />;
 };
 
