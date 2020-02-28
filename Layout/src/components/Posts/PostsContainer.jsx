@@ -4,10 +4,12 @@ import {connect} from "react-redux";
 import {getAllPostsTC, getReqPageTC} from "../../redux/posts-reducer";
 import {compose} from 'redux';
 import Preloader from "../common/Preloader";
+import {Empty} from "antd";
 
 const PostsContainer = (props) => {
-    if (props.posts.postsStore.length <= 0) return <Preloader />;
-    return <Posts {...props} />;
+    const {posts} = props;
+    if(posts.postsStore.length <= 0) return <Empty />;
+    else return <Posts {...props} />;
 };
 
 const mapStateToProps = (state) => {

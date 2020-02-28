@@ -3,6 +3,14 @@ const router = express.Router();
 const { User, Post } = require('../models');
 const TurndownService = require('turndown');
 const { notAuthorised } = require('./common');
+const error = (res) => {
+    return res.json({
+        resultCode: 102,
+        type: 'error',
+        message: 'All fields must be filled',
+    })
+};
+
 router.get('/my-posts', async (req, res, next) => {
     // db.find({})
 });
@@ -30,32 +38,24 @@ router.post('/add', async ({
         userLogin
     }, ...req
 }, res) => {
-    if (!title || !body) {
-        res.json({
-            resultCode: 102,
-            type: 'error',
-            message: 'All fields must be filled',
-        })
-    } else {
+    if (!title || !body) error(res);
+    else {
         title.trim().replace(/ +(?=)/g, '');
         const turndownService = new TurndownService();
         try {
+            console.log(`Body:::: `, body);
             let newPost = await Post.create({
                 title,
                 body: turndownService.turndown(body),
                 author: userId,
             });
-            await User.findOneAndUpdate({ _id: userId }, { "$push": { posts: newPost } })
-
+            await User.findOneAndUpdate({ _id: userId }, { "$push": { posts: newPost } });
             res.json({
                 resultCode: 101,
                 type: 'success',
                 message: 'PostItem created'
-            })
-        } catch (e) {
-            throw new Error('Server Error')
-        }
-
+            });
+        } catch (e) {error(res)}
     }
 });
 

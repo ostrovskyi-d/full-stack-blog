@@ -2,6 +2,15 @@ import React from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
+const formStyles = {
+    roundedBorder: {
+        borderRadius: "50px"
+    },
+    buttonsMargin: {
+        marginTop: '7.5px',
+        marginBottom: '7.5px',
+    }
+};
 const AuthContainer = (props) => {
     const {auth} = props;
 
@@ -13,9 +22,19 @@ const AuthContainer = (props) => {
         props.sendRegisterDataTC(values);
     };
     if (auth.currentAuthType === "register") {
-        return <RegisterForm submitForm={submitForm} switchAuthType={switchAuthType} {...props}/>
+        return <RegisterForm
+            style={formStyles}
+            submitForm={submitForm}
+            switchAuthType={switchAuthType}
+            {...props}
+        />
     } else {
-        return <LoginForm submitForm={submitForm} switchAuthType={switchAuthType} {...props}/>
+        return <LoginForm
+            style={formStyles}
+            submitForm={submitForm}
+            switchAuthType={switchAuthType}
+            {...props}
+        />
     }
 };
 

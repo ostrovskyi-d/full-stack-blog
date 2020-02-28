@@ -17,7 +17,6 @@ const App = (props) => {
     } = props;
 
     useEffect(() => {
-        authenticateTC()
         initializeApp();
     }, [initializeApp, authenticateTC]);
 

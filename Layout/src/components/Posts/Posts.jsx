@@ -2,19 +2,21 @@ import React from "react";
 import PostItem from "./PostItem/PostItem";
 import Paginator from "../common/Paginator";
 import Preloader from "../common/Preloader";
+import {withRouter} from "react-router-dom";
 
-const Posts = (props) => {
+const Posts = React.memo((props) => {
+    const {posts: {postsStore, pageSize}, isFetching, history} = props;
     return (
         <>
-            <Paginator {...props} />
-            {props.isFetching
+            {history.location.pathname !== '/' && <Paginator  {...props} />}
+            {isFetching
                 ? <Preloader/>
-                : <RenderPosts posts={props.posts.postsStore}/>
+                : <RenderPosts posts={postsStore}/>
             }
         </>
     )
 
-};
+});
 
 export const RenderPosts = React.memo(props => props.posts.map(post => {
     return <PostItem
@@ -24,4 +26,4 @@ export const RenderPosts = React.memo(props => props.posts.map(post => {
         key={post.id}
     />
 }));
-export default Posts;
+export default withRouter(Posts);

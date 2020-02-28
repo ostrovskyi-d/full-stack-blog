@@ -37,11 +37,11 @@ export const getUserProfileTC = (reqUser) =>
         if (reqUser) {
             dispatch(toggleFetchingAC(true));
             let {data} = await usersApi.getUserPosts(reqUser);
-            dispatch(toggleFetchingAC(false));
             dispatch(setUserProfileAC(data.userData));
         } else {
             dispatch(setUserProfileAC(null));
-        }    
+        }
+        dispatch(toggleFetchingAC(false));
     };
 
 export default profileReducer;

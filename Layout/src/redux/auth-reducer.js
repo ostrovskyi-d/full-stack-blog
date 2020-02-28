@@ -10,7 +10,7 @@ const TOGGLE_AUTH_TYPE = "TOGGLE-AUTH-TYPE";
 // const TOGGLE_FETCHING = "TOGGLE-FETCHING";
 
 // Setting server message as result of handling form
-const SET_VALIDATING_MESSAGE = "SET-VALIDATING-MESSAGE";
+// const SET_VALIDATING_MESSAGE = "SET-VALIDATING-MESSAGE";
 
 let initialState = {
     isAuthorised: false,
@@ -45,12 +45,12 @@ let authReducer = (state = initialState, action) => {
         //         isFetching: action.isFetching
         //     }
         // }
-        case SET_VALIDATING_MESSAGE: {
-            return {
-                ...state,
-                authMessage: action.message
-            }
-        }
+        // case SET_VALIDATING_MESSAGE: {
+        //     return {
+        //         ...state,
+        //         authMessage: action.message
+        //     }
+        // }
         default:
             return state;
     }
@@ -68,19 +68,19 @@ export const toggleAuthTypeAC = (authType) => ({
 //     type: TOGGLE_FETCHING,
 //     isFetching
 // });
-export const setValidatingMessageAC = (message) => ({
-    type: SET_VALIDATING_MESSAGE,
-    message
-});
+// export const setValidatingMessageAC = (message) => ({
+//     type: SET_VALIDATING_MESSAGE,
+//     message
+// });
 
 export const logOutTC = () =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
         const {data} = await authAPI.logOut();
-        dispatch(toggleFetchingAC(false));
-        dispatch(setValidatingMessageAC(data));
+        // dispatch(setValidatingMessageAC(data));
         if (data.resultCode === 101)
             dispatch(setAuthorisedDataAC(null, null, false));
+        dispatch(toggleFetchingAC(false));
     };
 
 
@@ -91,12 +91,11 @@ export const getMyUserDataTC = () =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
         let response = await authAPI.getUserData();
-        dispatch(toggleFetchingAC(false));
 
         if (response.data.resultCode === 101) {
-            debugger
             dispatch(setAuthorisedDataAC(response.data.user.id, response.data.user.login, true))
         }
+        dispatch(toggleFetchingAC(false));
     };
 
 
@@ -104,13 +103,11 @@ export const sendRegisterDataTC = (data) =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
         let response = await authAPI.sendFormData(data);
-        dispatch(toggleFetchingAC(false));
-        dispatch(setValidatingMessageAC(response.data.message));
-        
+
         if (response.data.resultCode === 101) {
-            debugger
-            dispatch(setAuthorisedDataAC(response.data.data.authorisedUserId, response.data.data.authorisedUserName, true))
+            dispatch(setAuthorisedDataAC(response.data.userId, response.data.userLogin, true))
         }
+        dispatch(toggleFetchingAC(false));
     };
 
 

@@ -1,58 +1,67 @@
 import s from "../Sidebar.module.scss";
 import React from "react";
-import {Button, Form, Icon, Input} from "antd";
+import {Button, Form, Input} from "antd";
+import LockOutlined from "@ant-design/icons/lib/icons/LockOutlined";
+import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 
-let AntdRegisterForm = (props) => {
-    const {getFieldDecorator} = props.form;
-    const handleSubmit = e => {
-        e.preventDefault();
-        props.form.validateFields((err, values) => {
-            if (!err) {
-                props.submitForm(values)
-            }
-        });
+let RegisterForm = (props) => {
+    const {
+        submitForm,
+        switchAuthType,
+        style
+    } = props;
+    const handleSubmit = values => {
+        submitForm(values)
     };
     const onSwitchAuth = (e) => {
         e.preventDefault();
-        props.switchAuthType('login');
+        switchAuthType('login');
     };
     return (
-        <Form className={s.antForm} onSubmit={handleSubmit}>
+        <Form onFinish={handleSubmit} name="normal_register" className={s.antForm} onSubmit={handleSubmit}>
             <span className={s.auth_type}> Register</span>
-            <Form.Item>
-                {getFieldDecorator("login", {rules: [{required: true, message: "Please input your username!"}]})(
-                    <Input
-                        prefix={<Icon type="user" style={{color: "rgba(0,0,0,.25)"}}/>}
-                        placeholder="Username"
-                    />
-                )}
+            <Form.Item
+                // label='Login'
+                name='login'
+                rules={[{required: true, message: "Please input your username!"}]}>
+                <Input
+                    prefix={<UserOutlined style={{color: "rgba(0,0,0,.25)"}}/>}
+                    placeholder="Username"
+                    style={style.roundedBorder}
+
+                />
+
             </Form.Item>
 
-            <Form.Item>
-                {getFieldDecorator("password", {rules: [{required: true, message: "Please input your Password!"}]})(
-                    <Input
-                        prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}}/>}
-                        type="password"
-                        placeholder="Password"
-                    />
-                )}
-            </Form.Item>
-            <Form.Item>
-                {getFieldDecorator("password-repeat", {
-                    rules: [{
-                        required: true,
-                        message: "Please input your Password!"
-                    }]
-                })(
-                    <Input
-                        prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}}/>}
-                        type="password"
-                        placeholder="Password one more time"
-                    />
-                )}
-            </Form.Item>
-            <Form.Item>
+            <Form.Item
+                // label='Password'
+                name='password'
+                rules={[{required: true, message: "Please input your Password!"}]}>
+                <Input.Password
+                    prefix={<LockOutlined style={{color: "rgba(0,0,0,.25)"}}/>}
+                    type="password"
+                    placeholder="Password"
+                    style={style.roundedBorder}
 
+                />
+            </Form.Item>
+
+            <Form.Item
+                // label='Password again'
+                name='password-repeat'
+                rules={[{
+                    required: true,
+                    message: "Please repeat your Password!"
+                }]}>
+                <Input.Password
+                    prefix={<LockOutlined style={{color: "rgba(0,0,0,.25)"}}/>}
+                    type="password"
+                    placeholder="Password one more time"
+                    style={style.roundedBorder}
+
+                />
+            </Form.Item>
+            <Form.Item >
                 <Button block shape='round' htmlType='submit' type='primary' id="submit-login">Create</Button>
                 <Button block shape='round' onClick={onSwitchAuth}>To Login</Button>
             </Form.Item>
@@ -61,7 +70,5 @@ let AntdRegisterForm = (props) => {
 
     )
 };
-const RegisterForm = Form.create({name: "normal_register"})(
-    AntdRegisterForm
-);
+
 export default RegisterForm;

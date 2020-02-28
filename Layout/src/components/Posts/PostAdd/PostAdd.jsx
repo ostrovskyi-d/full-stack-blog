@@ -2,17 +2,16 @@ import React from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import s from './PostAdd.module.scss'
-import { Button, Form, Input, message } from "antd";
-import { Field, reduxForm } from 'redux-form'
-
+import {Button, Input, message} from "antd";
+import {Field, reduxForm} from 'redux-form'
 
 
 const PostAdd = (props) => {
-    const { sendCreatedPost } = props;
-    
+    const {sendCreatedPost} = props;
+
     const addPost = async (data) => {
         let promise = await sendCreatedPost(data)
-        message[`${promise.resolved ? 'success' : 'error' }`](promise.message)
+        message[`${promise.resolved ? 'success' : 'error'}`](promise.message)
     };
 
     const handleChange = (data) => {
@@ -23,15 +22,15 @@ const PostAdd = (props) => {
         <div className={`${s.post}  ${s.addPost}`}>
             <div className={s.top}>
                 <h2>Add Post:</h2>
-                <ReduxPostAddForm onSubmit={addPost} onChange={handleChange} />
+                <ReduxPostAddForm onSubmit={addPost} onChange={handleChange}/>
             </div>
         </div>
     )
 };
 
 
-const PostAddForm = ({ handleSubmit }) => (
-    <Form onSubmit={handleSubmit}>
+const PostAddForm = ({handleSubmit}) => (
+    <form onSubmit={handleSubmit}>
         Post title:
         <Field
             name='postTitle'
@@ -52,11 +51,16 @@ const PostAddForm = ({ handleSubmit }) => (
             <Button htmlType='submit' size='large' type='primary' shape='round'>Publish</Button>
             <Button size='large' shape='round'>Save</Button>
         </div>
-    </Form>
+    </form>
 );
 
-const renderPostTitleField = ({ input, ...props }) => (
-    <Input {...input} autoComplete="false" id="post-title" type="text" />
+const renderPostTitleField = ({input, ...props}) => (
+    <Input
+        {...input}
+        autoComplete="false"
+        id="post-title"
+        type="text"
+    />
 );
 
 const style = {
@@ -66,7 +70,7 @@ const style = {
     borderRadius: '3px',
     cursor: 'text'
 };
-const RenderPostBodyField = ({ input, style }) => (
+const RenderPostBodyField = ({input, style}) => (
     <ReactQuill
         {...input}
         onBlur={(e) => e}

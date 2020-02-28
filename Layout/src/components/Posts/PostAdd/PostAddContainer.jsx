@@ -7,6 +7,7 @@ import {compose} from "redux";
 import {withAuthOnly} from "../../../HOC/withAuthOnly";
 
 const PostAddContainer = React.memo((props) => {
+
     return <PostAdd {...props}/>;
     // return message.warn('Please Log in first!')
 });

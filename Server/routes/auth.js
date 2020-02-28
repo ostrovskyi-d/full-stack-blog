@@ -116,10 +116,8 @@ router.post('/login', async (req, res, next) => {
                             resultCode: 101,
                             message: 'Successful logged in',
                             type: 'success',
-                            data: {
-                                authorisedUserName: user.login,
-                                authorisedUserId: user.id
-                            }
+                            userLogin: user.login,
+                            userId: user.id
                         })
                     } else {
 

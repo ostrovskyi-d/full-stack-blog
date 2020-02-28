@@ -39,19 +39,18 @@ let commonAppReducer = (state = initialState, action) => {
 
 export const setInitializedSuccess = () => ({ type: INITIALIZED_SUCCESS });
 export const toggleFetchingAC = (isFetching) => ({ type: TOGGLE_FETCHING, isFetching });
-export const setAuthenticatedAC = (isAuthenticated) => ({ type: SET_AUTHENTICATED, isAuthenticated })
+export const setAuthenticatedAC = (isAuthenticated) => ({ type: SET_AUTHENTICATED, isAuthenticated });
 
 export const initializeApp = () =>
     async (dispatch) => await dispatch(setInitializedSuccess());
 
 export const authenticateTC = () =>
     async (dispatch) => {
-        dispatch(toggleFetchingAC(true))
+        dispatch(toggleFetchingAC(true));
         let { data } = await authAPI.getUserData();
-        dispatch(toggleFetchingAC(false))
-        
         if (data.resultCode === 101) {
             dispatch(setAuthenticatedAC(true));
         }
-    }
+        dispatch(toggleFetchingAC(false));
+    };
 export default commonAppReducer;

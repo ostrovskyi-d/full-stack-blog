@@ -3,6 +3,9 @@ import s from "./PostItem.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import { Avatar, Button } from "antd";
+import EditOutlined from "@ant-design/icons/lib/icons/EditOutlined";
+import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
+import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 // import ReactJson from 'react-json-view';
 
 
@@ -21,13 +24,13 @@ const PostItem = (props) => {
                 </h2>
                 <div className={s.buttons}>
                     <Button
-                        icon='edit'
+                        icon={<EditOutlined />}
                         size='default'
                         shape='circle-outline'
                         type='primary'
                     />
                     <Button
-                        icon='delete'
+                        icon={<DeleteOutlined />}
                         size='default'
                         shape='circle-outline'
                         type='danger'
@@ -61,7 +64,7 @@ const RenderAuthor = props => {
         return (
             <div className={s.author}>
                 <Link className={s.author_link} to={`/users/${props.author.login}`}>
-                    <Avatar className={s.author_link_avatar} size='small' icon='user' />
+                    <Avatar className={s.author_link_avatar} icon={<UserOutlined />} size='small' />
                     <span className={s.author_link_name}>
                         {props.author.login}
                     </span>

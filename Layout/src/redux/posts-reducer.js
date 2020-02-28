@@ -88,57 +88,59 @@ export const getOnePostTC = (postName) =>
         dispatch(toggleFetchingAC(false));
     };
 
-export const getMyPostsTC = () =>
-    async (dispatch) => {
-        dispatch(toggleFetchingAC(true));
-        let data = await postsApi.getMyPosts();
-        dispatch(toggleFetchingAC(false));
-
-        dispatch(setMyPostsAC(data.posts));
-    };
+// export const getMyPostsTC = () =>
+//     async (dispatch) => {
+//         dispatch(toggleFetchingAC(true));
+//         let data = await postsApi.getMyPosts();
+//         dispatch(toggleFetchingAC(false));
+//
+//         dispatch(setMyPostsAC(data.posts));
+//     };
 
 export const getAllPostsTC = () =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
         let { data } = await authAPI.getUserData();
-        dispatch(toggleFetchingAC(false));
 
         dispatch(setTotalPagesAC(data.totalPages));
         dispatch(getReqPageAC(data.currentPage));
         dispatch(setTotalPostsCountAC(data.totalPostsCount));
-        dispatch(setPostsStoreAC(data.posts))
+        dispatch(setPostsStoreAC(data.posts));
+        dispatch(toggleFetchingAC(false));
     };
 
 export const getReqPageTC = (reqPage) =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
         let { data } = await postsApi.getReqPage(reqPage);
-        dispatch(toggleFetchingAC(false));
-
+        // debugger
         dispatch(setTotalPagesAC(data.totalPages));
         dispatch(setPostsStoreAC(data.posts));
-        dispatch(getReqPageAC(data.currentPage));
+        if(data.currentPage) dispatch(getReqPageAC(data.currentPage));
+        dispatch(toggleFetchingAC(false));
     };
 
 // thunk-creator
 export const sendCreatedPostTC = (data) =>
-    // thunk 
+    // thunk
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
         let response = await postsApi.sendNewPost(data);
         dispatch(toggleFetchingAC(false));
+
+        const {data: {resultCode}} = response;
         // promise
         return new Promise((resolve, reject) => {
-            if (response.data.resultCode === 101) {
-                dispatch(setPostCreatingStatus('Post created successfully!'))
+            if (resultCode === 101) {
+                dispatch(setPostCreatingStatus('Post created successfully!'));
                 resolve({resolved: true, message: 'Post created successfully!'})
-            } else if (response.data.resultCode === 102) {
-                dispatch(setPostCreatingStatus('Cant\'t create post...'))
+            } else if (resultCode === 102) {
+                dispatch(setPostCreatingStatus('Cant\'t create post...'));
                 reject()
             }
         })
-        .catch(() => ({rejected: true, message: 'Cant\'t create post now, please try again later'}))
-    }
+        .catch(() => ({resolved: false, message: 'Cant\'t create post now, please try again later'}))
+    };
 
 
 export default postsReducer;

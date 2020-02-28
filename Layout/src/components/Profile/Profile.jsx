@@ -8,7 +8,7 @@ const Profile = props => {
 
     const { userProfile, history } = props;
     const { login, posts } = userProfile;
-    
+
     return (
         <>
             <section className={s.data}>
@@ -17,7 +17,7 @@ const Profile = props => {
             </section>
             <section className={s.posts}>
 
-                {posts.length ? posts.map(post =>
+                {posts.length !== 0 ? posts.map(post =>
                     <PostItem
                         {...post}
                         key={post.id}

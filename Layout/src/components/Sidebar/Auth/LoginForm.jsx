@@ -1,44 +1,42 @@
 import React from 'react';
-import {Form, Icon, Input, Button} from 'antd';
+import {Button, Form, Input} from 'antd';
 import s from "../Sidebar.module.scss";
+import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
+import LockOutlined from "@ant-design/icons/lib/icons/LockOutlined";
 
 
-const NormalLoginForm = props => {
-    const {getFieldDecorator} = props.form;
+const LoginForm = props => {
+    const {style, submitForm, switchAuthType} = props;
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        props.form.validateFields((err, values) => {
-            if (!err) {
-                props.submitForm(values)
-            }
-        });
+    const handleSubmit = values => {
+        submitForm(values)
     };
 
     const onSwitchAuth = (e) => {
         e.preventDefault();
-        props.switchAuthType('register');
+        switchAuthType('register');
     };
     return (
         <>
             <span className={s.auth_type}>Login</span>
-            <Form className={s.antForm} onSubmit={handleSubmit}>
-                <Form.Item>
-                    {getFieldDecorator("login", {rules: [{required: true, message: "Please input your username!"}]})(
-                        <Input
-                            prefix={<Icon type="user" style={{color: "rgba(0,0,0,.25)"}}/>}
-                            placeholder="Username"
-                        />
-                    )}
+            <Form onFinish={handleSubmit} name="normal_login" className={s.antForm} onSubmit={handleSubmit}>
+                <Form.Item name='login'
+                           rules={[{required: true, message: "Please input your username!"}]}>
+                    <Input
+                        prefix={<UserOutlined style={{color: "rgba(0,0,0,.25)"}}/>}
+                        placeholder="Username"
+                        style={style.roundedBorder}
+                    />
                 </Form.Item>
-                <Form.Item>
-                    {getFieldDecorator("password", {rules: [{required: true, message: "Please input your Password!"}]})(
-                        <Input
-                            prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}}/>}
-                            type="password"
-                            placeholder="Password"
-                        />
-                    )}
+                <Form.Item name='password'
+                           rules={[{required: true, message: "Please input your Password!"}]}>
+                    <Input.Password
+                        prefix={<LockOutlined style={{color: "rgba(0,0,0,.25)"}}/>}
+                        type="password"
+                        placeholder="Password"
+                        style={style.roundedBorder}
+
+                    />
                 </Form.Item>
 
                 <Form.Item>
@@ -54,7 +52,4 @@ const NormalLoginForm = props => {
     )
 };
 
-const LoginForm = Form.create({name: "normal_login"})(
-    NormalLoginForm
-);
 export default LoginForm;
