@@ -8,6 +8,7 @@ import PostAddContainer from "../Posts/PostAdd/PostAddContainer";
 import ProfileContainer from "../Profile/ProfileContainer";
 import Newest from "../Newest/Newest";
 import NoMatch from "../NoMatch";
+import CommentsContainer from "../Posts/Comments/CommentsContainer";
 
 const MainRoutesContainer = (props) => {
     return (
@@ -20,6 +21,7 @@ const MainRoutesContainer = (props) => {
                         <Route path={`/posts/:postName`} render={() => <FullPost/>}/>
                         <Route path={`/archive/:page`} render={() => <PostsContainer/>}/>
                         <Route path={`/users/:userName`} render={() => <ProfileContainer />} />
+                        <Route path={`/post/:postName/comments`} render={() => <CommentsContainer /> } />
                         <Route component={NoMatch} />
                     </Switch>
                 </div>

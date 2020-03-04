@@ -2,10 +2,19 @@
 
 .greeting{
   display: flex;
-  padding: 0 0 5px 0;
-  margin: 0 0 5px 0;
+  //padding: 0 0 5px 0;
+  //margin: 0 0 5px 0;
   font-size: 18px;
   border-bottom: 1px solid $greyColor;
+  flex-direction: row;
+  justify-content: center;
+  //margin: 0 $freeSpace;
+  padding: $freeSpace;
+  align-items: center;
+  span.userLogin {
+    margin: 10px;
+    text-transform: capitalize;
+  }
 }
 .logout {
   text-align: center;

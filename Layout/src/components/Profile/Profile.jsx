@@ -1,8 +1,9 @@
 import React from "react";
 import s from './Profile.module.scss';
 import PostItem from "../Posts/PostItem/PostItem";
-import { Empty, Button } from 'antd';
+import {Empty, Button, Avatar} from 'antd';
 import {  withRouter } from "react-router-dom";
+import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 
 const Profile = props => {
 
@@ -12,8 +13,20 @@ const Profile = props => {
     return (
         <>
             <section className={s.data}>
-                <h2>{login.toUpperCase()}</h2>
-                <h3>Total author posts: ({posts.length})</h3>
+
+                <div className={s.profileInfo}>
+                    {/*<span>Profile</span>*/}
+                    <div className={s.avaLogin}>
+                        <Avatar size={64} icon={<UserOutlined />} />
+                        <h2>{login.toUpperCase()}</h2>
+                        <h3>Posts: ({posts.length})</h3>
+                        <span>....</span>
+                    </div>
+
+
+                </div>
+
+
             </section>
             <section className={s.posts}>
 

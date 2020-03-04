@@ -6,6 +6,8 @@ import { getOnePostTC } from "../../../redux/posts-reducer";
 import { compose } from "redux";
 import ReactMarkdown from "react-markdown";
 import Preloader from "../../common/Preloader";
+import CommentsContainer from "../Comments/CommentsContainer";
+import Moment from "react-moment";
 // import ReactJson from 'react-json-view'
 
 const FullPost = props => {
@@ -18,7 +20,7 @@ const FullPost = props => {
     return (
         isFetching
             ? <Preloader />
-            : props.post.map(post => <RenderPost {...post} key={post.id} />)
+            : props.post.map(post => <RenderPost postName={postName} {...post} key={post.id} />)
     )
 };
 const RenderPost = (post) => {
@@ -36,20 +38,21 @@ const RenderPost = (post) => {
                 <div className={s.post_bottom_author}>
 
                     {post.author
-                        ? <Link to={`/users/${post.author.login}`}>
-                            Author: {post.author.login || 'Hacker'}
-                        </Link>
+                        ? <div>Author: <Link to={`/users/${post.author.login}`}>
+                            {post.author.login || 'Hacker'}
+                        </Link></div>
                         : null
                     }
 
                 </div>
                 <div>
-                    Created: {post.createdAt}
+                    Created: <Moment date={post.createdAt} />
                 </div>
                 <div className={s.post_bottom_comments}>
-                    <Link to='#'>Comments</Link>
+                    <Link to={`/post/${post.postName}/comments`}>Comments</Link>
                 </div>
             </div>
+
         </div>
     )
 }
