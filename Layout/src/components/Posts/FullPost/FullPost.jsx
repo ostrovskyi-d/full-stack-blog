@@ -8,7 +8,9 @@ import ReactMarkdown from "react-markdown";
 import Preloader from "../../common/Preloader";
 import CommentsContainer from "../Comments/CommentsContainer";
 import Moment from "react-moment";
+import {Button} from "antd";
 // import ReactJson from 'react-json-view'
+import {timeStampPrettifier} from '../../common/helpers/helpers.js';
 
 const FullPost = props => {
     const { match: { params: {postName} }, isFetching, getOnePostTC } = props;
@@ -24,6 +26,7 @@ const FullPost = props => {
     )
 };
 const RenderPost = (post) => {
+    timeStampPrettifier(post.createdAt)
     return (
         <div className={s.post}>
             <div className={s.post_top}>
@@ -31,9 +34,7 @@ const RenderPost = (post) => {
                     {post.title}
                 </h2>
             </div>
-            <div className={s.post_body}>
-                <ReactMarkdown source={post.body} />
-            </div>
+
             <div className={s.post_bottom}>
                 <div className={s.post_bottom_author}>
 
@@ -48,11 +49,15 @@ const RenderPost = (post) => {
                 <div>
                     Created: <Moment date={post.createdAt} />
                 </div>
-                <div className={s.post_bottom_comments}>
-                    <Link to={`/post/${post.postName}/comments`}>Comments</Link>
-                </div>
+
             </div>
 
+            <div className={s.post_body}>
+                <ReactMarkdown source={post.body} />
+            </div>
+            <div className={s.post_bottom_comments}>
+                <Link to={`/post/${post.postName}/comments`}><Button>Comments</Button></Link>
+            </div>
         </div>
     )
 }

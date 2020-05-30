@@ -3,6 +3,11 @@
 
 .post {
 
+  border-radius: 15px;
+  background: #fafafa;
+  box-shadow: 0 2px 5px -2px #e8e8e8;
+  padding: 20px;
+
   &_top {
 
     // h2.post_title
@@ -23,7 +28,10 @@
   }
 
   &_bottom {
-
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     &_author {
 
     }
