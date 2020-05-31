@@ -26,6 +26,7 @@ const FullPost = props => {
     )
 };
 const RenderPost = (post) => {
+
     timeStampPrettifier(post.createdAt)
     return (
         <div className={s.post}>
@@ -34,7 +35,6 @@ const RenderPost = (post) => {
                     {post.title}
                 </h2>
             </div>
-
             <div className={s.post_bottom}>
                 <div className={s.post_bottom_author}>
 
@@ -51,7 +51,6 @@ const RenderPost = (post) => {
                 </div>
 
             </div>
-
             <div className={s.post_body}>
                 <ReactMarkdown source={post.body} />
             </div>

@@ -18,9 +18,11 @@ const schema = new Schema({
     }
 },
     {
-        timestamps: true
+        timestamps: {
+            created_at: new Date().toDateString()
+        }
     }
-);
+)
 schema.plugin(
     URLSlugs('title', {
         field: 'url',

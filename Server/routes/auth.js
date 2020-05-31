@@ -124,7 +124,7 @@ router.post('/login', async (req, res, next) => {
                         res.json({
                             resultCode: 102,
                             type: 'error',
-                            message: 'Login or password incorrect!',
+                            message: 'Incorrect login or password',
                         })
                     }
                 })

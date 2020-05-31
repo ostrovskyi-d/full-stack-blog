@@ -14,7 +14,7 @@
     &_title {
       font-weight: lighter;
       font-size: 36px;
-      margin: $freeSpace*2 0;
+      //margin: $freeSpace*2 0;
     }
   }
 
@@ -32,6 +32,11 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
+    color: gray;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.71);
+    border-top: 1px solid rgba(128, 128, 128, 0.71);
+    margin-bottom: $freeSpace;
     &_author {
 
     }
