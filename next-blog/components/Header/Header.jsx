@@ -1,12 +1,13 @@
- ;
-import {NavLink} from "react-router-dom";
+// import {NavLink} from "react-router-dom";
 import s from './Header.module.scss'
+import {Link} from "next";
+import React from "react";
 
 const Header = (props) => {
     return (
         <header className={s.header}>
             <div className={s.container}>
-                <NavLink to="/" className={s.logo}/>
+                <Link to="/" className={s.logo}/>
                 {/*<nav className={s.menu}>*/}
                 {/*    {*/}
                 {/*        isAuth*/}

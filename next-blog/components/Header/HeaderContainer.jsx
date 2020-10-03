@@ -1,7 +1,7 @@
- ;
 import Header from "./Header";
 import {connect} from "react-redux";
 import {logOutTC} from "../../store/reducers/auth-reducer";
+import React from "react";
 
 const HeaderContainer = (props) => {
     const onLogOut = () => {

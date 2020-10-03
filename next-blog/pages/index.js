@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react';
-// import s from './App.module.scss';
+import s from './App.module.scss';
 import HeaderContainer from '../components/Header/HeaderContainer'
 import FooterContainer from '../components/Footer/FooterContainer'
-import MainRoutesContainer from "../components/Main/MainRoutesContainer";
+// import MainRoutesContainer from "../components/Main/MainRoutesContainer";
 import {initializeApp, authenticateTC} from "../store/reducers/common-app-reducer";
 import {connect} from "react-redux";
 import Preloader from "../components/common/Preloader";
+import Newest from "../components/Newest/Newest";
+import {useEffect} from "react";
 
 
 const App = (props) => {
@@ -23,9 +24,10 @@ const App = (props) => {
   if (!initialized) return <Preloader/>;
   else return (
       <div className={s.wrapper}>
-        <HeaderContainer/>
-        <MainRoutesContainer/>
-        <FooterContainer/>
+        {/*<HeaderContainer/>*/}
+        <Newest/>
+        {/*<MainRoutesContainer/>*/}
+        {/*<FooterContainer/>*/}
       </div>
   );
 };

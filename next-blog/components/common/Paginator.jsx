@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {Pagination} from "antd";
 import s from './Paginator.module.scss'
-import {withRouter} from "react-router-dom";
 
-const Paginator = ({getReqPageTC, posts, history, ...props}) => {
+const Paginator = ({getReqPageTC, posts, ...props}) => {
+    const router = useRouter();
+    const {history} = router;
+
     const [currentPage, setCurrentPage] = useState(+props.match.params.page);
     useEffect(() => {
         // history.push(`/archive/${currentPage}`);
@@ -29,4 +31,4 @@ const Paginator = ({getReqPageTC, posts, history, ...props}) => {
     else return null
 };
 
-export default withRouter(Paginator);
+export default Paginator;

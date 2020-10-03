@@ -1,5 +1,6 @@
-// import { postsApi, authAPI } from '../API/api'
+import { postsApi, authAPI } from '../../API/api'
 import { toggleFetchingAC } from "./common-app-reducer";
+
 // On initialize app (no needed from start, but it would be useful for future)
 
 // Action Types

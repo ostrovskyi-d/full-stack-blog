@@ -1,4 +1,3 @@
- ;
 
 const Preloader = (props) => {
     return (
