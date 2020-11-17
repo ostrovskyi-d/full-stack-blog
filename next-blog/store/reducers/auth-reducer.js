@@ -1,6 +1,9 @@
 
 // On initialize app (no needed from start, but it would be useful for future)
 // Actions Types
+import {toggleFetchingAC} from "./common-app-reducer";
+import {authAPI} from "../../API/api";
+
 const CHANGE_AUTH_DATA = "network/auth/CHANGE-AUTH-DATA";
 const TOGGLE_AUTH_TYPE = "TOGGLE-AUTH-TYPE";
 

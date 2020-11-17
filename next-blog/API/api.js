@@ -1,4 +1,5 @@
-var axios = require('axios');
+// var axios = require('axios');
+import * as axios from 'axios';
 
 const instance = axios.create({
     withCredentials: true,
@@ -8,7 +9,9 @@ const instance = axios.create({
 
 export const authAPI = {
     async getUserData() {
-        return await instance.get(`/`);
+        let response = await instance.get(`/`);
+        console.log(response)
+        return response;
     },
     // Login or Register
     async sendFormData(data) {
@@ -23,6 +26,7 @@ export const authAPI = {
 };
 export const postsApi = {
     async getReqPost(postName) {
+        console.log(postName)
         return await instance.get(`/posts/${postName}`)
     },
     async getReqPage(reqPage) {

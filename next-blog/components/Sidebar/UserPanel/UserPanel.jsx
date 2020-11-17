@@ -1,5 +1,4 @@
- ;
-import {withRouter} from "react-router-dom";
+import {useRouter} from "next/router";
 import {Button, Menu} from 'antd';
 import s from './UserPanel.module.scss'
 import SnippetsOutlined from "@ant-design/icons/lib/icons/SnippetsOutlined";
@@ -19,14 +18,13 @@ const menuStyle = {
     background: 'transparent'
 }
 const UserPanel = ({logOut, userData, auth, isFetching, history, ...rest}) => {
+    const router = useRouter();
     const onLogOut = () => {
         logOut()
     };
 
     return (
         <>
-
-
             <div className={s.greeting}>
                 <Avatar size='large' icon={<UserOutlined />} />
                 <span className={s.userLogin}>{userData.userLogin}</span>
@@ -36,19 +34,19 @@ const UserPanel = ({logOut, userData, auth, isFetching, history, ...rest}) => {
                   defaultOpenKeys={['sub1']}
                   style={menuStyle}
             >
-                <Menu.Item onClick={() => history.push(`/`)} key='1'>
+                <Menu.Item onClick={() => router.push(`/`)} key='1'>
                     <CalendarOutlined />
                     Feed
                 </Menu.Item>
-                <Menu.Item onClick={() => history.push(`/users/${auth.userLogin}`)} key='2'>
+                <Menu.Item onClick={() => router.push(`/users/${auth.userLogin}`)} key='2'>
                     <SnippetsOutlined/>
                     My Posts
                 </Menu.Item>
-                <Menu.Item onClick={() => history.push(`/post/add`)} key='3'>
+                <Menu.Item onClick={() => router.push(`/post/add`)} key='3'>
                     <PlusOutlined/>
                     Add Post
                 </Menu.Item>
-                <Menu.Item onClick={() => history.push(`/archive/2`)} key='4'>
+                <Menu.Item onClick={() => router.push(`/archive/2`)} key='4'>
                     <DatabaseOutlined />
                     Archive
                 </Menu.Item>
@@ -62,4 +60,4 @@ const UserPanel = ({logOut, userData, auth, isFetching, history, ...rest}) => {
         </>
     )
 };
-export default withRouter(UserPanel);
+export default UserPanel;

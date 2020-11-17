@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import Preloader from "../components/common/Preloader";
 import Newest from "../components/Newest/Newest";
 import {useEffect} from "react";
-
+import Sidebar from "../components/Sidebar/Sidebar";
 
 const App = (props) => {
   const {
@@ -24,10 +24,17 @@ const App = (props) => {
   if (!initialized) return <Preloader/>;
   else return (
       <div className={s.wrapper}>
-        {/*<HeaderContainer/>*/}
-        <Newest/>
+        <HeaderContainer/>
+        <main className={s.main}>
+          <div className={s.container}>
+            <div className={s.content}>
+              <Newest/>
+            </div>
+            <Sidebar/>
+          </div>
+        </main>
         {/*<MainRoutesContainer/>*/}
-        {/*<FooterContainer/>*/}
+        <FooterContainer/>
       </div>
   );
 };

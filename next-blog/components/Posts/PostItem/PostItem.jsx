@@ -6,7 +6,7 @@ import EditOutlined from "@ant-design/icons/lib/icons/EditOutlined";
 import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import Moment from "react-moment";
-import Link from "next";
+import Link from "next/link";
 // import ReactJson from 'react-json-view';
 
 
@@ -19,8 +19,8 @@ const PostItem = (props) => {
             <div className={s.top}>
 
                 <h2>
-                    <Link to={props.url}>
-                        {props.title}
+                    <Link href={props.url}>
+                      <a>{props.title}</a>
                     </Link>
                 </h2>
                 <div className={s.buttons}>
@@ -49,12 +49,12 @@ const PostItem = (props) => {
                 <div className={s.timestamp}>
                     {/*Created at:&nbsp;*/}
 
-                    <Link to='#'>
+                    <Link href='#'>
                         <Moment date={props.createdAt} />
                     </Link>
                 </div>
                 <div className={s.comments}>
-                    <Link to='#'>Comments</Link>
+                    <Link href='#'><a>Comments</a></Link>
                 </div>
             </section>
         </div>
@@ -65,11 +65,14 @@ const RenderAuthor = props => {
     if (props.author) {
         return (
             <div className={s.author}>
-                <Link className={s.author_link} to={`/users/${props.author.login}`}>
+                <Link  href={`/users/${props.author.login}`}>
+                  <a className={s.author_link}>
                     <Avatar className={s.author_link_avatar} icon={<UserOutlined />} size='small' />
                     <span className={s.author_link_name}>
                         {props.author.login}
                     </span>
+                  </a>
+
                 </Link>
             </div>
         )

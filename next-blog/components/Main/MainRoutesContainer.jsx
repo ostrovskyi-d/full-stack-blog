@@ -15,15 +15,7 @@ const MainRoutesContainer = (wprops) => {
         <main className={s.main}>
             <div className={s.container}>
                 <div className={s.content}>
-                    <Switch>
-                        <Route exact path={`/`} render={() => <Newest/>}/>
-                        <Route path={`/post/add`} render={() => <PostAddContainer/> }/>
-                        <Route path={`/posts/:postName`} render={() => <FullPost/>}/>
-                        <Route path={`/archive/:page`} render={() => <PostsContainer/>}/>
-                        <Route path={`/users/:userName`} render={() => <ProfileContainer />} />
-                        <Route path={`/post/:postName/comments`} render={() => <CommentsContainer /> } />
-                        <Route component={NoMatch} />
-                    </Switch>
+
                 </div>
                 <Sidebar/>
             </div>

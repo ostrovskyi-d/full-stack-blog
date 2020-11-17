@@ -102,7 +102,6 @@ export const getAllPostsTC = () =>
     async (dispatch) => {
         dispatch(toggleFetchingAC(true));
         let { data } = await authAPI.getUserData();
-
         dispatch(setTotalPagesAC(data.totalPages));
         dispatch(getReqPageAC(data.currentPage));
         dispatch(setTotalPostsCountAC(data.totalPostsCount));
@@ -112,6 +111,7 @@ export const getAllPostsTC = () =>
 
 export const getReqPageTC = (reqPage) =>
     async (dispatch) => {
+        console.log('123123')
         dispatch(toggleFetchingAC(true));
         let { data } = await postsApi.getReqPage(reqPage);
         // debugger
