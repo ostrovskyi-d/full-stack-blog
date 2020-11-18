@@ -1,13 +1,13 @@
- ;
+import React from 'react';
 import s from './Profile.module.scss';
 import PostItem from "../Posts/PostItem/PostItem";
 import {Empty, Button, Avatar} from 'antd';
-import {  withRouter } from "react-router-dom";
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
+import {useRouter} from "next/router";
 
 const Profile = props => {
-
-    const { userProfile, history } = props;
+    const router = useRouter();
+    const { userProfile } = props;
     const { login, posts } = userProfile;
 
     return (
@@ -48,7 +48,7 @@ const Profile = props => {
                             </span>
                         }
                     >
-                        <Button onClick={() => history.push('/post/add')} type="primary">Create Post</Button>
+                        <Button onClick={() => router.push('/post/add')} type="primary">Create Post</Button>
                     </Empty>
                 }
             </section>
@@ -58,4 +58,4 @@ const Profile = props => {
 
 };
 
-export default withRouter(Profile);
+export default Profile;

@@ -2,15 +2,14 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {getUserProfileTC} from "../../store/reducers/profile-reducer";
 import Profile from "./Profile";
-import {compose} from "redux";
-import {withRouter} from "react-router-dom";
+import {useRouter} from "next/router";
 import Preloader from "../common/Preloader";
 
 const ProfileContainer = props => {
+    const {query: {userName}} = useRouter();
 
     const {
         getUserProfileTC,
-        match: {params: {userName}},
         isFetching,
         userProfile,
     } = props;
@@ -38,7 +37,4 @@ const mapDispatchToProps = {
 };
 
 
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withRouter
-)(ProfileContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
