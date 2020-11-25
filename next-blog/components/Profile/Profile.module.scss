@@ -1,0 +1,25 @@
+@import "../common/styles/main";
+
+.profileInfo {
+  margin: $freeSpace;
+  font-size: xx-large;
+  font-weight: 300;
+  .avaLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: $freeSpace;
+
+  }
+  h2 {
+    padding: 0;
+    margin: $freeSpace;
+    font-size: large;
+  }
+  h3 {
+
+    font-size: medium;
+    align-self: center;
+  }
+
+}
