@@ -33,15 +33,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3c124ce-4b3d-456f-b513-9854bc7582d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/full-stack-blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/full-stack-blog.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next-blog/API/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/next-blog/API/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next-blog/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/next-blog/components/Header/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next-blog/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/next-blog/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next-blog/pages/posts/[postName].js" beforeDir="false" afterPath="$PROJECT_DIR$/next-blog/pages/posts/[postName].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +58,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -81,6 +78,7 @@
       <workItem from="1605182341084" duration="135000" />
       <workItem from="1605182507505" duration="258000" />
       <workItem from="1605695835645" duration="127000" />
+      <workItem from="1606302823920" duration="138000" />
     </task>
     <servers />
   </component>
@@ -108,9 +106,9 @@
       <screen x="0" y="0" width="1366" height="727" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.727@0.0.1366.727" timestamp="1605182476330" />
-    <state x="330" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1606300869499">
+    <state x="330" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1606302871567">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="330" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.738@0.0.1366.738" timestamp="1606300869499" />
+    <state x="330" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.738@0.0.1366.738" timestamp="1606302871567" />
   </component>
 </project>
