@@ -29,7 +29,7 @@
     "eslint-plugin-import": "^2.20.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
-    "mongoose": "4.13.7",
+    "mongoose": "5.7.5",
     "mongoose-timestamp": "^0.6.0",
     "mongoose-url-slugs": "^1.0.2",
     "transliter": "^2.2.1",
