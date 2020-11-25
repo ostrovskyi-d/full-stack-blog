@@ -1,7 +1,7 @@
+import React from 'react';
 import s from './App.module.scss';
 import HeaderContainer from '../components/Header/HeaderContainer'
 import FooterContainer from '../components/Footer/FooterContainer'
-// import MainRoutesContainer from "../components/Main/MainRoutesContainer";
 import {initializeApp, authenticateTC} from "../store/reducers/common-app-reducer";
 import {connect} from "react-redux";
 import Preloader from "../components/common/Preloader";
