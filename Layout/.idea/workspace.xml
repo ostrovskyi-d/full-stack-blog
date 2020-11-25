@@ -1,27 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="711e5e5a-605e-49b4-a84b-d8713349e8a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/scss/_forms.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/scss/components/_auth.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/scss/components/_post.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/public/stylesheets/style.css" afterDir="false" />
+    <list default="true" id="63fdadda-40aa-4425-9605-d4e5cb022221" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/scss/_main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/dev/scss/_main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/scss/_typography.scss" beforeDir="false" afterPath="$PROJECT_DIR$/dev/scss/_typography.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/dev/scss/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/gulpfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/views/layout/footer.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/views/layout/footer.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/views/layout/header.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/views/layout/header.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/yarn-error.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/yarn-error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/public/javascript/scripts.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/public/javascript/scripts.min.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,123 +13,47 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1WsYGqN2yuASOCnP8ZRzJuTjcFr" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="1Xqbb9ktjJqLYUU6ZfxqNEqgoxH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="10.16.0" />
-    <property name="last_opened_file_path" value="C:/Program Files/nodejs/node.exe" />
-    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
-    <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\User2019\Desktop\w\Layouts\Blog\dist" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="index.html" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:63342/Blog/dist/index.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="711e5e5a-605e-49b4-a84b-d8713349e8a8" name="Default Changelist" comment="" />
-      <created>1579939677007</created>
+      <changelist id="63fdadda-40aa-4425-9605-d4e5cb022221" name="Default Changelist" comment="" />
+      <created>1581776653179</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1579939677007</updated>
-      <workItem from="1579939678965" duration="9112000" />
-      <workItem from="1579950807176" duration="354000" />
-      <workItem from="1579951231941" duration="7580000" />
-      <workItem from="1580066169905" duration="6936000" />
-      <workItem from="1580074185694" duration="4164000" />
+      <updated>1581776653179</updated>
+      <workItem from="1581776699771" duration="29000" />
+      <workItem from="1581777011980" duration="141000" />
+      <workItem from="1581870386293" duration="35000" />
+      <workItem from="1581871107680" duration="713000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="254" y="106" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579947483776">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="254" y="106" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.870@0.0.1600.870" timestamp="1579947483776" />
-    <state x="575" y="246" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1579957606230">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="575" y="246" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.870@0.0.1600.870" timestamp="1579957606230" />
-    <state x="530" y="198" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1579956335007">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="530" y="198" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.870@0.0.1600.870" timestamp="1579956335007" />
-    <state x="495" y="175" key="FileChooserDialogImpl" timestamp="1580072373990">
+    <state x="29" y="106" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1581870390329">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="495" y="175" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1580072373990" />
-    <state x="580" y="206" key="FileChooserDialogImpl/0.0.1600.870@0.0.1600.870" timestamp="1579955579807" />
-    <state width="1345" height="180" key="GridCell.Tab.0.bottom" timestamp="1580066514998">
+    <state x="29" y="106" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1581870390329" />
+    <state x="463" y="124" key="FileChooserDialogImpl" timestamp="1581871825261">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1345" height="180" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1580066514998" />
-    <state width="1345" height="180" key="GridCell.Tab.0.center" timestamp="1580066514998">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1345" height="180" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1580066514998" />
-    <state width="1345" height="180" key="GridCell.Tab.0.left" timestamp="1580066514998">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1345" height="180" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1580066514998" />
-    <state width="1345" height="180" key="GridCell.Tab.0.right" timestamp="1580066514998">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1345" height="180" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1580066514998" />
-    <state x="335" y="30" width="916" height="708" key="SettingsEditor" timestamp="1580072387986">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="335" y="30" width="916" height="708" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1580072387986" />
-    <state x="524" y="15" width="998" height="717" key="SettingsEditor/0.0.1600.870@0.0.1600.870" timestamp="1579956711476" />
-    <state x="510" y="193" key="jetbrains.nodejs.interpreters-dialog" timestamp="1580072375246">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="510" y="193" key="jetbrains.nodejs.interpreters-dialog/0.0.1366.738@0.0.1366.738" timestamp="1580072375246" />
-    <state x="396" y="177" key="run.anything.popup" timestamp="1580073454188">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="396" y="177" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1580073454188" />
-    <state x="464" y="209" key="run.anything.popup/0.0.1600.870@0.0.1600.870" timestamp="1579957549688" />
-    <state x="463" y="191" width="672" height="678" key="search.everywhere.popup" timestamp="1579955399495">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="463" y="191" width="672" height="678" key="search.everywhere.popup/0.0.1600.870@0.0.1600.870" timestamp="1579955399495" />
+    <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1581871825261" />
   </component>
 </project>

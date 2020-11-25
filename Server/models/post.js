@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const URLSlugs = require('mongoose-url-slugs');
-const { transliter, slugify, isCyrillic } = require('transliter');
+const { slugify } = require('transliter');
 
 const schema = new Schema({
     title: {
@@ -13,19 +13,24 @@ const schema = new Schema({
         required: true
     },
     author: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'User',
     }
 },
     {
-        timestamps: true
+        timestamps: {
+            created_at: new Date().toDateString()
+        }
     }
-);
+)
 schema.plugin(
     URLSlugs('title', {
         field: 'url',
         generator: text => slugify(text)
     })
-)
+);
+// console.log(typeof splitCreatedAt)
+
 schema.set('toJSON', {
     virtuals: true
 });

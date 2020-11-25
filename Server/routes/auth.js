@@ -9,59 +9,49 @@ const saltRounds = 10;
 
 // register: storing name, email and password and redirecting to home page after signup
 router.post('/register', async (req, res, next) => {
-    const { login, password, passwordConfirm } = req.body;
-    const fields = [];
-
-    !login && fields.push('login');
-    !password && fields.push('password');
-    !passwordConfirm && fields.push('password-repeat');
-
+    const login = req.body['login'],
+        password = req.body['password'],
+        passwordConfirm = req.body['password-repeat'];
 
     if (!login || !password || !passwordConfirm) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: "All fields must be filled",
-            fields
         });
     } else if (!/^[a-zA-Z0-9]+$/.test(login)) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: 'Only latin letters and numbers',
-            fields: ['login']
         })
     } else if (login.length < 3) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: 'Login too short <br>(min symbols - 3, max symbols - 16)',
-            fields
         })
 
-    } else if (login.length > 16) {
+    } else if (login.length > 30) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: 'Login too long <br>(min symbols - 3, max symbols - 16)',
-            fields
         })
     } else if (password.length < 6) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: 'Minimum password length - 6 chars',
-            fields: ['password']
         })
     } else if (password !== passwordConfirm) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: 'Passwords not equal',
-            fields
         })
     } else {
-        let user = await db.User.findOne({ login });
+        let user = await db.User.findOne({login});
         if (!user) {
             bcrypt.hash(password, saltRounds, async (err, hash) => {
                 try {
@@ -74,13 +64,14 @@ router.post('/register', async (req, res, next) => {
                     res.json({
                         resultCode: 101,
                         message: "User created",
-                        fields
+                        userId: user.id,
+                        userLogin: user.login,
                     });
+                    // res.redirect('/');
                 } catch (err) {
                     res.json({
                         resultCode: 102,
                         message: "Error, try later",
-                        fields: []
                     })
                 }
             });
@@ -89,7 +80,6 @@ router.post('/register', async (req, res, next) => {
             res.json({
                 resultCode: 102,
                 message: "User already exist",
-                fields
             })
         }
     }
@@ -97,62 +87,64 @@ router.post('/register', async (req, res, next) => {
 
 
 router.post('/login', async (req, res, next) => {
-    const { login, password } = req.body;
-
-    const fields = [];
-    console.log(login, password);
-    !login && fields.push('login');
-    !password && fields.push('password');
-
+    const {login, password} = req.body;
     if (!login || !password) {
         res.json({
             resultCode: 102,
             type: 'error',
             message: 'All fields must be filled',
-            fields
         })
     } else {
-        let user = await db.User.findOne({ login });
-        if (!user) {
-            res.json({
-                resultCode: 102,
-                type: 'error',
-                message: 'Login or password incorrect!',
-                fields: ['login', 'password']
-            })
+        try {
+            let user = await db.User.findOne({login});
+            if (!user) {
+                res.json({
+                    resultCode: 102,
+                    type: 'error',
+                    message: 'Login or password incorrect!',
+                })
 
-        } else {
-            bcrypt.compare(password, user.password, (err, result) => {
-                console.log(result);
-                if (result) {
+            } else {
+                return bcrypt.compare(password, user.password, (err, result) => {
+                    console.log('USER::::::::', user);
+                    if (result) {
+                        // SESSION
+                        req.session.userId = user.id;
+                        req.session.userLogin = user.login;
 
-                    // SESSION
-                    req.session.userId = user.id;
-                    req.session.userLogin = user.login;
+                        res.json({
+                            resultCode: 101,
+                            message: 'Successful logged in',
+                            type: 'success',
+                            userLogin: user.login,
+                            userId: user.id
+                        })
+                    } else {
 
-                    res.json({
-                        resultCode: 101,
-                        type: 'success',
-                        message: `Hello, ${login}!`
-                    })
-                } else {
-
-                    res.json({
-                        resultCode: 102,
-                        type: 'error',
-                        message: 'Login or password incorrect!',
-                    })
-                }
-            })
+                        res.json({
+                            resultCode: 102,
+                            type: 'error',
+                            message: 'Incorrect login or password',
+                        })
+                    }
+                })
+            }
+        } catch (e) {
+            throw new Error('Server Error')
         }
+
     }
 });
 
 router.get('/logout', (req, res, next) => {
+
     if (req.session) {
-        req.session.destroy((err) => {
-            if (err) return next(err);
-            else return res.redirect('/')
+        req.session.destroy(err => {
+            req.session = null;
+            res.json({
+                resultCode: 101,
+                message: 'Successful logged out of your account'
+            })
         });
     } else {
         res.redirect('/')

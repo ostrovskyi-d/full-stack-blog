@@ -1,0 +1,40 @@
+@import "../common/styles/main";
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: $freeSpace;
+  min-height: calc(100vh - 113px);
+
+  .container {
+    .content {
+      flex: 3;
+      //padding: 0 5px ;
+      margin-right: $freeSpace;
+      margin-bottom: $freeSpace;
+      min-height: 100px;
+    }
+
+    /* Portrait tablets and small desktops */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .content {
+        flex: 1;
+        margin: 0 5px 0 5px;
+      }
+    }
+    /* Landscape phones and portrait tablets */
+    @media (max-width: 767px) {
+      .content {
+        flex: 1;
+        margin: 0 5px 0 5px;
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .container {
+      flex-direction: column-reverse;
+    }
+  }
+}
