@@ -13,5 +13,5 @@ Below I will provide a list of branches, and their purpose to understand the con
 ## List:
 * master - project based on Next.js framework for learning SSR main principles using React;
 * ESModules - experiments with ES Modules on server side;
-* blog-faker
+* blog-faker - version with fake data in db; 
 
