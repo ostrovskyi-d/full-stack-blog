@@ -6,34 +6,35 @@ import {useRouter} from "next/router";
 import Preloader from "../common/Preloader";
 
 const ProfileContainer = props => {
-    const {query: {userName}} = useRouter();
+  debugger;
+  const {query: {userName}} = useRouter();
 
-    const {
-        getUserProfileTC,
-        isFetching,
-        userProfile,
-    } = props;
+  const {
+    getUserProfileTC,
+    isFetching,
+    userProfile,
+  } = props;
 
-    useEffect(() => {
-        getUserProfileTC(userName);
-        return () => {
-            getUserProfileTC(null);
-        }
-    }, [getUserProfileTC, userName]);
-
-    if(isFetching || userProfile === null || userProfile === undefined) {
-        return <Preloader />
-    } else {
-        return <Profile {...props}/>
+  useEffect(() => {
+    getUserProfileTC(userName);
+    return () => {
+      getUserProfileTC(null);
     }
+  }, [getUserProfileTC, userName]);
+
+  // if (isFetching || userProfile === null || userProfile === undefined) {
+    // return <Preloader/>
+  // } else {
+    return <Profile {...props}/>
+  // }
 };
 
 const mapStateToProps = (state) => ({
-    userProfile: state.profilePage.userProfile,
-    isFetching: state.profilePage.isFetching,
+  userProfile: state.profilePage.userProfile,
+  isFetching: state.profilePage.isFetching,
 });
 const mapDispatchToProps = {
-    getUserProfileTC
+  getUserProfileTC
 };
 
 

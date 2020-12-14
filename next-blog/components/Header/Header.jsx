@@ -5,7 +5,6 @@ import React from "react";
 import PlusCircleOutlined from '@ant-design/icons'
 
 const Header = (props) => {
-
   return (
       <header className={s.header}>
         <div className={s.container}>
@@ -13,7 +12,7 @@ const Header = (props) => {
             <nav className={s.menu}>
               {
                 props.isAuth
-                && <Link onClick={showMessage} href={(isAuth && '/post/add') || pathname}>
+                && <Link  href={(props.isAuth && '/post/add') || pathname}>
                   <a>
                     <PlusCircleOutlined/>
                     Add post

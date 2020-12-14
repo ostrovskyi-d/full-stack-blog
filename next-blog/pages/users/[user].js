@@ -1,9 +1,40 @@
-import React from 'react'
-import ProfileContainer from '../../components/Profile/ProfileContainer'
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
+import {getUserProfileTC} from "../../store/reducers/profile-reducer";
+import Profile from "../../components/Profile/Profile";
+import {useRouter} from "next/router";
+import Preloader from "../../components/common/Preloader";
 
-// todo: need to pass a props with connect to this component
-const ProfileNextWrapper = (props) => <ProfileContainer/>;
+const ProfileContainer = props => {
+  const {query: {user: userName}} = useRouter();
+
+  const {
+    getUserProfileTC,
+    isFetching,
+    userProfile,
+  } = props;
+
+  useEffect(() => {
+    getUserProfileTC(userName);
+    return () => {
+      getUserProfileTC(null);
+    }
+  }, [ userName]);
+
+  if (isFetching || userProfile === null || userProfile === undefined) {
+    return <Preloader/>
+  } else {
+    return <Profile {...props}/>
+  }
+};
+
+const mapStateToProps = (state) => ({
+  userProfile: state.profilePage.userProfile,
+  isFetching: state.profilePage.isFetching,
+});
+const mapDispatchToProps = {
+  getUserProfileTC
+};
 
 
-export default ProfileNextWrapper;
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
