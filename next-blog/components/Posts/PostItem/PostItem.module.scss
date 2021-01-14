@@ -12,7 +12,7 @@
   border-radius: $borderRadius + 12px;
   box-shadow: 0 2px 5px -2px $greyColor;
   transition-duration: .3s;
-
+  max-width: 700px;
 
   .top {
     display: flex;

@@ -42,7 +42,7 @@ const UserPanel = ({logOut, userData, auth, isFetching, history, ...rest}) => {
                     <SnippetsOutlined/>
                     My Posts
                 </Menu.Item>
-                <Menu.Item onClick={() => router.push(`/post/add`)} key='3'>
+                <Menu.Item onClick={() => router.push(`/posts/add`)} key='3'>
                     <PlusOutlined/>
                     Add Post
                 </Menu.Item>

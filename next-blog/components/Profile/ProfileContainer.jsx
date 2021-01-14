@@ -6,7 +6,8 @@ import {useRouter} from "next/router";
 import Preloader from "../common/Preloader";
 
 const ProfileContainer = props => {
-    const {query: {userName}} = useRouter();
+    const router = useRouter();
+    const {user} = router.query;
 
     const {
         getUserProfileTC,
@@ -15,13 +16,10 @@ const ProfileContainer = props => {
     } = props;
 
     useEffect(() => {
-        getUserProfileTC(userName);
-        return () => {
-            getUserProfileTC(null);
-        }
-    }, [getUserProfileTC, userName]);
+        getUserProfileTC(user);
+    }, [getUserProfileTC, user]);
 
-    if(isFetching || userProfile === null || userProfile === undefined) {
+    if( !userProfile || isFetching) {
         return <Preloader />
     } else {
         return <Profile {...props}/>

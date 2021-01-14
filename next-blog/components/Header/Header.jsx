@@ -9,20 +9,20 @@ const Header = (props) => {
   return (
       <header className={s.header}>
         <div className={s.container}>
-          <a href='/' className={s.logo}>
-            <nav className={s.menu}>
-              {
-                props.isAuth
-                && <Link onClick={props.showMessage} href={(props.isAuth && '/post/add') || props.pathname}>
-                  <a>
-                    <PlusCircleOutlined/>
-                    Add post
-                  </a>
+          <a href='/' className={s.logo}/>
+          <nav className={s.menu}>
+            {
+              props.isAuth
+              && <Link href={(props.isAuth && '/posts/add') || props.pathname}>
+                <a onClick={props.showMessage}>
+                  <PlusCircleOutlined/>
+                  Add post
+                </a>
 
-                </Link>
-              }
-            </nav>
-          </a>
+              </Link>
+            }
+          </nav>
+
 
         </div>
       </header>

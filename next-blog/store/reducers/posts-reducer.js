@@ -111,14 +111,14 @@ export const getAllPostsTC = () =>
 
 export const getReqPageTC = (reqPage) =>
     async (dispatch) => {
-        console.log('123123')
         dispatch(toggleFetchingAC(true));
         let { data } = await postsApi.getReqPage(reqPage);
-        // debugger
         dispatch(setTotalPagesAC(data.totalPages));
         dispatch(setPostsStoreAC(data.posts));
-        if(data.currentPage) dispatch(getReqPageAC(data.currentPage));
-        dispatch(toggleFetchingAC(false));
+        dispatch(setTotalPostsCountAC(data.totalPostsCount));
+
+      if(data.currentPage) dispatch(getReqPageAC(data.currentPage));
+      dispatch(toggleFetchingAC(false));
     };
 
 // thunk-creator

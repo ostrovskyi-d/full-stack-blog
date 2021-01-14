@@ -11,7 +11,7 @@ const Profile = props => {
     const { login, posts } = userProfile;
 
     return (
-        <>
+        <div className={s.profileWrapper}>
             <section className={s.data}>
 
                 <div className={s.profileInfo}>
@@ -48,11 +48,11 @@ const Profile = props => {
                             </span>
                         }
                     >
-                        <Button onClick={() => router.push('/post/add')} type="primary">Create Post</Button>
+                        <Button onClick={() => router.push('/posts/add')} type="primary">Create Post</Button>
                     </Empty>
                 }
             </section>
-        </>
+        </div>
     )
 
 

@@ -1,5 +1,6 @@
 // import {usersApi} from "../API/api";
 import {toggleFetchingAC} from "./common-app-reducer";
+import {usersApi} from "../../API/api";
 
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 // const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
@@ -40,6 +41,7 @@ export const getUserProfileTC = (reqUser) =>
             dispatch(setUserProfileAC(data.userData));
         } else {
             dispatch(setUserProfileAC(null));
+            dispatch(toggleFetchingAC(false));
         }
         dispatch(toggleFetchingAC(false));
     };

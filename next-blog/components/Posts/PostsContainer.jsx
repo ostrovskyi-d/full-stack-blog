@@ -5,12 +5,12 @@ import {getAllPostsTC, getReqPageTC} from "../../store/reducers/posts-reducer";
 import {compose} from 'redux';
 import Preloader from "../common/Preloader";
 import {Empty} from "antd";
-import {withRouter} from "react-router-dom";
+import {withRouter} from "next/router";
 
 const PostsContainer = (props) => {
-    const {posts, getReqPageTC, match} = props;
+    const {posts, getReqPageTC, router} = props;
     useEffect(()=> {
-        getReqPageTC(match.params.page)
+        getReqPageTC(router.query.page)
     }, [getReqPageTC]);
     if(posts.postsStore.length <= 0) return <Empty />;
     else return <Posts {...props} />;

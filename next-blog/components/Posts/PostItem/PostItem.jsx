@@ -1,5 +1,4 @@
 import s from "./PostItem.module.scss";
-// import { Link, NavLink } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import { Avatar, Button } from "antd";
 import EditOutlined from "@ant-design/icons/lib/icons/EditOutlined";
@@ -7,7 +6,6 @@ import DeleteOutlined from "@ant-design/icons/lib/icons/DeleteOutlined";
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import Moment from "react-moment";
 import Link from "next/link";
-// import ReactJson from 'react-json-view';
 
 
 const PostItem = (props) => {

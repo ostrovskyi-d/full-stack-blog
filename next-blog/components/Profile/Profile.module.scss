@@ -1,25 +1,41 @@
 @import "../common/styles/main";
+.profileWrapper {
+  display: flex;
+  flex-direction: row;
+  //padding: 1%;
+  justify-content: space-around;
+  .data {
+    .profileInfo {
+      margin: $freeSpace;
+      font-size: xx-large;
+      font-weight: 300;
+      .avaLogin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: $freeSpace;
 
-.profileInfo {
-  margin: $freeSpace;
-  font-size: xx-large;
-  font-weight: 300;
-  .avaLogin {
+      }
+      h2 {
+        padding: 0;
+        margin: $freeSpace;
+        font-size: large;
+      }
+      h3 {
+
+        font-size: medium;
+        align-self: center;
+      }
+
+    }
+  }
+
+  .posts {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: $freeSpace;
+    width: 100%;
+    padding: 2%;
+
 
   }
-  h2 {
-    padding: 0;
-    margin: $freeSpace;
-    font-size: large;
-  }
-  h3 {
-
-    font-size: medium;
-    align-self: center;
-  }
-
 }
