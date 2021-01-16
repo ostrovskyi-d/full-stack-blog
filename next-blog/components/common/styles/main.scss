@@ -1,3 +1,7 @@
+@import "reset.module";
+@import "grid.module";
+@import "typography.module";
+
 $blockColor: #333;
 $whiteColor: #fafafa;
 $greyColor: #e8e8e8;
@@ -25,8 +29,5 @@ $hoverBoxShadow: 0 2px 7px -1px #cecece;
 }
 
 
-@import "reset.module";
-@import "grid.module";
-@import "typography.module";
-//@import "../../node_modules/medium-editor/dist/css/medium-editor";
-//@import "../../node_modules/medium-editor/dist/css/themes/beagle";
+
+

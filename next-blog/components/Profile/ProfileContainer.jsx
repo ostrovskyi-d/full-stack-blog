@@ -2,37 +2,40 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {getUserProfileTC} from "../../store/reducers/profile-reducer";
 import Profile from "./Profile";
-import {useRouter} from "next/router";
-import Preloader from "../common/Preloader";
+import Preloader from "../common/Preloader/Preloader";
+import {compose} from "redux";
 
 const ProfileContainer = props => {
-    const router = useRouter();
-    const {user} = router.query;
-
-    const {
-        getUserProfileTC,
-        isFetching,
-        userProfile,
-    } = props;
-
-    useEffect(() => {
-        getUserProfileTC(user);
-    }, [getUserProfileTC, user]);
-
-    if( !userProfile || isFetching) {
-        return <Preloader />
-    } else {
-        return <Profile {...props}/>
+  const {
+    getUserProfileTC,
+    isFetching,
+    userProfile,
+    auth: {
+      userLogin
     }
+  } = props;
+
+  useEffect(() => {
+    getUserProfileTC(userLogin);
+  }, [getUserProfileTC, userLogin]);
+
+  if (!userProfile || isFetching) {
+    return <Preloader/>
+  } else {
+    return <Profile {...props}/>
+  }
 };
 
 const mapStateToProps = (state) => ({
-    userProfile: state.profilePage.userProfile,
-    isFetching: state.profilePage.isFetching,
+  auth: state.auth,
+  userProfile: state.profilePage.userProfile,
+  isFetching: state.profilePage.isFetching,
 });
 const mapDispatchToProps = {
-    getUserProfileTC
+  getUserProfileTC
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps)
+)(ProfileContainer);

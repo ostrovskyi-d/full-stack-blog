@@ -3,7 +3,6 @@ import Posts from "./Posts";
 import {connect} from "react-redux";
 import {getAllPostsTC, getReqPageTC} from "../../store/reducers/posts-reducer";
 import {compose} from 'redux';
-import Preloader from "../common/Preloader";
 import {Empty} from "antd";
 import {withRouter} from "next/router";
 

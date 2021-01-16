@@ -1,4 +1,4 @@
 
-export function timeStampPrettifier(time) {
+export function timeStampPrettier(time) {
     console.log(time)
 }

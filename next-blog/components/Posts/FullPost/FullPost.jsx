@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { getOnePostTC } from "../../../store/reducers/posts-reducer";
 import { compose } from "redux";
 import ReactMarkdown from "react-markdown";
-import Preloader from "../../common/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 import CommentsContainer from "../Comments/CommentsContainer";
 import Moment from "react-moment";
 import {Button} from "antd";

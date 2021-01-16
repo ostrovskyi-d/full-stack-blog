@@ -1,14 +1,13 @@
-import React, {useState, useMemo} from 'react';
+import React from 'react';
 import s from './PostAdd.module.scss';
 import {Button, Input, message} from "antd";
 import {Field, reduxForm} from 'redux-form';
-import {compose} from "redux";
 
 const PostAdd = (props) => {
   const {sendCreatedPost} = props;
 
   const addPost = async (data) => {
-    let promise = await sendCreatedPost(data)
+    let promise = await sendCreatedPost(data);
     message[`${promise.resolved ? 'success' : 'error'}`](promise.message)
   };
 

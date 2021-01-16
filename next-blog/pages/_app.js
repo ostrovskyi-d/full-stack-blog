@@ -1,16 +1,36 @@
+import 'antd/dist/antd.css'
+import s from "./App.module.scss";
+
 import {Provider} from 'react-redux';
 import {createWrapper} from 'next-redux-wrapper';
 import store from '../store/store'
 import React from "react";
-import 'antd/dist/antd.css'
+
+
+import HeaderContainer from "../components/Header/HeaderContainer";
+import FooterContainer from "../components/Footer/FooterContainer";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 const App = ({Component, pageProps}) => {
+    return (
+        <Provider store={store}>
 
-  return (
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
-  )
+          <div className={s.wrapper}>
+            <HeaderContainer/>
+            <main className={s.main}>
+              <div className={s.container}>
+                <div className={s.content}>
+                  <Component {...pageProps}/>
+                </div>
+                <Sidebar/>
+              </div>
+            </main>
+            <FooterContainer/>
+
+          </div>
+        </Provider>
+    )
+
 }
 
 const makeStore = () => store;

@@ -1,3 +1,4 @@
+import React from 'react';
 import {useRouter} from "next/router";
 import {Button, Menu} from 'antd';
 import s from './UserPanel.module.scss'
@@ -38,7 +39,7 @@ const UserPanel = ({logOut, userData, auth, isFetching, history, ...rest}) => {
                     <CalendarOutlined />
                     Feed
                 </Menu.Item>
-                <Menu.Item onClick={() => router.push(`/users/${auth.userLogin}`)} key='2'>
+                <Menu.Item onClick={() => router.push(`/users/profile`)} key='2'>
                     <SnippetsOutlined/>
                     My Posts
                 </Menu.Item>

@@ -2,14 +2,13 @@ import React, {useEffect} from "react";
 import Posts, {RenderPosts} from "../Posts/Posts";
 import {connect} from "react-redux";
 import {getAllPostsTC, getReqPageTC} from "../../store/reducers/posts-reducer";
-// import { NavLink } from "react-router-dom";
-import {Button, Icon} from "antd";
+import {Button} from "antd";
 import s from './Newest.module.scss'
 import DatabaseOutlined from "@ant-design/icons/lib/icons/DatabaseOutlined";
 import Link from 'next/link'
 
 const Newest = props => {
-  const {posts, getReqPageTC, isFetching, getAllPostsTC} = props;
+  const {posts, getAllPostsTC} = props;
 
   useEffect(() => {
     getAllPostsTC()

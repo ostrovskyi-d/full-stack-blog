@@ -14,7 +14,6 @@ const Sidebar = (props) => {
     } = props;
 
     useEffect(() => {
-
         if(!isAuthorised) getMyUserDataTC()
     }, []);
 

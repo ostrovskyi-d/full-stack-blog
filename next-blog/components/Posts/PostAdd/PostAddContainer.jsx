@@ -2,12 +2,11 @@ import React from 'react';
 import {connect} from "react-redux";
 import {sendCreatedPostTC} from "../../../store/reducers/posts-reducer";
 import PostAdd from "./PostAdd";
-import {useRouter} from "next/router";
 
 import {compose} from "redux";
+import {withAuthOnly} from "../../../HOC/withAuthOnly";
 
 const PostAddContainer = (props) => {
-    const router = useRouter();
     return <PostAdd {...props}/>;
 };
 
@@ -20,5 +19,6 @@ const mapDispatchToProps = {
     sendCreatedPost: sendCreatedPostTC,
 };
 export default compose(
+    withAuthOnly,
     connect(mapStateToProps, mapDispatchToProps),
 )(PostAddContainer);

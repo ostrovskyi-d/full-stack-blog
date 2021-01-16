@@ -1,6 +1,6 @@
 import PostItem from "./PostItem/PostItem";
-import Paginator from "../common/Paginator";
-import Preloader from "../common/Preloader";
+import Paginator from "../common/Paginator/Paginator";
+import Preloader from "../common/Preloader/Preloader";
 import {useRouter} from "next/router";
 import React from "react";
 
@@ -23,7 +23,6 @@ const Posts = React.memo((props) => {
 });
 
 export const RenderPosts = React.memo(props => props.posts.map(post => {
-  console.log(post)
   return <PostItem
       {...post}
       renderAuthor={true}
